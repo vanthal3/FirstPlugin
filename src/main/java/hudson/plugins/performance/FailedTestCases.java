@@ -29,8 +29,8 @@ public class FailedTestCases implements ModelObject {
     }
 
 
-    public HashMap<String, List<JVisualizerBuildAction>> getFailedTestMap(){
-        HashMap<String, List<JVisualizerBuildAction>> builds=new HashMap<String, List<JVisualizerBuildAction>>();
+    public ArrayList<JVisualizerBuildAction> getAllBuildActions(){
+        ArrayList<JVisualizerBuildAction> builds=new ArrayList<JVisualizerBuildAction>();
 
         //System.out.println("in get all build actions");
 
@@ -40,7 +40,7 @@ public class FailedTestCases implements ModelObject {
         for (AbstractBuild<?, ?> currentBuild : buildsFromProject) {
             //EnvVars env = currentBuild.getEnvironment(manager.listner);
 
-            JVisualizerBuildAction JVBuildAction=currentBuild
+            JVisualizerBuildAction JVBuildAction = currentBuild
                     .getAction(JVisualizerBuildAction.class);
             if (JVBuildAction == null) {
                 continue;
@@ -55,19 +55,20 @@ public class FailedTestCases implements ModelObject {
 //
 //           }
             //iterate over each report in each build
-            for(JVisualizerReport jvb: JVBuildAction.getJVisualizerReportMap().getPerformanceListOrdered() ){
-                //System.out.println("NAME: "+ jvb.getReportFileName());
-                System.out.println("BUILD#: "+JVBuildAction.getMyBuildNum() + " ON: "+JVBuildAction.getMyDate()+" FILE: "+ jvb.getReportFileName()
-                        +" get my FailedTestMap: "+ jvb.getFailedTests().size());
-                //failedTestsMap.put(JVBuildAction.getMyBuildNum(), JVBuildAction);
+//            for(JVisualizerReport jvb: JVBuildAction.getJVisualizerReportMap().getPerformanceListOrdered() ){
+//                //System.out.println("NAME: "+ jvb.getReportFileName());
+//                System.out.println("BUILD#: "+JVBuildAction.getMyBuildNum() + " ON: "+JVBuildAction.getMyDate()+" FILE: "+ jvb.getReportFileName()
+//                        +" get my FailedTestMap: "+ jvb.getFailedTests().size());
+////                //failedTestsMap.put(JVBuildAction.getMyBuildNum(), JVBuildAction);
+//
 
-
-
-                //historyInfo.put(jvb.getReportFileName(),builds);
-                // for( : jvb)
-
-            }
-
+//
+//                //historyInfo.put(jvb.getReportFileName(),builds);
+//                // for( : jvb)
+//
+//            }
+//
+//        }
         }
         //System.out.println("SIZE OF BUILDS: "+ builds.size());
         //forLoopIt(historyInfo);

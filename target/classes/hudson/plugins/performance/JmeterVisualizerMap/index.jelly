@@ -6,16 +6,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="/plugin/performance/custom.js"></script>
  <!-- body tag is important to include to render JS script-->
-      <j:forEach var="jmeterVisualizer" items="${it.getPerformanceListOrdered()}">
-          <h2>${%Performance Breakdown by URI}: ${jmeterVisualizer.getReportFileName()}</h2>
-         <!--<jm:captionLine it="${jmeterVisualizer}"/>-->
+      <j:forEach var="jVisualizerReport" items="${it.getPerformanceListOrdered()}">
+          <h2>${%Performance Breakdown by URI}: ${jVisualizerReport.getReportFileName()}</h2>
+         <!--<jm:captionLine it="${jVisualizerReport}"/>-->
                      <body onload="addEvents();">
-         <j:forEach var="httpSample" items="${jmeterVisualizer.getUriListOrdered()}">
+         <j:forEach var="uriReport" items="${jVisualizerReport.getUriListOrdered()}">
                      <ul id="LinkedList1" class="LinkedList">
-                         <li id="name" class="${h.ifThenElse(httpSample.isSuccessful()==false, 'red', 'green')}">"${httpSample.getUri()}"
+                         <li id="name" class="${h.ifThenElse(uriReport.getHttpSample().isSuccessful()==false, 'red', 'green')}">"${uriReport.getUri()}"
                            <ul>
-                           <j:forEach var="arID" items="${httpSample.getAssertions().keySet()}">
-                              <li class="${h.ifThenElse(httpSample.getAr().get(uriReport.getUri()).get(arID).isFailure()==true,'red','green')}">"Assertion Result Name: ${httpSample.getAr().get(uriReport.getUri()).get(arID).getName()}"
+                           <j:forEach var="arID" items="${uriReport.getHttpSample().getAr().get(uriReport.getUri()).keySet()}">
+                              <li class="${h.ifThenElse(uriReport.getHttpSample().getAr().get(uriReport.getUri()).get(arID).isFailure()==true,'red','green')}">"Assertion Result Name: ${uriReport.getHttpSample().getAr().get(uriReport.getUri()).get(arID).getName()}"
                                 <ul>
                                    <table id="Assertions" >
 
@@ -26,9 +26,9 @@
                                       </tr>
 
                                       <tr>
-                                        <td >${httpSample.getAr().get(uriReport.getUri()).get(arID).isFailure()}</td>
-                                        <td>${httpSample.getAr().get(uriReport.getUri()).get(arID).isError()}</td>
-                                        <td>${httpSample.getAr().get(uriReport.getUri()).get(arID).getFailureMessage()}</td>
+                                        <td >${uriReport.getHttpSample().getAr().get(uriReport.getUri()).get(arID).isFailure()}</td>
+                                        <td>${uriReport.getHttpSample().getAr().get(uriReport.getUri()).get(arID).isError()}</td>
+                                        <td>${uriReport.getHttpSample().getAr().get(uriReport.getUri()).get(arID).getFailureMessage()}</td>
                                       </tr>
                                     </table>
                                 </ul>
@@ -46,12 +46,12 @@
                                          <!-- <th>${%Error Count}</th>-->
                                         </tr>
                                        <tr>
-                                         <td>${httpSample.getThreadname()}</td>
-                                         <td>${httpSample.getDate()}</td>
-                                         <td>${httpSample.getDuration()}</td>
-                                         <td>${httpSample.getHttpCode()}</td>
-                                         <td>${httpSample.getResponseMessage()}</td>
-                                         <!--<td>${httpSample.getErrorCount()}</td>-->
+                                         <td>${uriReport.getHttpSample().getThreadname()}</td>
+                                         <td>${uriReport.getHttpSample().getDate()}</td>
+                                         <td>${uriReport.getHttpSample().getDuration()}</td>
+                                         <td>${uriReport.getHttpSample().getHttpCode()}</td>
+                                         <td>${uriReport.getHttpSample().getResponseMessage()}</td>
+                                         <!--<td>${uriReport.getHttpSample().getErrorCount()}</td>-->
 
                                        </tr>
                                      </table>
