@@ -6,13 +6,13 @@ function addEvents() {
       //activateTree(document.getElementById("LinkedList1"));
     }
 
-    // This function traverses the list and add links 
+    // This function traverses the list and add links
     // to nested list items
     function activateTree(oList) {
       // Collapse the tree
       for (var i=0; i < oList.getElementsByTagName("ul").length; i++) {
-        oList.getElementsByTagName("ul")[i].style.display="none";            
-      }                                                                  
+        oList.getElementsByTagName("ul")[i].style.display="none";
+      }
       // Add the click-event handler to the list items
       if (oList.addEventListener) {
         oList.addEventListener("click", toggleBranch, false);
