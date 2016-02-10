@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers class="vector"/>
+  <concurrentBuild>false</concurrentBuild>
+  <customWorkspace>/Users/Hanifa_Bell/Desktop/finalTests</customWorkspace>
+  <builders/>
+  <publishers>
+    <hudson.plugins.performance.PerformancePublisher>
+      <nthBuildNumber>0</nthBuildNumber>
+      <compareBuildPrevious>false</compareBuildPrevious>
+      <xml></xml>
+      <parsers>
+        <hudson.plugins.performance.JMeterParser>
+          <glob>**/EchoHeader.jtl</glob>
+          <sampleID>2551</sampleID>
+        </hudson.plugins.performance.JMeterParser>
+        <hudson.plugins.performance.JMeterParser>
+          <glob>**/o_small.jtl</glob>
+          <sampleID>5689</sampleID>
+        </hudson.plugins.performance.JMeterParser>
+        <hudson.plugins.performance.JMeterParser>
+          <glob>**/fp.jtl</glob>
+          <sampleID>854</sampleID>
+        </hudson.plugins.performance.JMeterParser>
+      </parsers>
+      <modeThroughput>false</modeThroughput>
+    </hudson.plugins.performance.PerformancePublisher>
+  </publishers>
+  <buildWrappers/>
+</project>

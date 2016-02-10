@@ -1,0 +1,12 @@
+Started by user [8mha:AAAAlh+LCAAAAAAAAABb85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+Building in workspace /Users/Hanifa_Bell/Desktop/finalTests
+
+
+
+Performance: Recording JMeter reports '**/EchoHeader.jtl'
+Performance: Parsing JMeter report file '/Users/Hanifa_Bell/Desktop/performance copy 2/./work/jobs/scared/builds/2016-01-14_01-34-52/performance-reports/JMeter/EchoHeader.jtl'.
+Performance: Recording JMeter reports '**/o_small.jtl'
+Performance: Parsing JMeter report file '/Users/Hanifa_Bell/Desktop/performance copy 2/./work/jobs/scared/builds/2016-01-14_01-34-52/performance-reports/JMeter/o_small.jtl'.
+Performance: Recording JMeter reports '**/fp.jtl'
+Performance: Parsing JMeter report file '/Users/Hanifa_Bell/Desktop/performance copy 2/./work/jobs/scared/builds/2016-01-14_01-34-52/performance-reports/JMeter/fp.jtl'.
+Finished: SUCCESS

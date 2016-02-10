@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<build>
+  <actions>
+    <hudson.model.CauseAction>
+      <causes>
+        <hudson.model.Cause_-UserIdCause/>
+      </causes>
+    </hudson.model.CauseAction>
+    <hudson.plugins.performance.PerformanceBuildAction>
+      <build class="build" reference="../../.."/>
+      <parsers>
+        <hudson.plugins.performance.JMeterParser>
+          <glob>**/EchoHeader.jtl</glob>
+          <sampleID>9236</sampleID>
+        </hudson.plugins.performance.JMeterParser>
+        <hudson.plugins.performance.JMeterParser>
+          <glob>**/o_small.jtl</glob>
+          <sampleID>189</sampleID>
+        </hudson.plugins.performance.JMeterParser>
+        <hudson.plugins.performance.JMeterParser>
+          <glob>**/fp.jtl</glob>
+          <sampleID>4836</sampleID>
+        </hudson.plugins.performance.JMeterParser>
+      </parsers>
+    </hudson.plugins.performance.PerformanceBuildAction>
+  </actions>
+  <number>39</number>
+  <result>SUCCESS</result>
+  <duration>29</duration>
+  <charset>UTF-8</charset>
+  <keepLog>false</keepLog>
+  <builtOn></builtOn>
+  <workspace>/Users/Hanifa_Bell/Desktop/finalTests</workspace>
+  <hudsonVersion>1.480</hudsonVersion>
+  <scm class="hudson.scm.NullChangeLogParser"/>
+  <culprits class="com.google.common.collect.EmptyImmutableSortedSet"/>
+</build>

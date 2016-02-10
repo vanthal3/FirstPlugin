@@ -1,0 +1,92 @@
+table td {
+    border: 1px solid #bbb;
+}
+  ul.LinkedList { display: block; }
+  ul.LinkedList ul { display: none; }
+  .HandCursorStyle { cursor: pointer; cursor: hand; }  /* For IE */
+
+table#Assertions {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #bbb;
+    border-spacing: 0;
+    background-color: #F6F6D9;
+}
+
+table#Assertions td {
+    padding: 4px;
+}
+
+
+table.Assertions td {
+    border: 5px solid #eee;
+
+}
+
+
+table#httpSample {
+    border-style: solid;
+    border-color: #bbb;
+    border-spacing: 0;
+    border-collapse: collapse;
+    background-color: #F6E8D9;
+
+}
+
+table.httpSample td {
+    border: 5px solid #eee;
+
+}
+
+
+table.httpSample td {
+    text-align: right;
+    white-space: nowrap;
+    border: 5px solid #eee;
+}
+table.source td.left {
+    text-align: left;
+}
+table.source td.center {
+    text-align: center;
+}
+table.source td.right {
+    text-align: right;
+}
+table.source a {
+	text-decoration: none;
+}
+
+
+table.source th {
+    padding-left: 0.5em;
+    font-weight: bold;
+    background-color: #f0f0f0;
+    white-space: nowrap;
+}
+
+div.title {
+    background-color: #f0f0f0;
+    padding: 0px;
+    margin-top: 20px;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.nwrap {
+  white-space: nowrap;
+}
+.red, table.source .red a {
+	color: red;
+}
+
+.green, table.source .green a {
+	color: green;
+}
+.trend {
+	margin-right: 40px;
+	border: solid 1px pink;
+        margin-bottom: 20px;
+}
