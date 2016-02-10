@@ -18,7 +18,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class JmeterVisualizerPublisher extends Recorder {
+public class JVisualizerPublisher extends Recorder {
 
   @Extension
   public static class DescriptorImpl extends BuildStepDescriptor<Publisher> {
@@ -34,8 +34,8 @@ public class JmeterVisualizerPublisher extends Recorder {
     }
 
     //only gets the descriptors (annotated with extension points) that extend PerformanceReportParserDecriptor
-    public List<JmeterVisualizerParserDescriptor> getParserDescriptors() {
-      return JmeterVisualizerParserDescriptor.all();
+    public List<JVisualizerParserDescriptor> getParserDescriptors() {
+      return JVisualizerParserDescriptor.all();
     }
 
     @Override
@@ -73,20 +73,20 @@ public class JmeterVisualizerPublisher extends Recorder {
   /**
    * Configured report parsers.
    */
-  private List<JmeterVisualizerParser> parsers;
+  private List<JVisualizerParser> parsers;
 
   private boolean modeThroughput;
 
 
   @DataBoundConstructor
-  public JmeterVisualizerPublisher(int errorFailedThreshold,
-                                   int errorUnstableThreshold,
-                                   String errorUnstableResponseTimeThreshold,
-                                   int nthBuildNumber,
-                                   boolean modeOfThreshold,
-                                   boolean compareBuildPrevious,
-                                   List<? extends JmeterVisualizerParser> parsers,
-                                   boolean modeThroughput) {
+  public JVisualizerPublisher(int errorFailedThreshold,
+                              int errorUnstableThreshold,
+                              String errorUnstableResponseTimeThreshold,
+                              int nthBuildNumber,
+                              boolean modeOfThreshold,
+                              boolean compareBuildPrevious,
+                              List<? extends JVisualizerParser> parsers,
+                              boolean modeThroughput) {
 
 
     this.nthBuildNumber = nthBuildNumber;
@@ -94,28 +94,28 @@ public class JmeterVisualizerPublisher extends Recorder {
 
     if (parsers == null)
       parsers = Collections.emptyList();
-    this.parsers = new ArrayList<JmeterVisualizerParser>(parsers);
+    this.parsers = new ArrayList<JVisualizerParser>(parsers);
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   public static File getPerformanceReport(AbstractBuild<?, ?> build,
                                           String parserDisplayName, String performanceReportName) {
     return new File(build.getRootDir(),
-            JmeterVisualizerMap.getPerformanceReportFileRelativePath(
+            JVisualizerReportMap.getPerformanceReportFileRelativePath(
                     parserDisplayName,
                     getPerformanceReportBuildFileName(performanceReportName)));
   }
 
   @Override
   public Action getProjectAction(AbstractProject<?, ?> project) {
-    return new JmeterVisualizerProjectAction(project);
+    return new JVisualizerProjectAction(project);
   }
 
   public BuildStepMonitor getRequiredMonitorService() {
     return BuildStepMonitor.NONE;
   }
 
-  public List<JmeterVisualizerParser> getParsers() {
+  public List<JVisualizerParser> getParsers() {
     return parsers;
   }
 
@@ -127,7 +127,7 @@ public class JmeterVisualizerPublisher extends Recorder {
    * </p>
    *
    * @param performanceReportWorkspaceName
-   * @return the name of the JmeterVisualizer in the Build
+   * @return the name of the JVisualizerReport in the Build
    */
   public static String getPerformanceReportBuildFileName(
           String performanceReportWorkspaceName) {
@@ -248,11 +248,11 @@ public class JmeterVisualizerPublisher extends Recorder {
 
       //System.out.println("the parsers var size is; " + parsers.size());
       // add the report to the build object.
-      JmeterVisualizerBuildAction a = new JmeterVisualizerBuildAction(build, logger, parsers);
+      JVisualizerBuildAction a = new JVisualizerBuildAction(build, logger, parsers);
       build.addAction(a);
       logger.print("\n\n\n");
 
-      for (JmeterVisualizerParser parser : parsers) {
+      for (JVisualizerParser parser : parsers) {
         //System.out.println("The glob pattern is: " + parser.getDefaultGlobPattern());
 
         String glob = parser.glob;
@@ -285,10 +285,10 @@ public class JmeterVisualizerPublisher extends Recorder {
         for(File f : localReports){
           //System.out.println("name of file: "+f.getName());
         }
-        Collection<JmeterVisualizer> parsedReports = parser.parse(build, localReports, listener);
+        Collection<JVisualizerReport> parsedReports = parser.parse(build, localReports, listener);
 
 //          // mark the build as unstable or failure depending on the outcome.
-//          for (JmeterVisualizer r : parsedReports) {
+//          for (JVisualizerReport r : parsedReports) {
 //
 //            xmlDir = build.getRootDir().getAbsolutePath();
 //            xmlDir += "/"+archive_directory;
@@ -429,12 +429,12 @@ public class JmeterVisualizerPublisher extends Recorder {
 //        List<UriReport> curruriList = null;
 //
 //        // add the report to the build object.
-//        JmeterVisualizerBuildAction a = new JmeterVisualizerBuildAction(build, logger, parsers);
+//        JVisualizerBuildAction a = new JVisualizerBuildAction(build, logger, parsers);
 //        build.addAction(a);
 //        logger.print("\n\n\n");
 //
 //
-//        for (JmeterVisualizerParser parser : parsers) {
+//        for (JVisualizerParser parser : parsers) {
 //          String glob = parser.glob;
 //          glob = env.expand(glob);
 //          name = glob;
@@ -453,10 +453,10 @@ public class JmeterVisualizerPublisher extends Recorder {
 //          }
 //
 //          List<File> localReports = copyReportsToMaster(build, logger, files, parser.getDescriptor().getDisplayName());
-//          Collection<JmeterVisualizer> parsedReports = parser.parse(build, localReports, listener);
+//          Collection<JVisualizerReport> parsedReports = parser.parse(build, localReports, listener);
 //
 //
-//          for (JmeterVisualizer r : parsedReports) {
+//          for (JVisualizerReport r : parsedReports) {
 //            r.setBuildAction(a);
 //            // URI list is the list of labels in the current JMeter results file
 //            curruriList = r.getUriListOrdered();
@@ -501,19 +501,19 @@ public class JmeterVisualizerPublisher extends Recorder {
 //        List<UriReport> prevuriList = null;
 //
 //        if (prevBuild != null) {
-//          JmeterVisualizerBuildAction b = new JmeterVisualizerBuildAction(prevBuild, logger, parsers);
+//          JVisualizerBuildAction b = new JVisualizerBuildAction(prevBuild, logger, parsers);
 //          prevBuild.addAction(b);
 //
 //          //getting files related to the previous build selected
-//          for (JmeterVisualizerParser parser : parsers) {
+//          for (JVisualizerParser parser : parsers) {
 //            String glob = parser.glob;
 //            logger.println("Performance: Recording " + parser.getReportName()+ " reports '" + glob + "'");
 //
 //            List<File> localReports = getExistingReports(prevBuild, logger, parser.getDescriptor().getDisplayName());
-//            Collection<JmeterVisualizer> parsedReports = parser.parse(prevBuild, localReports, listener);
+//            Collection<JVisualizerReport> parsedReports = parser.parse(prevBuild, localReports, listener);
 //
 //
-//            for (JmeterVisualizer r : parsedReports) {
+//            for (JVisualizerReport r : parsedReports) {
 //              r.setBuildAction(b);
 //
 //              //uri list is the list of labels in the previous jmeter results file
@@ -628,7 +628,7 @@ public class JmeterVisualizerPublisher extends Recorder {
   public Object readResolve() {
     // data format migration
     if (parsers == null)
-      parsers = new ArrayList<JmeterVisualizerParser>();
+      parsers = new ArrayList<JVisualizerParser>();
     if (filename != null) {
       parsers.add(new JtlFileParser(filename));
       filename = null;
@@ -672,7 +672,7 @@ public class JmeterVisualizerPublisher extends Recorder {
 
   public static File[] getPerformanceReportDirectory(AbstractBuild<?, ?> build,
                                                      String parserDisplayName, PrintStream logger) {
-    File folder = new File(build.getRootDir() + "/" + JmeterVisualizerMap.getPerformanceReportFileRelativePath(parserDisplayName, ""));
+    File folder = new File(build.getRootDir() + "/" + JVisualizerReportMap.getPerformanceReportFileRelativePath(parserDisplayName, ""));
     File[] listOfFiles = folder.listFiles();
     return listOfFiles;
   }

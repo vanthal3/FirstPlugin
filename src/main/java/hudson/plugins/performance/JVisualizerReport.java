@@ -9,17 +9,17 @@ import java.util.*;
 import org.xml.sax.SAXException;
 
 /**
- * Represents the core of JmeterVisualizer plugin. It contains all JTL files tested
+ * Represents the core of JVisualizerReport plugin. It contains all JTL files tested
  * under {@link UriReport}s for different URIs.
  *
- * This object belongs under {@link JmeterVisualizerMap}.
+ * This object belongs under {@link JVisualizerReportMap}.
  */
-public class JmeterVisualizer extends AbstractReport implements Serializable,
-    Comparable<JmeterVisualizer> {
+public class JVisualizerReport extends AbstractReport implements Serializable,
+    Comparable<JVisualizerReport> {
 
   private static final long serialVersionUID = 675698410989941826L;
 
-  private transient JmeterVisualizerBuildAction buildAction;
+  private transient JVisualizerBuildAction buildAction;
 
   private String reportFileName = null;
 
@@ -29,7 +29,7 @@ public class JmeterVisualizer extends AbstractReport implements Serializable,
   private final Map<Integer, HttpSample> httpSampleMap = new LinkedHashMap<Integer, HttpSample>();
 
 
-  private JmeterVisualizer lastBuildReport;
+  private JVisualizerReport lastBuildReport;
 
   /**
    * A lazy cache of all duration values of all HTTP samples in all UriReports, ordered by duration. 
@@ -116,7 +116,7 @@ public class JmeterVisualizer extends AbstractReport implements Serializable,
               + "name properly for each http sample: skipping httpsample");
       return;
     }
-    //String staplerUri = JmeterVisualizer.asStaplerURI(uri);
+    //String staplerUri = JVisualizerReport.asStaplerURI(uri);
     //setStaplerUri(staplerUri);
     synchronized (httpSampleMap) {
       //httpSample = httpSampleMap.get(httpID);
@@ -203,7 +203,7 @@ public class JmeterVisualizer extends AbstractReport implements Serializable,
 //    }
 //  }
 
-  public int compareTo(JmeterVisualizer jmReport) {
+  public int compareTo(JVisualizerReport jmReport) {
     if (this == jmReport) {
       return 0;
     }
@@ -284,7 +284,7 @@ public class JmeterVisualizer extends AbstractReport implements Serializable,
     return buildAction.getBuild();
   }
 
-  JmeterVisualizerBuildAction getBuildAction() {
+  JVisualizerBuildAction getBuildAction() {
     return buildAction;
   }
 
@@ -318,7 +318,7 @@ public class JmeterVisualizer extends AbstractReport implements Serializable,
     return httpSampleMap;
   }
 
-  void setBuildAction(JmeterVisualizerBuildAction buildAction) {
+  void setBuildAction(JVisualizerBuildAction buildAction) {
     this.buildAction = buildAction;
   }
 
@@ -330,7 +330,7 @@ public class JmeterVisualizer extends AbstractReport implements Serializable,
     return size;
   }
 
-  public void setLastBuildReport(JmeterVisualizer lastBuildReport) {
+  public void setLastBuildReport(JVisualizerReport lastBuildReport) {
     Map<Integer, HttpSample> lastBuildUriReportMap = lastBuildReport
         .getHttpSampleMap();
     for (Map.Entry<Integer, HttpSample> item : httpSampleMap.entrySet()) {
@@ -391,8 +391,8 @@ public class JmeterVisualizer extends AbstractReport implements Serializable,
    * @return boolean indicating usage of summarized parser
    */
   public boolean ifSummarizerParserUsed(String filename) {
-    List<JmeterVisualizerParser> list = buildAction.getBuild().getProject()
-        .getPublishersList().get(JmeterVisualizerPublisher.class).getParsers();
+    List<JVisualizerParser> list = buildAction.getBuild().getProject()
+        .getPublishersList().get(JVisualizerPublisher.class).getParsers();
 
     for (int i = 0; i < list.size(); i++) {
       if (list.get(i).getDescriptor().getDisplayName()

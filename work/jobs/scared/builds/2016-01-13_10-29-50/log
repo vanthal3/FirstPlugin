@@ -21,7 +21,7 @@ java.lang.NullPointerException
 	at hudson.plugins.performance.JtlFileParser.parseXml(JMeterParser.java:93)
 	at hudson.plugins.performance.JtlFileParser.parse(JMeterParser.java:50)
 	at hudson.plugins.performance.AbstractParser.parse(AbstractParser.java:66)
-	at hudson.plugins.performance.JmeterVisualizerPublisher.perform(PerformancePublisher.java:290)
+	at hudson.plugins.performance.JVisualizerPublisher.perform(PerformancePublisher.java:290)
 	at hudson.tasks.BuildStepMonitor$1.perform(BuildStepMonitor.java:19)
 	at hudson.model.AbstractBuild$AbstractBuildExecution.perform(AbstractBuild.java:717)
 	at hudson.model.AbstractBuild$AbstractBuildExecution.performAllBuildSteps(AbstractBuild.java:692)

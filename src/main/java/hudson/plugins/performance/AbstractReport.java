@@ -7,7 +7,7 @@ import java.util.Locale;
 import org.kohsuke.stapler.Stapler;
 
 /**
- * Abstract class for JmeterVisualizer that uses size, error, mean, average, 90 line, min and max attributes
+ * Abstract class for JVisualizerReport that uses size, error, mean, average, 90 line, min and max attributes
  *
  * @author Guus der Kinderen
  */

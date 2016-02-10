@@ -3,9 +3,9 @@ Building in workspace /Users/Hanifa_Bell/Desktop/finalTests
 
 
 
-ERROR: Publisher hudson.plugins.performance.JmeterVisualizerPublisher aborted due to exception
-[8mha:AAAAWB+LCAAAAAAAAABb85aBtbiIQSmjNKU4P08vOT+vOD8nVc8DzHWtSE4tKMnMz/PLL0ldFVf2c+b/lb5MDAwVRQxSaBqcITRIIQMEMIIUFgAAckCEiWAAAAA=[0mjava.lang.ClassCastException: hudson.plugins.performance.JMeterParser cannot be cast to hudson.plugins.performance.JmeterVisualizerParser
-	at hudson.plugins.performance.JmeterVisualizerPublisher.perform(PerformancePublisher.java:257)
+ERROR: Publisher hudson.plugins.performance.JVisualizerPublisher aborted due to exception
+[8mha:AAAAWB+LCAAAAAAAAABb85aBtbiIQSmjNKU4P08vOT+vOD8nVc8DzHWtSE4tKMnMz/PLL0ldFVf2c+b/lb5MDAwVRQxSaBqcITRIIQMEMIIUFgAAckCEiWAAAAA=[0mjava.lang.ClassCastException: hudson.plugins.performance.JMeterParser cannot be cast to hudson.plugins.performance.JVisualizerParser
+	at hudson.plugins.performance.JVisualizerPublisher.perform(PerformancePublisher.java:257)
 	at hudson.tasks.BuildStepMonitor$1.perform(BuildStepMonitor.java:19)
 	at hudson.model.AbstractBuild$AbstractBuildExecution.perform(AbstractBuild.java:717)
 	at hudson.model.AbstractBuild$AbstractBuildExecution.performAllBuildSteps(AbstractBuild.java:692)

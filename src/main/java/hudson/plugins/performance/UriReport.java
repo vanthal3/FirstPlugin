@@ -18,7 +18,7 @@ import org.kohsuke.stapler.StaplerResponse;
 /**
  * A report about a particular tested URI.
  * 
- * This object belongs under {@link JmeterVisualizer}.
+ * This object belongs under {@link JVisualizerReport}.
  */
 public class UriReport extends AbstractReport implements Serializable, ModelObject,
     Comparable<UriReport> {
@@ -341,7 +341,7 @@ public class UriReport extends AbstractReport implements Serializable, ModelObje
     dataset.add(resp);
 
     ChartUtil.generateGraph(request, response,
-                        JmeterVisualizerProjectAction.createSummarizerTrend(dataset, uri),400, 200);
+                        JVisualizerProjectAction.createSummarizerTrend(dataset, uri),400, 200);
   }
 
   public Date getStart() {

@@ -6,11 +6,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="/plugin/performance/custom.js"></script>
  <!-- body tag is important to include to render JS script-->
-      <j:forEach var="jmeterVisualizer" items="${it.getPerformanceListOrdered()}">
-          <h2>${%Performance Breakdown by URI}: ${jmeterVisualizer.getReportFileName()}</h2>
-         <!--<jm:captionLine it="${jmeterVisualizer}"/>-->
+      <j:forEach var="jVisualizerReport" items="${it.getPerformanceListOrdered()}">
+          <h2>${%Performance Breakdown by URI}: ${jVisualizerReport.getReportFileName()}</h2>
+         <!--<jm:captionLine it="${jVisualizerReport}"/>-->
                      <body onload="addEvents();">
-         <j:forEach var="uriReport" items="${jmeterVisualizer.getUriListOrdered()}">
+         <j:forEach var="uriReport" items="${jVisualizerReport.getUriListOrdered()}">
                      <ul id="LinkedList1" class="LinkedList">
                          <li id="name" class="${h.ifThenElse(uriReport.getHttpSample().isSuccessful()==false, 'red', 'green')}">"${uriReport.getUri()}"
                            <ul>

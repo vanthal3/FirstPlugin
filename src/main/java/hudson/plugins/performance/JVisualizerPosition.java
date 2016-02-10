@@ -1,6 +1,6 @@
 package hudson.plugins.performance;
 
-public class JmeterVisualizerPosition {
+public class JVisualizerPosition {
   private String performanceReportPosition;
   private String summarizerReportType;
   private String summarizerTrendUri;

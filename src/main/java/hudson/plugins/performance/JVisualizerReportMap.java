@@ -19,20 +19,20 @@ import org.kohsuke.stapler.StaplerResponse;
 /**
  * Root object of a performance report.
  */
-public class JmeterVisualizerMap implements ModelObject {
+public class JVisualizerReportMap implements ModelObject {
 
   /**
-   * The {@link JmeterVisualizerBuildAction} that this report belongs to.
+   * The {@link JVisualizerBuildAction} that this report belongs to.
    */
-  private transient JmeterVisualizerBuildAction buildAction;
+  private transient JVisualizerBuildAction buildAction;
   /**
-   * {@link JmeterVisualizer}s are keyed by
-   * {@link JmeterVisualizer#reportFileName}
+   * {@link JVisualizerReport}s are keyed by
+   * {@link JVisualizerReport#reportFileName}
    * 
    * Test names are arbitrary human-readable and URL-safe string that identifies
    * an individual report.
    */
-  private Map<String, JmeterVisualizer> performanceReportMap = new LinkedHashMap<String, JmeterVisualizer>();
+  private Map<String, JVisualizerReport> performanceReportMap = new LinkedHashMap<String, JVisualizerReport>();
   private static final String PERFORMANCE_REPORTS_DIRECTORY = "performance-reports";
   private static final String PLUGIN_NAME = "performance";
   private static final String TRENDREPORT_LINK = "trendReport";
@@ -40,18 +40,18 @@ public class JmeterVisualizerMap implements ModelObject {
   private static AbstractBuild<?, ?> currentBuild = null;
 
   /**
-   * Parses the reports and build a {@link JmeterVisualizerMap}.
+   * Parses the reports and build a {@link JVisualizerReportMap}.
    * 
    * @throws IOException
    *           If a report fails to parse.
    */
-  JmeterVisualizerMap(final JmeterVisualizerBuildAction buildAction,
-                      TaskListener listener) throws IOException {
+  JVisualizerReportMap(final JVisualizerBuildAction buildAction,
+                       TaskListener listener) throws IOException {
     this.buildAction = buildAction;
     parseReports(getBuild(), listener, new PerformanceReportCollector() {
 
-      public void addAll(Collection<JmeterVisualizer> reports) {
-        for (JmeterVisualizer r : reports) {
+      public void addAll(Collection<JVisualizerReport> reports) {
+        for (JVisualizerReport r : reports) {
           r.setBuildAction(buildAction);
           performanceReportMap.put(r.getReportFileName(), r);
           System.out.println("NAME OF REPORT "+r.getReportFileName());
@@ -60,8 +60,8 @@ public class JmeterVisualizerMap implements ModelObject {
     }, null);
   }
 
-  private void addAll(Collection<JmeterVisualizer> reports) {
-    for (JmeterVisualizer r : reports) {
+  private void addAll(Collection<JVisualizerReport> reports) {
+    for (JVisualizerReport r : reports) {
       r.setBuildAction(buildAction);
       performanceReportMap.put(r.getReportFileName(), r);
     }
@@ -71,7 +71,7 @@ public class JmeterVisualizerMap implements ModelObject {
     return buildAction.getBuild();
   }
 
-  JmeterVisualizerBuildAction getBuildAction() {
+  JVisualizerBuildAction getBuildAction() {
     return buildAction;
   }
 
@@ -79,14 +79,14 @@ public class JmeterVisualizerMap implements ModelObject {
     return Messages.Report_DisplayName();
   }
 
-  public List<JmeterVisualizer> getPerformanceListOrdered() {
-    List<JmeterVisualizer> listPerformance = new ArrayList<JmeterVisualizer>(
+  public List<JVisualizerReport> getPerformanceListOrdered() {
+    List<JVisualizerReport> listPerformance = new ArrayList<JVisualizerReport>(
         getPerformanceReportMap().values());
     Collections.sort(listPerformance);
     return listPerformance;
   }
 
-  public Map<String, JmeterVisualizer> getPerformanceReportMap() {
+  public Map<String, JVisualizerReport> getPerformanceReportMap() {
     return performanceReportMap;
   }
 
@@ -98,7 +98,7 @@ public class JmeterVisualizerMap implements ModelObject {
    * @param performanceReportName
    * @return
    */
-  public JmeterVisualizer getPerformanceReport(String performanceReportName) {
+  public JVisualizerReport getPerformanceReport(String performanceReportName) {
     return performanceReportMap.get(performanceReportName);
   }
 //
@@ -133,12 +133,12 @@ public class JmeterVisualizerMap implements ModelObject {
     return PLUGIN_NAME;
   }
 
-  void setBuildAction(JmeterVisualizerBuildAction buildAction) {
+  void setBuildAction(JVisualizerBuildAction buildAction) {
     this.buildAction = buildAction;
   }
 
   public void setPerformanceReportMap(
-      Map<String, JmeterVisualizer> performanceReportMap) {
+      Map<String, JVisualizerReport> performanceReportMap) {
     this.performanceReportMap = performanceReportMap;
   }
 
@@ -162,7 +162,7 @@ public class JmeterVisualizerMap implements ModelObject {
 
   /**
    * <p>
-   * Verify if the JmeterVisualizer exist the performanceReportName must to be
+   * Verify if the JVisualizerReport exist the performanceReportName must to be
    * like it is in the build
    * </p>
    * 
@@ -177,20 +177,20 @@ public class JmeterVisualizerMap implements ModelObject {
       StaplerResponse response) throws IOException {
     String parameter = request.getParameter("performanceReportPosition");
     AbstractBuild<?, ?> previousBuild = getBuild();
-    final Map<AbstractBuild<?, ?>, Map<String, JmeterVisualizer>> buildReports = new LinkedHashMap<AbstractBuild<?, ?>, Map<String, JmeterVisualizer>>();
+    final Map<AbstractBuild<?, ?>, Map<String, JVisualizerReport>> buildReports = new LinkedHashMap<AbstractBuild<?, ?>, Map<String, JVisualizerReport>>();
     while (previousBuild != null) {
       final AbstractBuild<?, ?> currentBuild = previousBuild;
       parseReports(currentBuild, TaskListener.NULL,
           new PerformanceReportCollector() {
 
-            public void addAll(Collection<JmeterVisualizer> parse) {
-              for (JmeterVisualizer jmeterVisualizer : parse) {
+            public void addAll(Collection<JVisualizerReport> parse) {
+              for (JVisualizerReport jVisualizerReport : parse) {
                 if (buildReports.get(currentBuild) == null) {
-                  Map<String, JmeterVisualizer> map = new LinkedHashMap<String, JmeterVisualizer>();
+                  Map<String, JVisualizerReport> map = new LinkedHashMap<String, JVisualizerReport>();
                   buildReports.put(currentBuild, map);
                 }
                 buildReports.get(currentBuild).put(
-                    jmeterVisualizer.getReportFileName(), jmeterVisualizer);
+                    jVisualizerReport.getReportFileName(), jVisualizerReport);
               }
             }
           }, parameter);
@@ -200,11 +200,11 @@ public class JmeterVisualizerMap implements ModelObject {
     DataSetBuilder<String, NumberOnlyBuildLabel> dataSetBuilderAverage = new DataSetBuilder<String, NumberOnlyBuildLabel>();
     for (AbstractBuild<?, ?> currentBuild : buildReports.keySet()) {
       NumberOnlyBuildLabel label = new NumberOnlyBuildLabel(currentBuild);
-      JmeterVisualizer report = buildReports.get(currentBuild).get(parameter);
+      JVisualizerReport report = buildReports.get(currentBuild).get(parameter);
       dataSetBuilderAverage.add(report.getAverage(),
           Messages.ProjectAction_Average(), label);
     }
-    ChartUtil.generateGraph(request, response, JmeterVisualizerProjectAction
+    ChartUtil.generateGraph(request, response, JVisualizerProjectAction
         .createRespondingTimeChart(dataSetBuilderAverage.build()), 400, 200);
   }
 
@@ -212,21 +212,21 @@ public class JmeterVisualizerMap implements ModelObject {
       throws IOException {
     String parameter = request.getParameter("performanceReportPosition");
     AbstractBuild<?, ?> previousBuild = getBuild();
-    final Map<AbstractBuild<?, ?>, Map<String, JmeterVisualizer>> buildReports = new LinkedHashMap<AbstractBuild<?, ?>, Map<String, JmeterVisualizer>>();
+    final Map<AbstractBuild<?, ?>, Map<String, JVisualizerReport>> buildReports = new LinkedHashMap<AbstractBuild<?, ?>, Map<String, JVisualizerReport>>();
 
     while (previousBuild != null) {
       final AbstractBuild<?, ?> currentBuild = previousBuild;
       parseReports(currentBuild, TaskListener.NULL,
           new PerformanceReportCollector() {
 
-            public void addAll(Collection<JmeterVisualizer> parse) {
-              for (JmeterVisualizer jmeterVisualizer : parse) {
+            public void addAll(Collection<JVisualizerReport> parse) {
+              for (JVisualizerReport jVisualizerReport : parse) {
                 if (buildReports.get(currentBuild) == null) {
-                  Map<String, JmeterVisualizer> map = new LinkedHashMap<String, JmeterVisualizer>();
+                  Map<String, JVisualizerReport> map = new LinkedHashMap<String, JVisualizerReport>();
                   buildReports.put(currentBuild, map);
                 }
                 buildReports.get(currentBuild).put(
-                    jmeterVisualizer.getReportFileName(), jmeterVisualizer);
+                    jVisualizerReport.getReportFileName(), jVisualizerReport);
               }
             }
           }, parameter);
@@ -235,7 +235,7 @@ public class JmeterVisualizerMap implements ModelObject {
     DataSetBuilder<NumberOnlyBuildLabel, String> dataSetBuilderSummarizer = new DataSetBuilder<NumberOnlyBuildLabel, String>();
     for (AbstractBuild<?, ?> currentBuild : buildReports.keySet()) {
       NumberOnlyBuildLabel label = new NumberOnlyBuildLabel(currentBuild);
-      JmeterVisualizer report = buildReports.get(currentBuild).get(parameter);
+      JVisualizerReport report = buildReports.get(currentBuild).get(parameter);
 
       // Now we should have the data necessary to generate the graphs!
 //      for (Integer key : report.getUriReportMap().keySet()) {
@@ -247,7 +247,7 @@ public class JmeterVisualizerMap implements ModelObject {
     ChartUtil.generateGraph(
         request,
         response,
-        JmeterVisualizerProjectAction.createSummarizerChart(
+        JVisualizerProjectAction.createSummarizerChart(
             dataSetBuilderSummarizer.build(), "ms",
             Messages.ProjectAction_RespondingTime()), 400, 200);
   }
@@ -256,7 +256,7 @@ public class JmeterVisualizerMap implements ModelObject {
       PerformanceReportCollector collector, final String filename)
       throws IOException {
     File repo = new File(build.getRootDir(),
-        JmeterVisualizerMap.getPerformanceReportDirRelativePath());
+        JVisualizerReportMap.getPerformanceReportDirRelativePath());
 
     // files directly under the directory are for JMeter, for compatibility
     // reasons.
@@ -281,7 +281,7 @@ public class JmeterVisualizerMap implements ModelObject {
     // this may fail, if the build itself failed, we need to recover gracefully
     if (dirs != null) {
       for (File dir : dirs) {
-        JmeterVisualizerParser p = buildAction.getParserByDisplayName(dir
+        JVisualizerParser p = buildAction.getParserByDisplayName(dir
             .getName());
         if (p != null) {
           File[] listFiles = dir.listFiles(new FilenameFilter() {
@@ -312,11 +312,11 @@ public class JmeterVisualizerMap implements ModelObject {
   private void addPreviousBuildReports() {
 
     // Avoid parsing all builds.
-    if (JmeterVisualizerMap.currentBuild == null) {
-      JmeterVisualizerMap.currentBuild = getBuild();
+    if (JVisualizerReportMap.currentBuild == null) {
+      JVisualizerReportMap.currentBuild = getBuild();
     } else {
-      if (JmeterVisualizerMap.currentBuild != getBuild()) {
-        JmeterVisualizerMap.currentBuild = null;
+      if (JVisualizerReportMap.currentBuild != getBuild()) {
+        JVisualizerReportMap.currentBuild = null;
         return;
       }
     }
@@ -326,21 +326,21 @@ public class JmeterVisualizerMap implements ModelObject {
       return;
     }
 
-    JmeterVisualizerBuildAction previousPerformanceAction = previousBuild
-        .getAction(JmeterVisualizerBuildAction.class);
+    JVisualizerBuildAction previousPerformanceAction = previousBuild
+        .getAction(JVisualizerBuildAction.class);
     if (previousPerformanceAction == null) {
       return;
     }
 
-    JmeterVisualizerMap previousJmeterVisualizerMap = previousPerformanceAction
+    JVisualizerReportMap previousJVisualizerReportMap = previousPerformanceAction
         .getPerformanceReportMap();
-    if (previousJmeterVisualizerMap == null) {
+    if (previousJVisualizerReportMap == null) {
       return;
     }
 
-    for (Map.Entry<String, JmeterVisualizer> item : getPerformanceReportMap()
+    for (Map.Entry<String, JVisualizerReport> item : getPerformanceReportMap()
         .entrySet()) {
-      JmeterVisualizer lastReport = previousJmeterVisualizerMap
+      JVisualizerReport lastReport = previousJVisualizerReportMap
           .getPerformanceReportMap().get(item.getKey());
       if (lastReport != null) {
         item.getValue().setLastBuildReport(lastReport);
@@ -350,7 +350,7 @@ public class JmeterVisualizerMap implements ModelObject {
 
   private interface PerformanceReportCollector {
 
-    public void addAll(Collection<JmeterVisualizer> parse);
+    public void addAll(Collection<JVisualizerReport> parse);
   }
 
 //  public Object getDynamic(final String link, final StaplerRequest request,
@@ -364,7 +364,7 @@ public class JmeterVisualizerMap implements ModelObject {
 //
 ////  public Object createTrendReportGraphs(final StaplerRequest request) {
 //    String filename = getTrendReportFilename(request);
-//    JmeterVisualizer report = performanceReportMap.get(filename);
+//    JVisualizerReport report = performanceReportMap.get(filename);
 //    AbstractBuild<?, ?> build = getBuild();
 //
 //    TrendReportGraphs trendReport = new TrendReportGraphs(build.getProject(),
@@ -374,8 +374,8 @@ public class JmeterVisualizerMap implements ModelObject {
 //  }
 
   private String getTrendReportFilename(final StaplerRequest request) {
-    JmeterVisualizerPosition jmeterVisualizerPosition = new JmeterVisualizerPosition();
-    request.bindParameters(jmeterVisualizerPosition);
-    return jmeterVisualizerPosition.getPerformanceReportPosition();
+    JVisualizerPosition jVisualizerPosition = new JVisualizerPosition();
+    request.bindParameters(jVisualizerPosition);
+    return jVisualizerPosition.getPerformanceReportPosition();
   }
 }

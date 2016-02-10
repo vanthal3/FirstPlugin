@@ -23,7 +23,7 @@ public class JtlFileParser extends AbstractParser {
 
 
   @Extension
-  public static class DescriptorImpl extends JmeterVisualizerParserDescriptor {
+  public static class DescriptorImpl extends JVisualizerParserDescriptor {
     @Override
     public String getDisplayName() {
       return "JTL File";
@@ -41,7 +41,7 @@ public class JtlFileParser extends AbstractParser {
     return "**/*.jtl";
   }
 
-  JmeterVisualizer parse(File reportFile) throws Exception
+  JVisualizerReport parse(File reportFile) throws Exception
   {
     // JMeter stores either CSV or XML in .JTL files.
     final boolean isXml = isXmlFile(reportFile);
@@ -77,13 +77,13 @@ public class JtlFileParser extends AbstractParser {
   /**
    * A delegate for {@link #parse(File)} that can process XML data.
    */
-  JmeterVisualizer parseXml(File reportFile) throws Exception
+  JVisualizerReport parseXml(File reportFile) throws Exception
   {
     final SAXParserFactory factory = SAXParserFactory.newInstance();
     factory.setValidating(false);
     factory.setNamespaceAware(false);
 
-    final JmeterVisualizer report = new JmeterVisualizer();
+    final JVisualizerReport report = new JVisualizerReport();
     //System.out.println("==========================entering parsexml, new parseReport created with hash: "+System.identityHashCode(report)+" and size of map is "+report.getUriReportMap().size()+" =============== ");
 
     report.setReportFileName(reportFile.getName());

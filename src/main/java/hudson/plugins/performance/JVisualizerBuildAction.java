@@ -12,32 +12,32 @@ import java.io.PrintStream;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-public class JmeterVisualizerBuildAction implements Action, StaplerProxy {
+public class JVisualizerBuildAction implements Action, StaplerProxy {
   private final AbstractBuild<?, ?> build;
 
   /**
    * Configured parsers used to parse reports in this build.
    * For compatibility reasons, this can be null.
    */
-  private final List<JmeterVisualizerParser> parsers;
+  private final List<JVisualizerParser> parsers;
 
   private transient final PrintStream hudsonConsoleWriter;
 
-  private transient WeakReference<JmeterVisualizerMap> performanceReportMap;
+  private transient WeakReference<JVisualizerReportMap> performanceReportMap;
 
-  private static final Logger logger = Logger.getLogger(JmeterVisualizerBuildAction.class.getName());
+  private static final Logger logger = Logger.getLogger(JVisualizerBuildAction.class.getName());
 
 
-  public JmeterVisualizerBuildAction(AbstractBuild<?, ?> pBuild, PrintStream logger,
-                                     List<JmeterVisualizerParser> parsers) {
+  public JVisualizerBuildAction(AbstractBuild<?, ?> pBuild, PrintStream logger,
+                                List<JVisualizerParser> parsers) {
     build = pBuild;
     hudsonConsoleWriter = logger;
     this.parsers = parsers;
   }
 
-  public JmeterVisualizerParser getParserByDisplayName(String displayName) {
+  public JVisualizerParser getParserByDisplayName(String displayName) {
     if (parsers != null)
-      for (JmeterVisualizerParser parser : parsers)
+      for (JVisualizerParser parser : parsers)
         if (parser.getDescriptor().getDisplayName().equals(displayName))
           return parser;
     return null;
@@ -55,7 +55,7 @@ public class JmeterVisualizerBuildAction implements Action, StaplerProxy {
     return "visualizerBA";
   }
 
-  public JmeterVisualizerMap getTarget() {
+  public JVisualizerReportMap getTarget() {
     return getPerformanceReportMap();
   }
 
@@ -67,9 +67,9 @@ public class JmeterVisualizerBuildAction implements Action, StaplerProxy {
     return hudsonConsoleWriter;
   }
 
-  public JmeterVisualizerMap getPerformanceReportMap() {
-    JmeterVisualizerMap reportMap = null;
-    WeakReference<JmeterVisualizerMap> wr = this.performanceReportMap;
+  public JVisualizerReportMap getPerformanceReportMap() {
+    JVisualizerReportMap reportMap = null;
+    WeakReference<JVisualizerReportMap> wr = this.performanceReportMap;
     if (wr != null) {
       reportMap = wr.get();
       if (reportMap != null)
@@ -77,17 +77,17 @@ public class JmeterVisualizerBuildAction implements Action, StaplerProxy {
     }
 
     try {
-      reportMap = new JmeterVisualizerMap(this, StreamTaskListener.fromStderr());
+      reportMap = new JVisualizerReportMap(this, StreamTaskListener.fromStderr());
     } catch (IOException e) {
-      logger.log(Level.SEVERE, "Error creating new JmeterVisualizerMap()", e);
+      logger.log(Level.SEVERE, "Error creating new JVisualizerReportMap()", e);
     }
-    this.performanceReportMap = new WeakReference<JmeterVisualizerMap>(
+    this.performanceReportMap = new WeakReference<JVisualizerReportMap>(
         reportMap);
     return reportMap;
   }
 
   public void setPerformanceReportMap(
-      WeakReference<JmeterVisualizerMap> performanceReportMap) {
+      WeakReference<JVisualizerReportMap> performanceReportMap) {
     this.performanceReportMap = performanceReportMap;
   }
 }

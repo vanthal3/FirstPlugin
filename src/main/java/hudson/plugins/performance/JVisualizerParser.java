@@ -12,8 +12,8 @@ import java.io.*;
 import java.util.Collection;
 
 /**
- * Parses performance result files into {@link JmeterVisualizer}s. This object
- * is persisted with {@link JmeterVisualizerPublisher} into the project
+ * Parses performance result files into {@link JVisualizerReport}s. This object
+ * is persisted with {@link JVisualizerPublisher} into the project
  * configuration.
  * 
  * <p>
@@ -21,28 +21,28 @@ import java.util.Collection;
  * 
  * @author Kohsuke Kawaguchi
  */
-public abstract class JmeterVisualizerParser implements
-    Describable<JmeterVisualizerParser>, ExtensionPoint {
+public abstract class JVisualizerParser implements
+    Describable<JVisualizerParser>, ExtensionPoint {
   /**
    * GLOB patterns that specify the performance report.
    */
   public final String glob;
 
   @DataBoundConstructor
-  protected JmeterVisualizerParser(String glob) {
+  protected JVisualizerParser(String glob) {
     this.glob = (glob == null || glob.length() == 0) ? getDefaultGlobPattern()
         : glob;
   }
 
-  public JmeterVisualizerParserDescriptor getDescriptor() {
-    return (JmeterVisualizerParserDescriptor) Hudson.getInstance()
+  public JVisualizerParserDescriptor getDescriptor() {
+    return (JVisualizerParserDescriptor) Hudson.getInstance()
         .getDescriptorOrDie(getClass());
   }
 
   /**
-   * Parses the specified reports into {@link JmeterVisualizer}s.
+   * Parses the specified reports into {@link JVisualizerReport}s.
    */
-  public abstract Collection<JmeterVisualizer> parse(
+  public abstract Collection<JVisualizerReport> parse(
       AbstractBuild<?, ?> build, Collection<File> reports, TaskListener listener)
       throws IOException;
 
@@ -51,8 +51,8 @@ public abstract class JmeterVisualizerParser implements
   /**
    * All registered implementations.
    */
-  public static ExtensionList<JmeterVisualizerParser> all() {
-    return Hudson.getInstance().getExtensionList(JmeterVisualizerParser.class);
+  public static ExtensionList<JVisualizerParser> all() {
+    return Hudson.getInstance().getExtensionList(JVisualizerParser.class);
   }
 
   public String getReportName() {

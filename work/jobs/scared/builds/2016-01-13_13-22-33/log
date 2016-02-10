@@ -7,7 +7,7 @@ Performance: Recording JMeter reports '**/fp.jtl'
 Performance: Parsing JMeter report file '/Users/Hanifa_Bell/Desktop/performance copy 2/./work/jobs/scared/builds/2016-01-13_13-22-33/performance-reports/JMeter/fp.jtl'.
 Performance: Failed to parse file '/Users/Hanifa_Bell/Desktop/performance copy 2/./work/jobs/scared/builds/2016-01-13_13-22-33/performance-reports/JMeter/fp.jtl': hudson.plugins.performance.UriReport.<init>(Ljava/lang/String;Ljava/lang/String;)V
 java.lang.NoSuchMethodError: hudson.plugins.performance.UriReport.<init>(Ljava/lang/String;Ljava/lang/String;)V
-	at hudson.plugins.performance.JmeterVisualizer.addSample(PerformanceReport.java:119)
+	at hudson.plugins.performance.JVisualizerReport.addSample(PerformanceReport.java:119)
 	at hudson.plugins.performance.JtlFileParser$1.endElement(JMeterParser.java:305)
 	at org.apache.xerces.parsers.AbstractSAXParser.endElement(Unknown Source)
 	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanEndElement(Unknown Source)
@@ -22,7 +22,7 @@ java.lang.NoSuchMethodError: hudson.plugins.performance.UriReport.<init>(Ljava/l
 	at hudson.plugins.performance.JtlFileParser.parseXml(JMeterParser.java:95)
 	at hudson.plugins.performance.JtlFileParser.parse(JMeterParser.java:52)
 	at hudson.plugins.performance.AbstractParser.parse(AbstractParser.java:66)
-	at hudson.plugins.performance.JmeterVisualizerPublisher.perform(PerformancePublisher.java:290)
+	at hudson.plugins.performance.JVisualizerPublisher.perform(PerformancePublisher.java:290)
 	at hudson.tasks.BuildStepMonitor$1.perform(BuildStepMonitor.java:19)
 	at hudson.model.AbstractBuild$AbstractBuildExecution.perform(AbstractBuild.java:717)
 	at hudson.model.AbstractBuild$AbstractBuildExecution.performAllBuildSteps(AbstractBuild.java:692)
@@ -36,7 +36,7 @@ Performance: Recording JMeter reports '**/EchoHeader.jtl'
 Performance: Parsing JMeter report file '/Users/Hanifa_Bell/Desktop/performance copy 2/./work/jobs/scared/builds/2016-01-13_13-22-33/performance-reports/JMeter/EchoHeader.jtl'.
 Performance: Failed to parse file '/Users/Hanifa_Bell/Desktop/performance copy 2/./work/jobs/scared/builds/2016-01-13_13-22-33/performance-reports/JMeter/EchoHeader.jtl': hudson.plugins.performance.UriReport.<init>(Ljava/lang/String;Ljava/lang/String;)V
 java.lang.NoSuchMethodError: hudson.plugins.performance.UriReport.<init>(Ljava/lang/String;Ljava/lang/String;)V
-	at hudson.plugins.performance.JmeterVisualizer.addSample(PerformanceReport.java:119)
+	at hudson.plugins.performance.JVisualizerReport.addSample(PerformanceReport.java:119)
 	at hudson.plugins.performance.JtlFileParser$1.endElement(JMeterParser.java:305)
 	at org.apache.xerces.parsers.AbstractSAXParser.endElement(Unknown Source)
 	at org.apache.xerces.parsers.AbstractXMLDocumentParser.emptyElement(Unknown Source)
@@ -52,7 +52,7 @@ java.lang.NoSuchMethodError: hudson.plugins.performance.UriReport.<init>(Ljava/l
 	at hudson.plugins.performance.JtlFileParser.parseXml(JMeterParser.java:95)
 	at hudson.plugins.performance.JtlFileParser.parse(JMeterParser.java:52)
 	at hudson.plugins.performance.AbstractParser.parse(AbstractParser.java:66)
-	at hudson.plugins.performance.JmeterVisualizerPublisher.perform(PerformancePublisher.java:290)
+	at hudson.plugins.performance.JVisualizerPublisher.perform(PerformancePublisher.java:290)
 	at hudson.tasks.BuildStepMonitor$1.perform(BuildStepMonitor.java:19)
 	at hudson.model.AbstractBuild$AbstractBuildExecution.perform(AbstractBuild.java:717)
 	at hudson.model.AbstractBuild$AbstractBuildExecution.performAllBuildSteps(AbstractBuild.java:692)
@@ -66,7 +66,7 @@ Performance: Recording JMeter reports '**/o_small.jtl'
 Performance: Parsing JMeter report file '/Users/Hanifa_Bell/Desktop/performance copy 2/./work/jobs/scared/builds/2016-01-13_13-22-33/performance-reports/JMeter/o_small.jtl'.
 Performance: Failed to parse file '/Users/Hanifa_Bell/Desktop/performance copy 2/./work/jobs/scared/builds/2016-01-13_13-22-33/performance-reports/JMeter/o_small.jtl': hudson.plugins.performance.UriReport.<init>(Ljava/lang/String;Ljava/lang/String;)V
 java.lang.NoSuchMethodError: hudson.plugins.performance.UriReport.<init>(Ljava/lang/String;Ljava/lang/String;)V
-	at hudson.plugins.performance.JmeterVisualizer.addSample(PerformanceReport.java:119)
+	at hudson.plugins.performance.JVisualizerReport.addSample(PerformanceReport.java:119)
 	at hudson.plugins.performance.JtlFileParser$1.endElement(JMeterParser.java:305)
 	at org.apache.xerces.parsers.AbstractSAXParser.endElement(Unknown Source)
 	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanEndElement(Unknown Source)
@@ -81,7 +81,7 @@ java.lang.NoSuchMethodError: hudson.plugins.performance.UriReport.<init>(Ljava/l
 	at hudson.plugins.performance.JtlFileParser.parseXml(JMeterParser.java:95)
 	at hudson.plugins.performance.JtlFileParser.parse(JMeterParser.java:52)
 	at hudson.plugins.performance.AbstractParser.parse(AbstractParser.java:66)
-	at hudson.plugins.performance.JmeterVisualizerPublisher.perform(PerformancePublisher.java:290)
+	at hudson.plugins.performance.JVisualizerPublisher.perform(PerformancePublisher.java:290)
 	at hudson.tasks.BuildStepMonitor$1.perform(BuildStepMonitor.java:19)
 	at hudson.model.AbstractBuild$AbstractBuildExecution.perform(AbstractBuild.java:717)
 	at hudson.model.AbstractBuild$AbstractBuildExecution.performAllBuildSteps(AbstractBuild.java:692)

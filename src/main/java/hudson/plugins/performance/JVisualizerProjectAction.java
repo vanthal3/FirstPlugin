@@ -27,7 +27,7 @@ import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.RectangleInsets;
 import org.kohsuke.stapler.StaplerRequest;
 
-public final class JmeterVisualizerProjectAction implements Action {
+public final class JVisualizerProjectAction implements Action {
 
   private static final String CONFIGURE_LINK = "configure";
   private static final String TRENDREPORT_LINK = "trendReport";
@@ -42,7 +42,7 @@ public final class JmeterVisualizerProjectAction implements Action {
 
   /** Logger. */
   private static final Logger LOGGER = Logger
-      .getLogger(JmeterVisualizerProjectAction.class.getName());
+      .getLogger(JVisualizerProjectAction.class.getName());
 
   public final AbstractProject<?, ?> project;
 
@@ -61,7 +61,7 @@ public final class JmeterVisualizerProjectAction implements Action {
     return PLUGIN_NAME;
   }
 
-  public JmeterVisualizerProjectAction(AbstractProject<?, ?> project) {
+  public JVisualizerProjectAction(AbstractProject<?, ?> project) {
     this.project = project;
   }
 
@@ -277,13 +277,13 @@ public final class JmeterVisualizerProjectAction implements Action {
   }
 
     private String getPerformanceReportNameFile(StaplerRequest request) {
-        JmeterVisualizerPosition jmeterVisualizerPosition = new JmeterVisualizerPosition();
-        request.bindParameters(jmeterVisualizerPosition);
-        return getPerformanceReportNameFile(jmeterVisualizerPosition);
+        JVisualizerPosition jVisualizerPosition = new JVisualizerPosition();
+        request.bindParameters(jVisualizerPosition);
+        return getPerformanceReportNameFile(jVisualizerPosition);
     }
 
-    private String getPerformanceReportNameFile(final JmeterVisualizerPosition jmeterVisualizerPosition) {
-        String performanceReportNameFile = jmeterVisualizerPosition.getPerformanceReportPosition();
+    private String getPerformanceReportNameFile(final JVisualizerPosition jVisualizerPosition) {
+        String performanceReportNameFile = jVisualizerPosition.getPerformanceReportPosition();
         if (performanceReportNameFile == null) {
             if (getPerformanceReportList().size() == 1) {
                 performanceReportNameFile = getPerformanceReportList().get(0);
@@ -317,12 +317,12 @@ public final class JmeterVisualizerProjectAction implements Action {
 //        }
 //
 //        NumberOnlyBuildLabel label = new NumberOnlyBuildLabel(currentBuild);
-//        JmeterVisualizerBuildAction performanceBuildAction = currentBuild
-//            .getAction(JmeterVisualizerBuildAction.class);
+//        JVisualizerBuildAction performanceBuildAction = currentBuild
+//            .getAction(JVisualizerBuildAction.class);
 //        if (performanceBuildAction == null) {
 //          continue;
 //        }
-//        JmeterVisualizer performanceReport = performanceBuildAction
+//        JVisualizerReport performanceReport = performanceBuildAction
 //            .getPerformanceReportMap().getJmeterVisualizer(
 //                performanceReportNameFile);
 //        if (performanceReport == null) {
@@ -363,12 +363,12 @@ public final class JmeterVisualizerProjectAction implements Action {
 //        if (!buildsLimits.includedByStep(build.number)) {
 //          continue;
 //        }
-//        JmeterVisualizerBuildAction performanceBuildAction = build
-//            .getAction(JmeterVisualizerBuildAction.class);
+//        JVisualizerBuildAction performanceBuildAction = build
+//            .getAction(JVisualizerBuildAction.class);
 //        if (performanceBuildAction == null) {
 //          continue;
 //        }
-//        JmeterVisualizer performanceReport = performanceBuildAction
+//        JVisualizerReport performanceReport = performanceBuildAction
 //            .getPerformanceReportMap().getJmeterVisualizer(
 //                performanceReportNameFile);
 //        if (performanceReport == null) {
@@ -412,12 +412,12 @@ public final class JmeterVisualizerProjectAction implements Action {
 //        }
 //
 //        NumberOnlyBuildLabel label = new NumberOnlyBuildLabel(build);
-//        JmeterVisualizerBuildAction performanceBuildAction = build
-//            .getAction(JmeterVisualizerBuildAction.class);
+//        JVisualizerBuildAction performanceBuildAction = build
+//            .getAction(JVisualizerBuildAction.class);
 //        if (performanceBuildAction == null) {
 //          continue;
 //        }
-//        JmeterVisualizer performanceReport = performanceBuildAction
+//        JVisualizerReport performanceReport = performanceBuildAction
 //            .getPerformanceReportMap().getJmeterVisualizer(
 //                performanceReportNameFile);
 //        if (performanceReport == null) {
@@ -462,12 +462,12 @@ public final class JmeterVisualizerProjectAction implements Action {
 //                    continue;
 //                }
 //
-//                final JmeterVisualizerBuildAction performanceBuildAction = build.getAction(JmeterVisualizerBuildAction.class);
+//                final JVisualizerBuildAction performanceBuildAction = build.getAction(JVisualizerBuildAction.class);
 //                if (performanceBuildAction == null) {
 //                    continue;
 //                }
 //
-//                final JmeterVisualizer performanceReport = performanceBuildAction
+//                final JVisualizerReport performanceReport = performanceBuildAction
 //                        .getPerformanceReportMap().getJmeterVisualizer(performanceReportNameFile);
 //                if (performanceReport == null) {
 //                    nbBuildsToAnalyze--;
@@ -486,7 +486,7 @@ public final class JmeterVisualizerProjectAction implements Action {
 //    }
 //
 //  public void doSummarizerGraph(StaplerRequest request, StaplerResponse response) throws IOException {
-//      final JmeterVisualizerPosition performanceReportPosition = new JmeterVisualizerPosition();
+//      final JVisualizerPosition performanceReportPosition = new JVisualizerPosition();
 //      request.bindParameters(performanceReportPosition);
 //      final String performanceReportNameFile = getPerformanceReportNameFile(performanceReportPosition);
 //
@@ -507,12 +507,12 @@ public final class JmeterVisualizerProjectAction implements Action {
 //      AbstractBuild<?, ?> currentBuild = (AbstractBuild<?, ?>) iterator.next();
 //      if (buildsLimits.in(nbBuildsToAnalyze)) {
 //        NumberOnlyBuildLabel label = new NumberOnlyBuildLabel(currentBuild);
-//        JmeterVisualizerBuildAction performanceBuildAction = currentBuild
-//            .getAction(JmeterVisualizerBuildAction.class);
+//        JVisualizerBuildAction performanceBuildAction = currentBuild
+//            .getAction(JVisualizerBuildAction.class);
 //        if (performanceBuildAction == null) {
 //          continue;
 //        }
-//        JmeterVisualizer performanceReport = performanceBuildAction
+//        JVisualizerReport performanceReport = performanceBuildAction
 //            .getPerformanceReportMap().getJmeterVisualizer(
 //                performanceReportNameFile);
 //
@@ -636,7 +636,7 @@ public final class JmeterVisualizerProjectAction implements Action {
       return performanceReportList;
     }
     File file = new File(this.project.getSomeBuildWithWorkspace().getRootDir(),
-        JmeterVisualizerMap.getPerformanceReportDirRelativePath());
+        JVisualizerReportMap.getPerformanceReportDirRelativePath());
     if (!file.isDirectory()) {
       return performanceReportList;
     }
@@ -722,7 +722,7 @@ public final class JmeterVisualizerProjectAction implements Action {
    */
 
   private Object createResultVi(final StaplerRequest request){
-    JmeterVisualizer pf= new JmeterVisualizer();
+    JVisualizerReport pf= new JVisualizerReport();
     return "working on it ";
 
   }
@@ -773,15 +773,15 @@ public final class JmeterVisualizerProjectAction implements Action {
 //  }
 
   private String getTrendReportFilename(final StaplerRequest request) {
-    JmeterVisualizerPosition jmeterVisualizerPosition = new JmeterVisualizerPosition();
-    request.bindParameters(jmeterVisualizerPosition);
-    return jmeterVisualizerPosition.getPerformanceReportPosition();
+    JVisualizerPosition jVisualizerPosition = new JVisualizerPosition();
+    request.bindParameters(jVisualizerPosition);
+    return jVisualizerPosition.getPerformanceReportPosition();
   }
 
   private String getTestSuiteReportFilename(final StaplerRequest request) {
-    JmeterVisualizerPosition jmeterVisualizerPosition = new JmeterVisualizerPosition();
-    request.bindParameters(jmeterVisualizerPosition);
-    return jmeterVisualizerPosition.getPerformanceReportPosition();
+    JVisualizerPosition jVisualizerPosition = new JVisualizerPosition();
+    request.bindParameters(jVisualizerPosition);
+    return jVisualizerPosition.getPerformanceReportPosition();
   }
 
 //  private DataSetBuilder<String, NumberOnlyBuildLabel> getTrendReportData(final StaplerRequest request,
@@ -795,12 +795,12 @@ public final class JmeterVisualizerProjectAction implements Action {
 //    for (AbstractBuild<?, ?> currentBuild : builds) {
 //      if (buildsLimits.in(nbBuildsToAnalyze)) {
 //        NumberOnlyBuildLabel label = new NumberOnlyBuildLabel(currentBuild);
-//        JmeterVisualizerBuildAction performanceBuildAction = currentBuild
-//            .getAction(JmeterVisualizerBuildAction.class);
+//        JVisualizerBuildAction performanceBuildAction = currentBuild
+//            .getAction(JVisualizerBuildAction.class);
 //        if (performanceBuildAction == null) {
 //          continue;
 //        }
-//        JmeterVisualizer report = null;
+//        JVisualizerReport report = null;
 //        report = performanceBuildAction.getPerformanceReportMap()
 //            .getJmeterVisualizer(performanceReportNameFile);
 //        if (report == null) {
@@ -835,13 +835,13 @@ public final class JmeterVisualizerProjectAction implements Action {
   public boolean ifSummarizerParserUsed(String filename) {
 
     return this.getProject().getBuilds().getLastBuild()
-        .getAction(JmeterVisualizerBuildAction.class).getPerformanceReportMap()
+        .getAction(JVisualizerBuildAction.class).getPerformanceReportMap()
         .getPerformanceReport(filename).ifSummarizerParserUsed(filename);
   }
 
 
   public boolean ifModeThroughputUsed() {
-    return project.getPublishersList().get(JmeterVisualizerPublisher.class).isModeThroughput();
+    return project.getPublishersList().get(JVisualizerPublisher.class).isModeThroughput();
   }
 
   public static class Range {

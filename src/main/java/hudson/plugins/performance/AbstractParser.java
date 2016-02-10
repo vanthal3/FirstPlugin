@@ -22,39 +22,39 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * An abstraction for parsing data to JmeterVisualizer instances. This class
+ * An abstraction for parsing data to JVisualizerReport instances. This class
  * provides functionality that optimizes the parsing process, such as caching as
  * well as saving/loaded parsed data in serialized form to/from disc.
  * 
  * @author Guus der Kinderen, guus.der.kinderen@gmail.com
  */
-public abstract class AbstractParser extends JmeterVisualizerParser
+public abstract class AbstractParser extends JVisualizerParser
 {  
   private static final Logger LOGGER = Logger.getLogger(JtlFileParser.class.getName());
 
   /**
-   * A suffix to be used for files in which a serialized JmeterVisualizer instance is stored.
+   * A suffix to be used for files in which a serialized JVisualizerReport instance is stored.
    */
   private static final String SERIALIZED_DATA_FILE_SUFFIX = ".serialized";
 
   /**
-   * A cache that contains serialized JmeterVisualizer instances. This cache intends to limit disc IO.
+   * A cache that contains serialized JVisualizerReport instances. This cache intends to limit disc IO.
    */
-  private static final Cache<String, JmeterVisualizer> CACHE = CacheBuilder.newBuilder().maximumSize(1000).build();
+  private static final Cache<String, JVisualizerReport> CACHE = CacheBuilder.newBuilder().maximumSize(1000).build();
   
   public AbstractParser(String glob) {
     super(glob);
   }
 
   @Override
-  public Collection<JmeterVisualizer> parse(AbstractBuild<?, ?> build, Collection<File> reports, TaskListener listener) throws IOException
+  public Collection<JVisualizerReport> parse(AbstractBuild<?, ?> build, Collection<File> reports, TaskListener listener) throws IOException
   {
-    final List<JmeterVisualizer> result = new ArrayList<JmeterVisualizer>();
+    final List<JVisualizerReport> result = new ArrayList<JVisualizerReport>();
 
     for (File reportFile : reports)
     {      
       // Attempt to load previously serialized instances from file or cache. 
-      final JmeterVisualizer deserializedReport = loadSerializedReport(reportFile);
+      final JVisualizerReport deserializedReport = loadSerializedReport(reportFile);
       if (deserializedReport != null) {
         result.add(deserializedReport);
         continue;
@@ -63,7 +63,7 @@ public abstract class AbstractParser extends JmeterVisualizerParser
       // When serialized data cannot be used, the original JMeter files are to be processed.
       try {
         listener.getLogger().println("Performance: Parsing JMeter report file '" + reportFile + "'.");
-        final JmeterVisualizer report = parse(reportFile);
+        final JVisualizerReport report = parse(reportFile);
         result.add(report);
         saveSerializedReport(reportFile, report);
       } catch (Throwable e) {
@@ -85,16 +85,16 @@ public abstract class AbstractParser extends JmeterVisualizerParser
    * @throws Throwable
    *           On any exception.
    */
-  abstract JmeterVisualizer parse(File reportFile) throws Exception;
+  abstract JVisualizerReport parse(File reportFile) throws Exception;
   
   /**
-   * Returns a JmeterVisualizer instance for the provided report file, based on
+   * Returns a JVisualizerReport instance for the provided report file, based on
    * previously serialized data.
    * 
    * This method first attempts to load data from an internal cache. If the data
    * is not in cache, data is obtained from a file on disc.
    * 
-   * When no JmeterVisualizer instance has previously been serialized (or when
+   * When no JVisualizerReport instance has previously been serialized (or when
    * such data cannot be read, for instance because of class file changes), this
    * method returns null.
    * 
@@ -102,7 +102,7 @@ public abstract class AbstractParser extends JmeterVisualizerParser
    *          Report for which to return data. Cannot be null.
    * @return deserialized data, possibly null.
    */
-  protected static JmeterVisualizer loadSerializedReport(File reportFile)
+  protected static JVisualizerReport loadSerializedReport(File reportFile)
   {
     if (reportFile == null) {
       throw new NullPointerException("Argument 'reportFile' cannot be null.");
@@ -112,17 +112,17 @@ public abstract class AbstractParser extends JmeterVisualizerParser
     ObjectInputStream in = null;
     synchronized (CACHE) {
       try {
-        JmeterVisualizer report = CACHE.getIfPresent(serialized);
+        JVisualizerReport report = CACHE.getIfPresent(serialized);
         if (report == null) {
           in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(serialized)));
-          report = (JmeterVisualizer) in.readObject();
+          report = (JVisualizerReport) in.readObject();
           CACHE.put(serialized, report);
         }
         return report;
       } catch (FileNotFoundException ex) {
         // That's OK
       } catch (Exception ex) {
-        LOGGER.log(Level.WARNING, "Reading serialized JmeterVisualizer instance from file '" + serialized + "' failed.", ex);
+        LOGGER.log(Level.WARNING, "Reading serialized JVisualizerReport instance from file '" + serialized + "' failed.", ex);
       } finally {
         if (in != null) {
           try {
@@ -137,7 +137,7 @@ public abstract class AbstractParser extends JmeterVisualizerParser
   }
   
   /**
-   * Saves a JmeterVisualizer instance as serialized data into a file on disc.
+   * Saves a JVisualizerReport instance as serialized data into a file on disc.
    * 
    * @param reportFile
    *          The file from which the original data is obtained (<em>not</em>
@@ -146,7 +146,7 @@ public abstract class AbstractParser extends JmeterVisualizerParser
    * @param report
    *          The instance to serialize. Cannot be null.
    */
-  protected static void saveSerializedReport(File reportFile, JmeterVisualizer report)
+  protected static void saveSerializedReport(File reportFile, JVisualizerReport report)
   {
     if (reportFile == null) {
       throw new NullPointerException("Argument 'reportFile' cannot be null.");
@@ -165,7 +165,7 @@ public abstract class AbstractParser extends JmeterVisualizerParser
       out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(serialized)));
       out.writeObject(report);
     } catch (Exception ex) {
-      LOGGER.log(Level.WARNING, "Saving serialized JmeterVisualizer instance to file '" + serialized + "' failed.", ex);
+      LOGGER.log(Level.WARNING, "Saving serialized JVisualizerReport instance to file '" + serialized + "' failed.", ex);
     } finally {
       if (out != null) {
         try {
