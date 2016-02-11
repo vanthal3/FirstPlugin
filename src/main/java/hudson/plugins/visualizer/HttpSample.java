@@ -3,32 +3,31 @@ package hudson.plugins.visualizer;
 import java.util.Date;
 import java.io.Serializable;
 import java.util.Map;
- import java.util.HashMap;
+import java.util.HashMap;
 import java.util.Random;
 
 /**
  * Information about a particular HTTP request such as
  * its duration, success, and/or list of assertions.
- * 
  *
  */
 public class HttpSample implements Serializable, Cloneable {
 
 	private static final long serialVersionUID = -3531990216789038711L;
 
-	private Map<Integer, AssertionResult> assertions;
+	private  Map<Integer, AssertionResult> assertions;
 
 	private String httpCode = "";
 
-	public Map<Integer, Map<Integer, AssertionResult>> ar = new HashMap<Integer, Map<Integer, AssertionResult>>();
+	public Map<String, Map<Integer, AssertionResult>> ar = new HashMap<String, Map<Integer, AssertionResult>>();
 
 	private Integer httpId;
 
 	public HttpSample(Integer myid){
 		this.httpId=myid;
-
 	}
 
+	public HttpSample(){}
 
 	private long duration;
 
@@ -56,44 +55,43 @@ public class HttpSample implements Serializable, Cloneable {
 
 	private long summarizerSamples;
 
+	public Integer id=0;
 
 	//private ArrayList<AssertionResult> assertions= new ArrayList<AssertionResult>();
 
-	public int addAr() {
-		AssertionResult e = new AssertionResult(createID());
-		if (ar.containsKey(httpId)) {
-			//update assertion Map
-			System.out.println("addAr contains httpID: "+ httpId);
-			ar.get(httpId).put(httpId, e);
-
-		} else {
-			System.out.println("addAr creating new assertions for httpID "+ httpId);
-
-			assertions = new HashMap<Integer, AssertionResult>();
-			assertions.put(httpId, e); //update assertion MAP
-			ar.put(httpId, assertions); //update entire map
-		}
-
-//		System.out.println("the id befor put and before incrementing"+ id);
-//		id++;
-//		assertions=new HashMap<Integer, AssertionResult>();
-//		assertions.put(id, e);
-//		System.out.println("the id befor put and AFTER incrementing"+ id);
+//	public int addAr(String parentUri, String name) {
+//		AssertionResult e = new AssertionResult();
+//		if (ar.containsKey(parentUri)) {
+//			id++;
+//			//update assertion Map
+//			ar.get(parentUri).put(id, e);
 //
-//		System.out.println("added in assertions ar NAME "+ assertions.size() + " with ID: " + id +" NAME: "+ assertions.containsKey(id) +" and value "+ assertions.containsValue(e));
-//		System.out.println("GET THE DAMN VALUE" + assertions.get(id));
-//		ar.put(parentUri, assertions);
-//		System.out.println("before I return, the id is: "+ id);
-		return httpId;
-	}
+//		} else {
+//			assertions = new HashMap<Integer, AssertionResult>();
+//			assertions.put(id, e); //update assertion MAP
+//			ar.put(parentUri, assertions); //update entire map
+//		}
+//
+////		System.out.println("the id befor put and before incrementing"+ id);
+////		id++;
+////		assertions=new HashMap<Integer, AssertionResult>();
+////		assertions.put(id, e);
+////		System.out.println("the id befor put and AFTER incrementing"+ id);
+////
+////		System.out.println("added in assertions ar NAME "+ assertions.size() + " with ID: " + id +" NAME: "+ assertions.containsKey(id) +" and value "+ assertions.containsValue(e));
+////		System.out.println("GET THE DAMN VALUE" + assertions.get(id));
+////		ar.put(parentUri, assertions);
+////		System.out.println("before I return, the id is: "+ id);
+//		return id;
+//	}
 
 
 	public void setHttpId(Integer id){
 		this.httpId=id;
 	}
 
-//	public int addAr(){
-//
+	public int addAr(){
+
 //		if(assertions ==null){
 //			assertions=new HashMap<Integer, AssertionResult>();
 //			int arId=createID();
@@ -101,14 +99,22 @@ public class HttpSample implements Serializable, Cloneable {
 //			assertions.put(arId, ar);
 //
 //		}
-//		int arId=createID();
-//		AssertionResult ar =new AssertionResult(arId);
-//		assertions.put(arId, ar);
-//		//System.out.println("just inserted: "+arId+" with: "+ ar.getName()+" ==========");
-//
-//		return arId;
-//
-//	}
+		id++;
+
+		System.out.println("My ID: "+httpId+" initializing assertion map: "+ id);
+		//if(assertions.containsKey(httpId))
+		assertions=new HashMap<Integer, AssertionResult>();
+		int arId=createID();
+		AssertionResult ar =new AssertionResult(arId);
+		//System.out.println(assertions.size());
+		assertions.put(arId, ar);
+		//System.out.println("http: "+ httpId+ " size is: "+assertions.size() );
+		//System.out.println(assertions.size());
+		//System.out.println("just inserted: "+arId+" with: "+ ar.getName()+" ==========");
+
+		return arId;
+
+	}
 
 	public Map<Integer, AssertionResult> getAssertions(){
 		return assertions;
@@ -266,7 +272,6 @@ public class HttpSample implements Serializable, Cloneable {
 
 		Random r = new Random();
 		Integer id = r.nextInt(9999);
-		System.out.println("creating assertion Id: "+id+" for http: "+ httpId);
 		return id;
 	}
 }

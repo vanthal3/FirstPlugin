@@ -9,13 +9,14 @@ import java.util.*;
 import org.xml.sax.SAXException;
 
 /**
- * Represents the core of JVisualizerReport plugin. It contains all JTL files tested
- *
+ * Represents the core of JmeterVisualizer plugin. It contains all JTL files tested
+
  *
  * This object belongs under {@link JVisualizerReportMap}.
  */
+
 public class JVisualizerReport extends AbstractReport implements Serializable,
-    Comparable<JVisualizerReport> {
+        Comparable<JVisualizerReport> {
 
   private static final long serialVersionUID = 675698410989941826L;
 
@@ -24,7 +25,7 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
   private String reportFileName = null;
 
   /**
-   *
+
    */
   private final Map<Integer, HttpSample> httpSampleMap = new LinkedHashMap<Integer, HttpSample>();
 
@@ -32,10 +33,10 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
   private JVisualizerReport lastBuildReport;
 
   /**
-   * A lazy cache of all duration values of all HTTP samples in all UriReports, ordered by duration. 
+   * A lazy cache of all duration values of all HTTP samples in all UriReports, ordered by duration.
    */
   private transient List<Long> durationsSortedBySize = null;
-  
+
   /**
    * A lazy cache of all UriReports, reverse-ordered.
    */
@@ -50,12 +51,12 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
    * The sum of summarizerErrors values from all samples;
    */
   private float summarizerErrors = 0;
-  
+
   /**
    * The amount of samples in all uriReports combined.
    */
   private int size;
-  
+
   /**
    * The duration of all samples combined, in milliseconds.
    */
@@ -85,33 +86,37 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
   }
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   public void addSample(HttpSample pHttpSample) throws SAXException {
+    String uri = pHttpSample.getUri();
 
-    System.out.println("httpID is: "+ pHttpSample.getHttpId());
-
-////    String uri = pHttpSample.getUri();
-////
-////    Integer httpID = createID();
+    Integer httpID = createID();
 //
-//    pHttpSample.setHttpId(httpID);
+//    System.out.println("current sample: "+ pHttpSample.getUri() + "CurrentSample HAASH: "+System.identityHashCode(pHttpSample)+
+//    "SIZE: "+pHttpSample.getAssertions().size());
+//
+//
+
+
+
+    //pHttpSample.setHttpId(httpID);
     //System.out.println("but now currentSample/pHttpSample Id is: "+ pHttpSample.getHttpId());
 
-//
+
 //
 //    for(Integer arId : pHttpSample.getAssertions().keySet()){
 //      System.out.println("Assertion # "+arId+" and my name is: "+pHttpSample.getAssertions().get(arId).getName()+" ========");
 //    }
-//
 
 
 
 
-   //System.out.println(pHttpSample.getUri()+"/"+pHttpSample.getAssertions().size());
+
+    //System.out.println(pHttpSample.getUri()+"/"+pHttpSample.getAssertions().size());
 
 
     //Integer uriID=createID();
 
     //System.out.println("================================== Uri id is: "+ uriID);
-//
+
 //    if (uri == null) {
 //      buildAction
 //          .getHudsonConsoleWriter()
@@ -119,7 +124,7 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
 //              + "name properly for each http sample: skipping httpsample");
 //      return;
 //    }
-    //String staplerUri = JVisualizerReport.asStaplerURI(uri);
+    //String staplerUri = JmeterVisualizer.asStaplerURI(uri);
     //setStaplerUri(staplerUri);
     synchronized (httpSampleMap) {
       //httpSample = httpSampleMap.get(httpID);
@@ -145,18 +150,19 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
 
 
 
-      httpSampleMap.put(pHttpSample.getHttpId(), pHttpSample);
-
-//      for(int arid: pHttpSample.getAssertions().keySet()){
-//        System.out.println("arID: "+arid+" has this assertion value: "+pHttpSample.getAssertions().get(arid).getName());
-//      }
-
-
-      //System.out.println("Sample: "+ pHttpSample.getHttpId()+" has "+ pHttpSample.getAssertions().)
+      httpSampleMap.put(httpID, pHttpSample);
 //      System.out.println("I now have: "+ httpSampleMap.size() + " and inserted "+ httpSampleMap.get(httpID).getUri()+
 //      " and hashcode is: "+ System.identityHashCode(pHttpSample)+ " my HTTP ID IS: "+httpID);
 //
 
+      //getUriListOrdered();
+
+      System.out.println("NAME: "+ pHttpSample.getUri()+ " HASH: "+ System.identityHashCode(pHttpSample)+" SIZE: "+pHttpSample.getAssertions().size());
+
+//
+//      for(Integer arId : pHttpSample.getAssertions().keySet()){
+//        System.out.println("Assertion # "+arId+" and my name is: "+pHttpSample.getAssertions().get(arId).getName()+" ========");
+//      }
 
 
 
@@ -170,7 +176,7 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
       //getUriListOrdered();
 
     }
-    
+
     if (!pHttpSample.isSuccessful()) {
       nbError++;
     }
@@ -184,7 +190,7 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
 
   public List<HttpSample> getUriListOrdered() {
     counter++;
-   // System.out.println("counter in getlist: "+getReportFileName()+" counter # "+ counter + " size of map: "+ httpSampleMap.size());
+    // System.out.println("counter in getlist: "+getReportFileName()+" counter # "+ counter + " size of map: "+ httpSampleMap.size());
 //    for (Map.Entry<String, UriReport> testEntry: httpSampleMap.entrySet()){
 //
 //      System.out.println("TEST MAP: "+"#: "+counter+" "+testEntry.getKey()+"  MY HTTPCODE: "+ testEntry.getValue().getHttpSample().getHttpCode());
@@ -192,10 +198,10 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
     synchronized (httpSampleMap) {
       if (httpSampleOrdered == null) {
         httpSampleOrdered = new ArrayList<HttpSample>(httpSampleMap.values());
-        Collections.sort(httpSampleOrdered, Collections.reverseOrder());
+        //Collections.sort(httpSampleOrdered, Collections.reverseOrder());
       }
 
-      //runforLoop(httpSampleOrdered);
+      // runforLoop(httpSampleOrdered);
 
       return httpSampleOrdered;
     }
@@ -205,7 +211,7 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
 
 //  public void runforLoop(List<HttpSample> li){
 //    for(HttpSample hs: li){
-//      System.out.println("======= HS id: "+ hs.getUri()+" get code: "+ hs.getHttpCode());
+//      System.out.println("======= HS id: "+ System.identityHashCode(hs)+" get code: "+ hs.getHttpCode());
 //
 //      for(Integer arId : hs.getAssertions().keySet()){
 //        System.out.println("Assertion # "+arId+" and my name is: "+hs.getAssertions().get(arId).getName()+" ========");
@@ -245,7 +251,7 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
     if (size == 0) {
       return 0;
     }
-    
+
     return totalDuration / size;
   }
 
@@ -277,7 +283,7 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
 //    }
     return 1;
   }
-   
+
   public long get90Line() {
     return getDurationAt(.9);
   }
@@ -342,7 +348,7 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
 
   public void setLastBuildReport(JVisualizerReport lastBuildReport) {
     Map<Integer, HttpSample> lastBuildUriReportMap = lastBuildReport
-        .getHttpSampleMap();
+            .getHttpSampleMap();
     for (Map.Entry<Integer, HttpSample> item : httpSampleMap.entrySet()) {
       HttpSample lastBuildUri = lastBuildUriReportMap.get(item.getKey());
 //      if (lastBuildUri != null) {
@@ -395,18 +401,18 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
   /**
    * Check if the filename of the file being parsed is being parsed by a
    * summarized parser (JMeterSummarizer).
-   * 
+   *
    * @param filename
    *          name of the file being parsed
    * @return boolean indicating usage of summarized parser
    */
   public boolean ifSummarizerParserUsed(String filename) {
     List<JVisualizerParser> list = buildAction.getBuild().getProject()
-        .getPublishersList().get(JVisualizerPublisher.class).getParsers();
+            .getPublishersList().get(JVisualizerPublisher.class).getParsers();
 
     for (int i = 0; i < list.size(); i++) {
       if (list.get(i).getDescriptor().getDisplayName()
-          .equals("JmeterSummarizer")) {
+              .equals("JmeterSummarizer")) {
         String fileExt = list.get(i).glob;
         String parts[] = fileExt.split("\\s*[;:,]+\\s*");
         for (String path : parts) {
@@ -415,10 +421,10 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
           }
         }
       } else if (list.get(i).getDescriptor().getDisplayName()
-        .equals("Iago")) {
+              .equals("Iago")) {
         return true;
       }
-      
+
     }
     return false;
   }

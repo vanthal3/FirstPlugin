@@ -84,14 +84,12 @@ public class JtlFileParser extends AbstractParser {
     factory.setNamespaceAware(false);
 
     final JVisualizerReport report = new JVisualizerReport();
+    //System.out.println("==========================entering parsexml, new parseReport created with hash: "+System.identityHashCode(report)+" and size of map is "+report.getUriReportMap().size()+" =============== ");
 
     report.setReportFileName(reportFile.getName());
-    System.out.println("==========================entering parsexml, new parseReport"+ report.getReportFileName()+" created with hash: "+System.identityHashCode(report));
 
     factory.newSAXParser().parse(reportFile, new DefaultHandler() {
-
-      public HttpSample sample;
-
+      public HttpSample sample = new HttpSample(createSampleID());
       public HttpSample currentSample;
 
       public int counter=0;
@@ -105,7 +103,7 @@ public class JtlFileParser extends AbstractParser {
       boolean pFailureMessage=false;
       boolean pError=false;
       boolean pAssertion=false;
-      Integer arID;
+      Integer idCounter;
 
       /**
        * Performance XML log format is in http://jakarta.apache.org/jmeter/usermanual/listeners.html
@@ -120,75 +118,75 @@ public class JtlFileParser extends AbstractParser {
        */
       @Override
       public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-        sample = new HttpSample(createSampleID());
+
         if("httpSample".equalsIgnoreCase(qName) || "sample".equalsIgnoreCase(qName)){
           phttp=true;
           //System.out.println("phttp: "+ phttp);
-        final String dateValue;
-        if (attributes.getValue("ts") != null) {
-          dateValue = attributes.getValue("ts");
-        } else {
-          dateValue = attributes.getValue("timeStamp");
-        }
-        sample.setDate( new Date(Long.valueOf(dateValue)) );
-        //System.out.println("set date: "+ sample.getDate());
-         // System.out.println("=======set current date: "+ currentSample.getDate());
+          final String dateValue;
+          if (attributes.getValue("ts") != null) {
+            dateValue = attributes.getValue("ts");
+          } else {
+            dateValue = attributes.getValue("timeStamp");
+          }
+          sample.setDate( new Date(Long.valueOf(dateValue)) );
+          //System.out.println("set date: "+ sample.getDate());
+          // System.out.println("=======set current date: "+ currentSample.getDate());
 
 
           final String durationValue;
-        if (attributes.getValue("t") != null) {
-          durationValue = attributes.getValue("t");
-        } else {
-          durationValue = attributes.getValue("time");
-        }
-        sample.setDuration(Long.valueOf(durationValue));
+          if (attributes.getValue("t") != null) {
+            durationValue = attributes.getValue("t");
+          } else {
+            durationValue = attributes.getValue("time");
+          }
+          sample.setDuration(Long.valueOf(durationValue));
           //System.out.println("set Duration: "+ sample.getDuration());
           //System.out.println("=======set current duration: "+ currentSample.getDuration());
 
 
           final String successfulValue;
-        if (attributes.getValue("s") != null) {
-          successfulValue = attributes.getValue("s");
-        } else {
-          successfulValue = attributes.getValue("success");
-        }
-        sample.setSuccessful(Boolean.parseBoolean(successfulValue));
+          if (attributes.getValue("s") != null) {
+            successfulValue = attributes.getValue("s");
+          } else {
+            successfulValue = attributes.getValue("success");
+          }
+          sample.setSuccessful(Boolean.parseBoolean(successfulValue));
           //System.out.println("set setSucessful: "+ sample.isSuccessful());
 //          System.out.println("=======set current successs: "+ currentSample.isSuccessful());
 
 
 
           final String uriValue;
-        if (attributes.getValue("lb") != null) {
-          uriValue = attributes.getValue("lb");
-        } else {
-          uriValue = attributes.getValue("label");
-        }
-        sample.setUri(uriValue);
+          if (attributes.getValue("lb") != null) {
+            uriValue = attributes.getValue("lb");
+          } else {
+            uriValue = attributes.getValue("label");
+          }
+          sample.setUri(uriValue);
           //System.out.println("set uri: "+ sample.getUri());
           //System.out.println("======= set uri: "+ currentSample.getUri());
 
 
 
           final String threadname;
-        if (attributes.getValue("tn") != null) {
-          threadname = attributes.getValue("tn");
-        } else {
-          threadname = attributes.getValue("threadname");
-        }
-        sample.setThreadName(threadname);
-         // System.out.println("set threadname: "+ sample.getThreadname());
+          if (attributes.getValue("tn") != null) {
+            threadname = attributes.getValue("tn");
+          } else {
+            threadname = attributes.getValue("threadname");
+          }
+          sample.setThreadName(threadname);
+          // System.out.println("set threadname: "+ sample.getThreadname());
           //System.out.println("=======set current threadname: "+ currentSample.getThreadname());
 
 
 
           final String errorCount;
-        if (attributes.getValue("ec") != null) {
-          errorCount = attributes.getValue("ec");
-        } else {
-          errorCount = attributes.getValue("errorCount");
-        }
-        sample.setErrorCount(errorCount);
+          if (attributes.getValue("ec") != null) {
+            errorCount = attributes.getValue("ec");
+          } else {
+            errorCount = attributes.getValue("errorCount");
+          }
+          sample.setErrorCount(errorCount);
           //System.out.println("set errorCount: "+ sample.getErrorCount());
           //System.out.println("=======set current errorCount: "+ currentSample.getErrorCount());
 
@@ -196,42 +194,42 @@ public class JtlFileParser extends AbstractParser {
 
 
           final String responseMessage;
-        if (attributes.getValue("rm") != null) {
-          responseMessage = attributes.getValue("rm");
-        } else {
-          responseMessage = attributes.getValue("responseMessage");
-        }
-        sample.setResponseMessage(responseMessage);
+          if (attributes.getValue("rm") != null) {
+            responseMessage = attributes.getValue("rm");
+          } else {
+            responseMessage = attributes.getValue("responseMessage");
+          }
+          sample.setResponseMessage(responseMessage);
           //System.out.println("set response Message: "+ sample.getResponseMessage());
           //System.out.println("=======set current response Message: "+ currentSample.getResponseMessage());
 
 
 
           final String httpCodeValue;
-        if (attributes.getValue("rc") != null && attributes.getValue("rc").length() <= 3) {
-          httpCodeValue = attributes.getValue("rc");
-        } else {
-          httpCodeValue = "0";
-        }
-        sample.setHttpCode(httpCodeValue);
+          if (attributes.getValue("rc") != null && attributes.getValue("rc").length() <= 3) {
+            httpCodeValue = attributes.getValue("rc");
+          } else {
+            httpCodeValue = "0";
+          }
+          sample.setHttpCode(httpCodeValue);
           //System.out.println("set httpcode: "+ sample.getHttpCode());
           //System.out.println("=======set current httpcode: "+ currentSample.getHttpCode());
 
 
           final String sizeInKbValue;
-        if (attributes.getValue("by") != null) {
-          sizeInKbValue = attributes.getValue("by");
-        } else {
-          sizeInKbValue = "0";
-        }
-        sample.setSizeInKb(Double.valueOf(sizeInKbValue) / 1024d);
+          if (attributes.getValue("by") != null) {
+            sizeInKbValue = attributes.getValue("by");
+          } else {
+            sizeInKbValue = "0";
+          }
+          sample.setSizeInKb(Double.valueOf(sizeInKbValue) / 1024d);
         } else if ("AssertionResult".equalsIgnoreCase(qName)) {
           pAssertion = true;
           //System.out.println("set pAssertion: "+ pAssertion);
 
         }else if ("name".equalsIgnoreCase(qName)) {
           pName = true;
-         // System.out.println("set pName: "+ pName);
+          // System.out.println("set pName: "+ pName);
 
         }else if ("failure".equalsIgnoreCase(qName)) {
           pFailure = true;
@@ -243,80 +241,72 @@ public class JtlFileParser extends AbstractParser {
 
         }else if("failureMessage".equalsIgnoreCase(qName)){
           pFailureMessage=true;
-          //System.out.println("set pFailureMessage: "+ pFailureMessage);
+          // System.out.println("set pFailureMessage: "+ pFailureMessage);
 
         }
       }
 
-              @Override
-              public void characters(char[] ch, int start, int length) throws SAXException {
-                sb.append(new String(ch, start, length));
+      @Override
+      public void characters(char ch[], int start, int length) throws SAXException {
 
-//                if(phttp){
-//                }
-//                if(pAssertion){
-//                  arID =sample.addAr();
-//                  //System.out.println("the ID in pNAMe:  "+ sample.getUri()+" ------ "+arID);
-//
-//                  pAssertion=false;
-//
-//                }
-//                if(pName){
-//                  sample.getArObject(arID).setName(new String(ch, start, length));
-//                  //System.out.println("Name: " +sample.getAr().getName());
-//                  pName=false;
-//                }
-//                if(pFailure){
-//                  sample.getArObject(arID).setFailure(new String(ch, start, length));
-//                  //System.out.println("failure: " +sample.getAr().isFailure());
-//                  pFailure=false;
-//                }
-//                if(pError){
-//                  sample.getArObject(arID).setError(new String(ch, start, length));
-//                  //System.out.println("isError: " +sample.getAr().isError());
-//                  pError=false;
-//                }
-//                if(pFailureMessage){
-//                  //System.out.println("==============getFailureMessage: sb " +sb.toString()+" ========");
-//                  pFailureMessage=false;
-//                }
-            }
+        if(phttp){
+        }
+        if(pAssertion){
+          idCounter=sample.addAr();
+          pAssertion=false;
+
+        }
+        if(pName){
+          //System.out.println("the ID in pNAMe:  "+ idCounter);
+          sample.getArObject(idCounter).setName(new String(ch, start, length));
+          //System.out.println("Name: " +sample.getAr().getName());
+          pName=false;
+        }
+        if(pFailure){
+          sample.getArObject(idCounter).setFailure(new String(ch, start, length));
+          //System.out.println("failure: " +sample.getAr().isFailure());
+          pFailure=false;
+        }
+        if(pError){
+          sample.getArObject(idCounter).setError(new String(ch, start, length));
+          //System.out.println("isError: " +sample.getAr().isError());
+          pError=false;
+        }
+        if(pFailureMessage){
+          sb.append(ch, start, length);
+          sample.getArObject(idCounter).setFailureMessage(sb.toString());
+          //System.out.println("==============getFailureMessage: sb " +sb.toString()+" ========");
+          pFailureMessage=false;
+        }
+      }
 
 
       @Override
       public void endElement(String uri, String localName, String qName) {
-        //sample.getArObject(arID).setFailureMessage(sb.toString());
-        //System.out.println("failure msg: "+ sb.toString());
         try {
           currentSample =(HttpSample) sample.clone();
-//          System.out.println("current sample: "+ currentSample.getUri());
+//          System.out.println("current sample: "+ currentSample.getUri() + "CurrentSample HAASH: "+System.identityHashCode(currentSample));
 //          for(int arId: currentSample.getAssertions().keySet()){
 //
-//            System.out.println("Assertion # "+arId+" and my name is: "+currentSample.getAssertions().get(arId).getName()+" ========");
+//            System.out.println(" Assertion # "+arId+" and my name is: "+currentSample.getAssertions().get(arId).getName()+" ========");
 //
 //          }
-
 
         }catch(CloneNotSupportedException c){
 
         }
-
         if ("httpSample".equalsIgnoreCase(qName) || "sample".equalsIgnoreCase(qName)) {
-          //counter++;
+          counter++;
           //System.out.println("counter is "+ counter +" and hash for report is: "+ System.identityHashCode(report));
           //System.out.println("currentSample now is: "+ currentSample.getUri()+" and sample is: "+ sample.getUri());
-          System.out.println("3");
+
 
           //System.out.println("Counter: "+counter+" Sample ID: "+ sample.getHttpId()+ " and currentSample ID: "+ currentSample.getHttpId());
-            try {
-              System.out.println("4 sample: "+ sample.getHttpId()+" hasCode: "+ System.identityHashCode(sample));
-
-              System.out.println("4 currentSample: "+ currentSample.getHttpId()+" hasCode: "+ System.identityHashCode(currentSample));
-
-              report.addSample(currentSample);
-            } catch (SAXException e) {
-              e.printStackTrace();
-            }
+          try {
+            report.addSample(currentSample);
+          } catch (SAXException e) {
+            e.printStackTrace();
+          }
 
         }
       }

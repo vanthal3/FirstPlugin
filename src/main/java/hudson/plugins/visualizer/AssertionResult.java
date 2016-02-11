@@ -59,6 +59,8 @@ public class AssertionResult implements Serializable {
         return Error;
     }
 
+    public int getId(){return id;}
+
     public void setFailureMessage(String fm){
         this.FailureMessage= fm;
     }
