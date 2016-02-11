@@ -3,11 +3,11 @@ Group-Id: org.jenkins-ci.plugins
 Short-Name: visualizer
 Long-Name: Visualizer plugin
 Url: http://jenkins-ci.org/plugin/visualizer/
-Plugin-Version: 1.3-SNAPSHOT (private-02/11/2016 04:15-Hanifa_Bell)
+Plugin-Version: 1.3-SNAPSHOT (private-02/11/2016 04:30-Hanifa_Bell)
 Hudson-Version: 1.480
 Jenkins-Version: 1.480
-Plugin-Dependencies: ui-samples-plugin:1.480,maven-plugin:1.480,subver
- sion:1.26,javadoc:1.0,ant:1.1
+Plugin-Dependencies: ui-samples-plugin:1.480,javadoc:1.0,ant:1.1,maven
+ -plugin:1.480,subversion:1.26
 Plugin-Developers: 
 Libraries: /Users/Hanifa_Bell/Desktop/Jmeter-Visualizer/target/classes
  ,/Users/Hanifa_Bell/.m2/repository/org/easymock/easymockclassextensio

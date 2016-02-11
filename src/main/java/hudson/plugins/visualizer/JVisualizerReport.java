@@ -157,13 +157,13 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
 
       //getUriListOrdered();
 
-      System.out.println("NAME: "+ pHttpSample.getUri()+ " HASH: "+ System.identityHashCode(pHttpSample)+" SIZE: "+pHttpSample.getAssertions().size()+
+      System.out.println("NAME: "+ pHttpSample.getUri()+ " SIZE: "+pHttpSample.getAssertions().size()+
       " ID: "+ pHttpSample.getHttpId());
 
-//
-//      for(Integer arId : pHttpSample.getAssertions().keySet()){
-//        System.out.println("Assertion # "+arId+" and my name is: "+pHttpSample.getAssertions().get(arId).getName()+" ========");
-//      }
+
+      for(Integer arId : pHttpSample.getAssertions().keySet()){
+        System.out.println("Assertion # "+arId+" and my failmsg is: "+pHttpSample.getAssertions().get(arId).getFailureMessage()+" ========");
+      }
 
 
 

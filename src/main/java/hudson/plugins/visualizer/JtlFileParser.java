@@ -252,6 +252,8 @@ public class JtlFileParser extends AbstractParser {
       @Override
       public void characters(char[] ch, int start, int length) throws SAXException {
         tempValue=new String(ch, start, length);
+        sb.append(ch, start, length);
+
 //        if(pAssertion){
 //          idCounter=sample.addAr();
 //          pAssertion=false;
@@ -307,7 +309,7 @@ public class JtlFileParser extends AbstractParser {
         }
         if(pFailureMessage){
           //sb.append(ch, start, length);
-          sample.getArObject(idCounter).setFailureMessage(tempValue);
+          sample.getArObject(idCounter).setFailureMessage(sb.toString());
           //System.out.println("==============getFailureMessage: sb " +sb.toString()+" ========");
           pFailureMessage=false;
         }
@@ -319,7 +321,7 @@ public class JtlFileParser extends AbstractParser {
 
           //System.out.println("Counter: "+counter+" Sample ID: "+ sample.getHttpId()+ " and currentSample ID: "+ currentSample.getHttpId());
           try {
-            System.out.println("currentID: "+sample.getHttpId()+ " and uri: "+ sample.getUri());
+//            System.out.println("currentID: "+sample.getHttpId()+ " and uri: "+ sample.getUri());
             report.addSample(sample);
           } catch (SAXException e) {
             e.printStackTrace();
