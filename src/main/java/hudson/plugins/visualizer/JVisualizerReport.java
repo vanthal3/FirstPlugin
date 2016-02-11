@@ -28,6 +28,8 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
 
    */
   private final Map<Integer, HttpSample> httpSampleMap = new LinkedHashMap<Integer, HttpSample>();
+  private final Map<Integer, HttpSample> failedhttpSampleMap = new LinkedHashMap<Integer, HttpSample>();
+
 
 
   private JVisualizerReport lastBuildReport;
@@ -90,9 +92,9 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
 
     //Integer httpID = createID();
 
-    System.out.println("current sample: "+ pHttpSample.getUri() + "CurrentSample HAASH: "+System.identityHashCode(pHttpSample)+
-    "SIZE: "+pHttpSample.getAssertions().size());
-
+//    System.out.println("current sample: "+ pHttpSample.getUri() + "CurrentSample HAASH: "+System.identityHashCode(pHttpSample)+
+//    "SIZE: "+pHttpSample.getAssertions().size());
+//
 
 
 
@@ -100,11 +102,11 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
     //pHttpSample.setHttpId(httpID);
     //System.out.println("but now currentSample/pHttpSample Id is: "+ pHttpSample.getHttpId());
 
-
-
-    for(Integer arId : pHttpSample.getAssertions().keySet()){
-      System.out.println("Assertion # "+arId+" and my name is: "+pHttpSample.getAssertions().get(arId).getName()+" ========");
-    }
+//
+//
+//    for(Integer arId : pHttpSample.getAssertions().keySet()){
+//      System.out.println("Assertion # "+arId+" and my name is: "+pHttpSample.getAssertions().get(arId).getName()+" ========");
+//    }
 
 
 
@@ -151,6 +153,9 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
 
 
       httpSampleMap.put(pHttpSample.getHttpId(), pHttpSample);
+      if(!pHttpSample.isSuccessful()){
+        failedhttpSampleMap.put(pHttpSample.getHttpId(), pHttpSample);
+      }
 //      System.out.println("I now have: "+ httpSampleMap.size() + " and inserted "+ httpSampleMap.get(httpID).getUri()+
 //      " and hashcode is: "+ System.identityHashCode(pHttpSample)+ " my HTTP ID IS: "+httpID);
 //
@@ -219,6 +224,10 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
 //      }
 //    }
 //  }
+
+  public  Map<Integer, HttpSample> getFailedhttpSampleMap(){
+    return failedhttpSampleMap;
+  }
 
   public int compareTo(JVisualizerReport jmReport) {
     if (this == jmReport) {
