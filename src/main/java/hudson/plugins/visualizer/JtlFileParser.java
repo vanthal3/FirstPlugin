@@ -252,7 +252,7 @@ public class JtlFileParser extends AbstractParser {
       @Override
       public void characters(char[] ch, int start, int length) throws SAXException {
         tempValue=new String(ch, start, length);
-        sb.append(ch, start, length);
+        if(pFailureMessage){sb.append(ch, start, length);}
 
 //        if(pAssertion){
 //          idCounter=sample.addAr();
