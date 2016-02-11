@@ -88,12 +88,12 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
   public void addSample(HttpSample pHttpSample) throws SAXException {
     String uri = pHttpSample.getUri();
 
-    Integer httpID = createID();
-//
-//    System.out.println("current sample: "+ pHttpSample.getUri() + "CurrentSample HAASH: "+System.identityHashCode(pHttpSample)+
-//    "SIZE: "+pHttpSample.getAssertions().size());
-//
-//
+    //Integer httpID = createID();
+
+    System.out.println("current sample: "+ pHttpSample.getUri() + "CurrentSample HAASH: "+System.identityHashCode(pHttpSample)+
+    "SIZE: "+pHttpSample.getAssertions().size());
+
+
 
 
 
@@ -101,10 +101,10 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
     //System.out.println("but now currentSample/pHttpSample Id is: "+ pHttpSample.getHttpId());
 
 
-//
-//    for(Integer arId : pHttpSample.getAssertions().keySet()){
-//      System.out.println("Assertion # "+arId+" and my name is: "+pHttpSample.getAssertions().get(arId).getName()+" ========");
-//    }
+
+    for(Integer arId : pHttpSample.getAssertions().keySet()){
+      System.out.println("Assertion # "+arId+" and my name is: "+pHttpSample.getAssertions().get(arId).getName()+" ========");
+    }
 
 
 
@@ -150,20 +150,20 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
 
 
 
-      httpSampleMap.put(httpID, pHttpSample);
+      httpSampleMap.put(pHttpSample.getHttpId(), pHttpSample);
 //      System.out.println("I now have: "+ httpSampleMap.size() + " and inserted "+ httpSampleMap.get(httpID).getUri()+
 //      " and hashcode is: "+ System.identityHashCode(pHttpSample)+ " my HTTP ID IS: "+httpID);
 //
 
       //getUriListOrdered();
 
-      System.out.println("NAME: "+ pHttpSample.getUri()+ " SIZE: "+pHttpSample.getAssertions().size()+
-      " ID: "+ pHttpSample.getHttpId());
-
-
-      for(Integer arId : pHttpSample.getAssertions().keySet()){
-        System.out.println("Assertion # "+arId+" and my failmsg is: "+pHttpSample.getAssertions().get(arId).getFailureMessage()+" ========");
-      }
+//      System.out.println("NAME: "+ pHttpSample.getUri()+ " SIZE: "+pHttpSample.getAssertions().size()+
+//      " ID: "+ pHttpSample.getHttpId());
+//
+//
+//      for(Integer arId : pHttpSample.getAssertions().keySet()){
+//        System.out.println("Assertion # "+arId+" and my failmsg is: "+pHttpSample.getAssertions().get(arId).getFailureMessage()+" ========");
+//      }
 
 
 

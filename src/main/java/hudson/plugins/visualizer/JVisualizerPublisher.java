@@ -208,6 +208,8 @@ public class JVisualizerPublisher extends Recorder {
     Result result = Result.SUCCESS;
     EnvVars env = build.getEnvironment(listener);
 
+    System.out.println("BUILD NUM: "+env.get("BUILD_NUMBER"));
+
 //    //For absolute error/unstable threshold..
 //      try {
 //        List<UriReport> curruriList = null;
@@ -248,7 +250,7 @@ public class JVisualizerPublisher extends Recorder {
 
       //System.out.println("the parsers var size is; " + parsers.size());
       // add the report to the build object.
-      JVisualizerBuildAction a = new JVisualizerBuildAction(build, logger, parsers);
+      JVisualizerBuildAction a = new JVisualizerBuildAction(env,build, logger, parsers );
       build.addAction(a);
       logger.print("\n\n\n");
 

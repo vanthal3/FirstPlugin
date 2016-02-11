@@ -47,7 +47,7 @@ public class FailedTestCases implements ModelObject {
             // System.out.println("for currentBuild: "+JVBuildAction.getMyBuildNum());
 
             builds.add(JVBuildAction);
-            //System.out.println("build num: "+JVBuildAction.getMyBuildNum()+" build Date: "+ JVBuildAction.getMyDate());
+//            System.out.println("build num: "+JVBuildAction.getBuildNum()+" build Date: "+ JVBuildAction.getBuildDate());
 //           for(JVisualizerReport jv: JVBuildAction.getJVisualizerReportMap().getPerformanceListOrdered()){
 //               builds.add(jv);
 //

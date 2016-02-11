@@ -1,5 +1,6 @@
 package hudson.plugins.visualizer;
 
+import hudson.EnvVars;
 import hudson.model.AbstractBuild;
 import hudson.model.Action;
 import hudson.util.StreamTaskListener;
@@ -25,14 +26,19 @@ public class JVisualizerBuildAction implements Action, StaplerProxy {
 
   private transient WeakReference<JVisualizerReportMap> performanceReportMap;
 
+  private String buildNum;
+  private String buildDate;
+
   private static final Logger logger = Logger.getLogger(JVisualizerBuildAction.class.getName());
 
 
-  public JVisualizerBuildAction(AbstractBuild<?, ?> pBuild, PrintStream logger,
+  public JVisualizerBuildAction(EnvVars var, AbstractBuild<?, ?> pBuild, PrintStream logger,
                                 List<JVisualizerParser> parsers) {
     build = pBuild;
     hudsonConsoleWriter = logger;
     this.parsers = parsers;
+    this.buildNum=var.get("BUILD_NUMBER");
+    this.buildDate=var.get("BUILD_ID");
   }
 
   public JVisualizerParser getParserByDisplayName(String displayName) {
@@ -42,6 +48,8 @@ public class JVisualizerBuildAction implements Action, StaplerProxy {
           return parser;
     return null;
   }
+
+
 
   public String getDisplayName() {
      return "Individual Build";
@@ -56,7 +64,7 @@ public class JVisualizerBuildAction implements Action, StaplerProxy {
   }
 
   public JVisualizerReportMap getTarget() {
-    return getPerformanceReportMap();
+    return getJVisualizerReportMap();
   }
 
   public AbstractBuild<?, ?> getBuild() {
@@ -67,7 +75,7 @@ public class JVisualizerBuildAction implements Action, StaplerProxy {
     return hudsonConsoleWriter;
   }
 
-  public JVisualizerReportMap getPerformanceReportMap() {
+  public JVisualizerReportMap getJVisualizerReportMap() {
     JVisualizerReportMap reportMap = null;
     WeakReference<JVisualizerReportMap> wr = this.performanceReportMap;
     if (wr != null) {
@@ -86,6 +94,14 @@ public class JVisualizerBuildAction implements Action, StaplerProxy {
     return reportMap;
   }
 
+  public String getBuildNum(){
+    return buildNum;
+  }
+
+  public String getBuildDate()
+  {
+    return buildDate;
+  }
   public void setPerformanceReportMap(
       WeakReference<JVisualizerReportMap> performanceReportMap) {
     this.performanceReportMap = performanceReportMap;

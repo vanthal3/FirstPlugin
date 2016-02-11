@@ -323,7 +323,7 @@ public final class JVisualizerProjectAction implements Action {
 //          continue;
 //        }
 //        JVisualizerReport performanceReport = performanceBuildAction
-//            .getPerformanceReportMap().getJmeterVisualizer(
+//            .getJVisualizerReportMap().getJmeterVisualizer(
 //                performanceReportNameFile);
 //        if (performanceReport == null) {
 //          nbBuildsToAnalyze--;
@@ -369,7 +369,7 @@ public final class JVisualizerProjectAction implements Action {
 //          continue;
 //        }
 //        JVisualizerReport performanceReport = performanceBuildAction
-//            .getPerformanceReportMap().getJmeterVisualizer(
+//            .getJVisualizerReportMap().getJmeterVisualizer(
 //                performanceReportNameFile);
 //        if (performanceReport == null) {
 //          nbBuildsToAnalyze--;
@@ -418,7 +418,7 @@ public final class JVisualizerProjectAction implements Action {
 //          continue;
 //        }
 //        JVisualizerReport performanceReport = performanceBuildAction
-//            .getPerformanceReportMap().getJmeterVisualizer(
+//            .getJVisualizerReportMap().getJmeterVisualizer(
 //                performanceReportNameFile);
 //        if (performanceReport == null) {
 //          nbBuildsToAnalyze--;
@@ -468,7 +468,7 @@ public final class JVisualizerProjectAction implements Action {
 //                }
 //
 //                final JVisualizerReport performanceReport = performanceBuildAction
-//                        .getPerformanceReportMap().getJmeterVisualizer(performanceReportNameFile);
+//                        .getJVisualizerReportMap().getJmeterVisualizer(performanceReportNameFile);
 //                if (performanceReport == null) {
 //                    nbBuildsToAnalyze--;
 //                    continue;
@@ -513,7 +513,7 @@ public final class JVisualizerProjectAction implements Action {
 //          continue;
 //        }
 //        JVisualizerReport performanceReport = performanceBuildAction
-//            .getPerformanceReportMap().getJmeterVisualizer(
+//            .getJVisualizerReportMap().getJmeterVisualizer(
 //                performanceReportNameFile);
 //
 //        if (performanceReport == null) {
@@ -801,7 +801,7 @@ public final class JVisualizerProjectAction implements Action {
 //          continue;
 //        }
 //        JVisualizerReport report = null;
-//        report = performanceBuildAction.getPerformanceReportMap()
+//        report = performanceBuildAction.getJVisualizerReportMap()
 //            .getJmeterVisualizer(performanceReportNameFile);
 //        if (report == null) {
 //          nbBuildsToAnalyze--;
@@ -835,7 +835,7 @@ public final class JVisualizerProjectAction implements Action {
   public boolean ifSummarizerParserUsed(String filename) {
 
     return this.getProject().getBuilds().getLastBuild()
-        .getAction(JVisualizerBuildAction.class).getPerformanceReportMap()
+        .getAction(JVisualizerBuildAction.class).getJVisualizerReportMap()
         .getPerformanceReport(filename).ifSummarizerParserUsed(filename);
   }
 

@@ -122,7 +122,7 @@ public class JVisualizerReportMap implements ModelObject {
 ////      }
 ////      StringTokenizer st = new StringTokenizer(uriReportDecoded,
 ////          GraphConfigurationDetail.SEPARATOR);
-////      return getPerformanceReportMap().get(st.nextToken()).getUriReportMap()
+////      return getJVisualizerReportMap().get(st.nextToken()).getUriReportMap()
 //          .get(st.nextToken());
 //    } else {
 //      return null;
@@ -333,7 +333,7 @@ public class JVisualizerReportMap implements ModelObject {
     }
 
     JVisualizerReportMap previousJVisualizerReportMap = previousPerformanceAction
-        .getPerformanceReportMap();
+        .getJVisualizerReportMap();
     if (previousJVisualizerReportMap == null) {
       return;
     }
