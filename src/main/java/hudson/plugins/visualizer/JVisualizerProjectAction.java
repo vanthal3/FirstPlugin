@@ -26,6 +26,7 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.RectangleInsets;
 import org.kohsuke.stapler.StaplerRequest;
+import org.kohsuke.stapler.StaplerResponse;
 
 public final class JVisualizerProjectAction implements Action {
 
@@ -674,31 +675,25 @@ public final class JVisualizerProjectAction implements Action {
     }
   }
 
-//  /**
-//   * Returns the graph configuration for this project.
-//   *
-//   * @param link
-//   *          not used
-//   * @param request
-//   *          Stapler request
-//   * @param response
-//   *          Stapler response
-//   * @return the dynamic result of the analysis (detail page).
-//   */
-//  public Object getDynamic(final String link, final StaplerRequest request,
-//      final StaplerResponse response) {
-//    if (CONFIGURE_LINK.equals(link)) {
-//      return createUserConfiguration(request);
-//    } else if (TRENDREPORT_LINK.equals(link)) {
-//      return createTrendReport(request);
-////    } else if (TESTSUITE_LINK.equals(link)) {
-////      return createTestsuiteReport(request);
-//    }else if (HISTORY_VI.equals(link)){
-//      return createHistoryVi(request);
-//    } else {
-//      return null;
-//    }
-//  }
+  /**
+   * Returns the graph configuration for this project.
+   *
+   * @param link
+   *          not used
+   * @param request
+   *          Stapler request
+   * @param response
+   *          Stapler response
+   * @return the dynamic result of the analysis (detail page).
+   */
+  public Object getDynamic(final String link, final StaplerRequest request,
+      final StaplerResponse response) {
+     if (HISTORY_VI.equals(link)){
+      return createHistoryVi(request);
+    } else {
+      return null;
+    }
+  }
 
 //  /**
 //   * Creates a view to configure the trend graph for the current user.
@@ -736,19 +731,21 @@ public final class JVisualizerProjectAction implements Action {
    */
 
   private Object createHistoryVi(final StaplerRequest request){
-    return "working on the history method ";
+   FailedTestCases ft= new FailedTestCases(project,request);
+
+    return ft;
 
   }
 
-//
-//
-//  /**
-//   * Creates a view to configure the trend graph for the current user.
-//   *
-//   * @param request
-//   *          Stapler request
-//   * @return a view to configure the trend graph for the current user
-//   */
+////
+////
+////  /**
+////   * Creates a view to configure the trend graph for the current user.
+////   *
+////   * @param request
+////   *          Stapler request
+////   * @return a view to configure the trend graph for the current user
+////   */
 //  private Object createTrendReport(final StaplerRequest request) {
 //    String filename = getTrendReportFilename(request);
 //    System.out.println("getTrendReport");

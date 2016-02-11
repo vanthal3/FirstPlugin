@@ -1,11 +1,11 @@
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define"
 	xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
-  <l:layout xmlns:jm="/hudson/plugins/performance/tags"  css="/plugin/performance/css/style.css">
+  <l:layout xmlns:jm="/hudson/plugins/visualizer/tags"  css="/plugin/visualizer/css/style.css">
     <l:main-panel>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="/plugin/performance/custom.js"></script>
- <!-- body tag is important to include to render JS script-->
-     <body onload="addEvents();">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+       <script src="/plugin/visualizer/custom.js"></script>
+      <!-- body tag is important to include to render JS script-->
+          <body onload="addEvents();">
 
 <j:forEach var="build" items="${it.getAllBuildActions()}">
     <j:forEach var  ="report" items="${build.getJVisualizerReportMap().getPerformanceListOrdered()}">
