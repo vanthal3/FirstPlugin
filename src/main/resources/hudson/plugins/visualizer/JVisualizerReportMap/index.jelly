@@ -30,9 +30,14 @@
                                                           <ul>
                                                              <table id="Assertions">
                                                                 <tr style="color:#000000;">
-                                                                 <th>${%failure Message}</th>
+                                                                <th>${%Failure}</th>
+                                                                <th>${%Error}</th>
+                                                                 <th>${%Failure Message}</th>
                                                                 </tr>
                                                                 <tr>
+                                                                <td>${httpSample.getAssertions().get(arID).isFailure()}</td>
+
+                                                                <td>${httpSample.getAssertions().get(arID).isError()}</td>
                                                                  <td>${httpSample.getAssertions().get(arID).getFailureMessage()}</td>
                                                                 </tr>
                                                               </table>

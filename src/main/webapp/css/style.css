@@ -37,9 +37,7 @@ table#Main td {
 
 table#Assertions {
     border-width: 1px;
-    border-style: solid;
     border-color: #bbb;
-    border-spacing: 0;
     background-color: #F6F6D9;
 }
 
@@ -47,11 +45,6 @@ table#Assertions td {
     padding: 4px;
 }
 
-
-table.Assertions td {
-    border: 5px solid #eee;
-
-}
 
 
 .red, table.source .red a {
