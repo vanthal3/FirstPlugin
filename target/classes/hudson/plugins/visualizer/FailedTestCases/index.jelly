@@ -11,9 +11,9 @@
     <j:forEach var  ="report" items="${build.getJVisualizerReportMap().getPerformanceListOrdered()}">
             <div style="overflow-x:auto;">
                   <table id="Main" >
-                      <td id="top" colspan="1">${%Build#}: <span style="font-weight:bold">${build.getMyBuildNum()}</span></td>
+                      <td id="top" colspan="1">${%Build#}: <span style="font-weight:bold">${build.getBuildNum()}</span></td>
                       <td id="top" colspan="2">${%Visualizer for File}: <span style="font-weight:bold">${report.getReportFileName()}</span></td>
-                      <td id="top" colspan="3">${%Date}: <span style="font-weight:bold">${build.getMyDate()}</span></td>
+                      <td id="top" colspan="3">${%Date}: <span style="font-weight:bold">${build.getBuildDate()}</span></td>
                       <tr>
                           <th>${%Http Test Name}</th>
                           <th>${%Thread Name}</th>

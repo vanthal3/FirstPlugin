@@ -252,7 +252,10 @@ public class JtlFileParser extends AbstractParser {
       @Override
       public void characters(char[] ch, int start, int length) throws SAXException {
         tempValue=new String(ch, start, length);
-        if(pFailureMessage){sb.append(ch, start, length);}
+        if(pFailureMessage){
+          sb.append(ch, start, length);
+        }
+
 
 //        if(pAssertion){
 //          idCounter=sample.addAr();
@@ -310,6 +313,8 @@ public class JtlFileParser extends AbstractParser {
         if(pFailureMessage){
           //sb.append(ch, start, length);
           sample.getArObject(idCounter).setFailureMessage(sb.toString());
+          sb=null;
+          sb=new StringBuilder();
           //System.out.println("==============getFailureMessage: sb " +sb.toString()+" ========");
           pFailureMessage=false;
         }
