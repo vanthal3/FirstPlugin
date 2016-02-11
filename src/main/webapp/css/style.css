@@ -29,6 +29,7 @@ table#Main td#top{
 
 
 table#Main td {
+    border: 1px solid #ddd;
 
     text-align: left;
 }
@@ -52,13 +53,7 @@ table.Assertions td {
 
 }
 
-.bold {
-	font-weight: bold;
-}
 
-.nwrap {
-  white-space: nowrap;
-}
 .red, table.source .red a {
 	color: red;
 }
