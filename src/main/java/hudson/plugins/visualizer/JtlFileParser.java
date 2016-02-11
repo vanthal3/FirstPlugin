@@ -89,8 +89,8 @@ public class JtlFileParser extends AbstractParser {
     report.setReportFileName(reportFile.getName());
 
     factory.newSAXParser().parse(reportFile, new DefaultHandler() {
-      public HttpSample sample = new HttpSample(createSampleID());
-      public HttpSample currentSample;
+      public HttpSample sample;
+      String tempValue;
 
       public int counter=0;
 
@@ -117,10 +117,12 @@ public class JtlFileParser extends AbstractParser {
        * v2.1 = "lb", "ts", "t", "s"
        */
       @Override
-      public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+      public void startElement(String uri, String localName, String elementName, Attributes attributes) throws SAXException {
 
-        if("httpSample".equalsIgnoreCase(qName) || "sample".equalsIgnoreCase(qName)){
+        if("httpSample".equalsIgnoreCase(elementName) || "sample".equalsIgnoreCase(elementName)){
           phttp=true;
+          sample= new HttpSample(createSampleID());
+
           //System.out.println("phttp: "+ phttp);
           final String dateValue;
           if (attributes.getValue("ts") != null) {
@@ -223,87 +225,102 @@ public class JtlFileParser extends AbstractParser {
             sizeInKbValue = "0";
           }
           sample.setSizeInKb(Double.valueOf(sizeInKbValue) / 1024d);
-        } else if ("AssertionResult".equalsIgnoreCase(qName)) {
+        } else if ("AssertionResult".equalsIgnoreCase(elementName)) {
           pAssertion = true;
           //System.out.println("set pAssertion: "+ pAssertion);
 
-        }else if ("name".equalsIgnoreCase(qName)) {
+        }else if ("name".equalsIgnoreCase(elementName)) {
           pName = true;
           // System.out.println("set pName: "+ pName);
 
-        }else if ("failure".equalsIgnoreCase(qName)) {
+        }else if ("failure".equalsIgnoreCase(elementName)) {
           pFailure = true;
           //System.out.println("set pFailure: "+ pFailure);
 
-        }else if ("error".equalsIgnoreCase(qName)) {
+        }else if ("error".equalsIgnoreCase(elementName)) {
           pError = true;
           //System.out.println("set pError: "+ pAssertion);
 
-        }else if("failureMessage".equalsIgnoreCase(qName)){
+        }else if("failureMessage".equalsIgnoreCase(elementName)){
           pFailureMessage=true;
           // System.out.println("set pFailureMessage: "+ pFailureMessage);
 
         }
+
       }
 
       @Override
-      public void characters(char ch[], int start, int length) throws SAXException {
+      public void characters(char[] ch, int start, int length) throws SAXException {
+        tempValue=new String(ch, start, length);
+//        if(pAssertion){
+//          idCounter=sample.addAr();
+//          pAssertion=false;
+//
+//        }
+//        if(pName){
+//          //System.out.println("the ID in pNAMe:  "+ idCounter);
+//          sample.getArObject(idCounter).setName(new String(ch, start, length));
+//          //System.out.println("Name: " +sample.getAr().getName());
+//          pName=false;
+//        }
+//        if(pFailure){
+//          sample.getArObject(idCounter).setFailure(new String(ch, start, length));
+//          //System.out.println("failure: " +sample.getAr().isFailure());
+//          pFailure=false;
+//        }
+//        if(pError){
+//          sample.getArObject(idCounter).setError(new String(ch, start, length));
+//          //System.out.println("isError: " +sample.getAr().isError());
+//          pError=false;
+//        }
+//        if(pFailureMessage){
+//          sb.append(ch, start, length);
+//          sample.getArObject(idCounter).setFailureMessage(sb.toString());
+//          //System.out.println("==============getFailureMessage: sb " +sb.toString()+" ========");
+//          pFailureMessage=false;
+//        }
+      }
 
-        if(phttp){
-        }
-        if(pAssertion){
+
+      @Override
+      public void endElement(String uri, String localName, String element) {
+        if(pAssertion) {
           idCounter=sample.addAr();
           pAssertion=false;
 
         }
         if(pName){
           //System.out.println("the ID in pNAMe:  "+ idCounter);
-          sample.getArObject(idCounter).setName(new String(ch, start, length));
+          sample.getArObject(idCounter).setName(tempValue);
           //System.out.println("Name: " +sample.getAr().getName());
           pName=false;
         }
         if(pFailure){
-          sample.getArObject(idCounter).setFailure(new String(ch, start, length));
+          sample.getArObject(idCounter).setFailure(tempValue);
           //System.out.println("failure: " +sample.getAr().isFailure());
           pFailure=false;
         }
         if(pError){
-          sample.getArObject(idCounter).setError(new String(ch, start, length));
+          sample.getArObject(idCounter).setError(tempValue);
           //System.out.println("isError: " +sample.getAr().isError());
           pError=false;
         }
         if(pFailureMessage){
-          sb.append(ch, start, length);
-          sample.getArObject(idCounter).setFailureMessage(sb.toString());
+          //sb.append(ch, start, length);
+          sample.getArObject(idCounter).setFailureMessage(tempValue);
           //System.out.println("==============getFailureMessage: sb " +sb.toString()+" ========");
           pFailureMessage=false;
         }
-      }
 
-
-      @Override
-      public void endElement(String uri, String localName, String qName) {
-        try {
-          currentSample =(HttpSample) sample.clone();
-//          System.out.println("current sample: "+ currentSample.getUri() + "CurrentSample HAASH: "+System.identityHashCode(currentSample));
-//          for(int arId: currentSample.getAssertions().keySet()){
-//
-//            System.out.println(" Assertion # "+arId+" and my name is: "+currentSample.getAssertions().get(arId).getName()+" ========");
-//
-//          }
-
-        }catch(CloneNotSupportedException c){
-
-        }
-        if ("httpSample".equalsIgnoreCase(qName) || "sample".equalsIgnoreCase(qName)) {
-          counter++;
+        if ("httpSample".equalsIgnoreCase(element) || "sample".equalsIgnoreCase(element)) {
           //System.out.println("counter is "+ counter +" and hash for report is: "+ System.identityHashCode(report));
           //System.out.println("currentSample now is: "+ currentSample.getUri()+" and sample is: "+ sample.getUri());
 
 
           //System.out.println("Counter: "+counter+" Sample ID: "+ sample.getHttpId()+ " and currentSample ID: "+ currentSample.getHttpId());
           try {
-            report.addSample(currentSample);
+            System.out.println("currentID: "+sample.getHttpId()+ " and uri: "+ sample.getUri());
+            report.addSample(sample);
           } catch (SAXException e) {
             e.printStackTrace();
           }

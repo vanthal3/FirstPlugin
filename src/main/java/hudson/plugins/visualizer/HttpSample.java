@@ -17,6 +17,7 @@ public class HttpSample implements Serializable, Cloneable {
 
 	private  Map<Integer, AssertionResult> assertions;
 
+
 	private String httpCode = "";
 
 	public Map<String, Map<Integer, AssertionResult>> ar = new HashMap<String, Map<Integer, AssertionResult>>();
@@ -24,7 +25,9 @@ public class HttpSample implements Serializable, Cloneable {
 	private Integer httpId;
 
 	public HttpSample(Integer myid){
+		System.out.println("init: "+myid);
 		this.httpId=myid;
+		assertions=new HashMap<Integer, AssertionResult>();
 	}
 
 	public HttpSample(){}
@@ -101,9 +104,8 @@ public class HttpSample implements Serializable, Cloneable {
 //		}
 		id++;
 
-		System.out.println("My ID: "+httpId+" initializing assertion map: "+ id);
+		System.out.println("My ID: "+httpId+" adding to my map");
 		//if(assertions.containsKey(httpId))
-		assertions=new HashMap<Integer, AssertionResult>();
 		int arId=createID();
 		AssertionResult ar =new AssertionResult(arId);
 		//System.out.println(assertions.size());

@@ -2,92 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96a8244e-c42f-4067-8e0f-02bfe656f39f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/1" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/10" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/11" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/12" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_05-47-52/build.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_05-47-52/changelog.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_05-47-52/log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_05-47-52/visualizer-reports/JTL File/o_small.jtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_05-47-52/visualizer-reports/JTL File/o_small.jtl.serialized" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-00-17/build.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-00-17/changelog.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-00-17/log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-00-17/visualizer-reports/JTL File/o_small.jtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-00-17/visualizer-reports/JTL File/o_small.jtl.serialized" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-01-27/build.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-01-27/changelog.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-01-27/log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-01-27/visualizer-reports/JTL File/o_small.jtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-01-27/visualizer-reports/JTL File/o_small.jtl.serialized" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-08-17/build.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-08-17/changelog.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-08-17/log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-08-17/visualizer-reports/JTL File/o_small.jtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-08-17/visualizer-reports/JTL File/o_small.jtl.serialized" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-15-17/build.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-15-17/changelog.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-15-17/log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-15-17/visualizer-reports/JTL File/o_small.jtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-17-19/build.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-17-19/changelog.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-17-19/log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-17-19/visualizer-reports/JTL File/o_small.jtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-21-55/build.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-21-55/changelog.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-21-55/log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-21-55/visualizer-reports/JTL File/o_small.jtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-23-39/build.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-23-39/changelog.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-23-39/log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_06-23-39/visualizer-reports/JTL File/o_small.jtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_07-22-19/build.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_07-22-19/changelog.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_07-22-19/log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_07-22-19/visualizer-reports/JTL File/o_small.jtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_07-23-58/build.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_07-23-58/changelog.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_07-23-58/log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_07-23-58/visualizer-reports/JTL File/o_small.jtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_07-30-52/build.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_07-30-52/changelog.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_07-30-52/log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_07-30-52/visualizer-reports/JTL File/o_small.jtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_07-30-52/visualizer-reports/JTL File/o_small.jtl.serialized" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_07-34-44/build.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_07-34-44/changelog.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_07-34-44/log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_07-34-44/visualizer-reports/JTL File/o_small.jtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/2016-02-10_07-34-44/visualizer-reports/JTL File/o_small.jtl.serialized" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/3" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/4" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/5" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/6" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/7" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/8" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/builds/9" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/config.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/lastStable" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/lastSuccessful" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/jobs/killmenow/nextBuildNumber" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/work/queue.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/META-INF/annotations/hudson.Extension" afterPath="$PROJECT_DIR$/target/classes/META-INF/annotations/hudson.Extension" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hudson/plugins/visualizer/AssertionResult.class" afterPath="$PROJECT_DIR$/target/classes/hudson/plugins/visualizer/AssertionResult.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hudson/plugins/visualizer/HttpSample.class" afterPath="$PROJECT_DIR$/target/classes/hudson/plugins/visualizer/HttpSample.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hudson/plugins/visualizer/JVisualizerReport.class" afterPath="$PROJECT_DIR$/target/classes/hudson/plugins/visualizer/JVisualizerReport.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hudson/plugins/visualizer/JtlFileParser$1.class" afterPath="$PROJECT_DIR$/target/classes/hudson/plugins/visualizer/JtlFileParser$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hudson/plugins/visualizer/JtlFileParser.class" afterPath="$PROJECT_DIR$/target/classes/hudson/plugins/visualizer/JtlFileParser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/work/jobs/gr/lastStable" afterPath="$PROJECT_DIR$/work/jobs/gr/lastStable" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/work/jobs/gr/lastSuccessful" afterPath="$PROJECT_DIR$/work/jobs/gr/lastSuccessful" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/AssertionResult.java" afterPath="$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/AssertionResult.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/HttpSample.java" afterPath="$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/HttpSample.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/JVisualizerReport.java" afterPath="$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/JVisualizerReport.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/JtlFileParser.java" afterPath="$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/JtlFileParser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hudson/plugins/visualizer/JVisualizerParser.stapler" afterPath="$PROJECT_DIR$/target/classes/hudson/plugins/visualizer/JVisualizerParser.stapler" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hudson/plugins/visualizer/JVisualizerPublisher.stapler" afterPath="$PROJECT_DIR$/target/classes/hudson/plugins/visualizer/JVisualizerPublisher.stapler" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hudson/plugins/visualizer/JtlFileParser.stapler" afterPath="$PROJECT_DIR$/target/classes/hudson/plugins/visualizer/JtlFileParser.stapler" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/work/jobs/gr/nextBuildNumber" afterPath="$PROJECT_DIR$/work/jobs/gr/nextBuildNumber" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/work/plugins/visualizer.hpl" afterPath="$PROJECT_DIR$/work/plugins/visualizer.hpl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/work/updates/default.json" afterPath="$PROJECT_DIR$/work/updates/default.json" />
     </list>
     <ignored path="performance.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -110,30 +41,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="JtlFileParser.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="JtlFileParser.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/JtlFileParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="243" column="36" selection-start-line="243" selection-start-column="36" selection-end-line="243" selection-end-column="36" />
+            <state vertical-scroll-proportion="-0.35428572">
+              <caret line="301" column="9" selection-start-line="301" selection-start-column="9" selection-end-line="301" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#612#613#0" expanded="true" />
-                <element signature="e#643#644#0" expanded="true" />
-                <element signature="e#710#711#0" expanded="true" />
-                <element signature="e#731#732#0" expanded="true" />
-                <element signature="e#787#788#0" expanded="true" />
-                <element signature="e#814#815#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.jelly" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/hudson/plugins/visualizer/JVisualizerReportMap/index.jelly">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="42" column="28" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -141,23 +56,18 @@
       <file leaf-file-name="HttpSample.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/HttpSample.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
-              <folding>
-                <element signature="e#667#668#0" expanded="true" />
-                <element signature="e#690#691#0" expanded="true" />
-                <element signature="e#2278#2279#0" expanded="true" />
-                <element signature="e#2299#2300#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-12.777778">
+              <caret line="114" column="43" selection-start-line="114" selection-start-column="43" selection-end-line="114" selection-end-column="43" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JVisualizerReport.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="JVisualizerReport.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/JVisualizerReport.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.4529058">
-              <caret line="410" column="38" selection-start-line="410" selection-start-column="38" selection-end-line="410" selection-end-column="38" />
+            <state vertical-scroll-proportion="-6.6666665">
+              <caret line="150" column="0" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -216,9 +126,9 @@
         <option value="$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/FailedTestCases.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/custom.js" />
         <option value="$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/AssertionResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/JVisualizerReport.java" />
         <option value="$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/JtlFileParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/HttpSample.java" />
-        <option value="$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/JVisualizerReport.java" />
       </list>
     </option>
   </component>
@@ -752,9 +662,9 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30839896" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23884514" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24622357" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1397281" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -785,12 +695,6 @@
           <caret line="243" column="36" selection-start-line="243" selection-start-column="36" selection-end-line="243" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#612#613#0" expanded="true" />
-            <element signature="e#643#644#0" expanded="true" />
-            <element signature="e#710#711#0" expanded="true" />
-            <element signature="e#731#732#0" expanded="true" />
-            <element signature="e#787#788#0" expanded="true" />
-            <element signature="e#814#815#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -807,12 +711,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
-          <folding>
-            <element signature="e#667#668#0" expanded="true" />
-            <element signature="e#690#691#0" expanded="true" />
-            <element signature="e#2278#2279#0" expanded="true" />
-            <element signature="e#2299#2300#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -830,12 +729,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#612#613#0" expanded="true" />
-            <element signature="e#643#644#0" expanded="true" />
-            <element signature="e#710#711#0" expanded="true" />
-            <element signature="e#731#732#0" expanded="true" />
-            <element signature="e#787#788#0" expanded="true" />
-            <element signature="e#814#815#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -852,12 +745,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="271" column="10" selection-start-line="271" selection-start-column="10" selection-end-line="271" selection-end-column="10" />
-          <folding>
-            <element signature="e#667#668#0" expanded="true" />
-            <element signature="e#690#691#0" expanded="true" />
-            <element signature="e#2278#2279#0" expanded="true" />
-            <element signature="e#2299#2300#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -990,40 +878,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/JtlFileParser.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/JVisualizerReport.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="243" column="36" selection-start-line="243" selection-start-column="36" selection-end-line="243" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#612#613#0" expanded="true" />
-            <element signature="e#643#644#0" expanded="true" />
-            <element signature="e#710#711#0" expanded="true" />
-            <element signature="e#731#732#0" expanded="true" />
-            <element signature="e#787#788#0" expanded="true" />
-            <element signature="e#814#815#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="-6.6666665">
+          <caret line="150" column="0" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/HttpSample.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
-          <folding>
-            <element signature="e#667#668#0" expanded="true" />
-            <element signature="e#690#691#0" expanded="true" />
-            <element signature="e#2278#2279#0" expanded="true" />
-            <element signature="e#2299#2300#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="-12.777778">
+          <caret line="114" column="43" selection-start-line="114" selection-start-column="43" selection-end-line="114" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/JVisualizerReport.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/hudson/plugins/visualizer/JtlFileParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4529058">
-          <caret line="410" column="38" selection-start-line="410" selection-start-column="38" selection-end-line="410" selection-end-column="38" />
-          <folding />
+        <state vertical-scroll-proportion="-0.35428572">
+          <caret line="301" column="9" selection-start-line="301" selection-start-column="9" selection-end-line="301" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
