@@ -24,6 +24,8 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
 
   private String reportFileName = null;
 
+  private boolean reportStatus=false;
+
   /**
 
    */
@@ -155,6 +157,7 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
       httpSampleMap.put(pHttpSample.getHttpId(), pHttpSample);
       if(!pHttpSample.isSuccessful()){
         failedhttpSampleMap.put(pHttpSample.getHttpId(), pHttpSample);
+        reportStatus=true;
       }
 //      System.out.println("I now have: "+ httpSampleMap.size() + " and inserted "+ httpSampleMap.get(httpID).getUri()+
 //      " and hashcode is: "+ System.identityHashCode(pHttpSample)+ " my HTTP ID IS: "+httpID);
@@ -192,6 +195,10 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
     totalSizeInKB += pHttpSample.getSizeInKb();
     max = Math.max(pHttpSample.getDuration(), max);
     min = Math.min(pHttpSample.getDuration(), min);
+  }
+
+  public boolean getReportStatus(){
+    return reportStatus;
   }
 
   public List<HttpSample> getUriListOrdered() {

@@ -52,7 +52,7 @@ public class JVisualizerBuildAction implements Action, StaplerProxy {
 
 
   public String getDisplayName() {
-     return "Individual Build";
+     return "Visualizer for Build#: "+buildNum;
   }
 
   public String getIconFileName() {

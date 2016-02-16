@@ -22,9 +22,6 @@
         <hudson.plugins.visualizer.JtlFileParser>
           <glob>**/fp.jtl</glob>
         </hudson.plugins.visualizer.JtlFileParser>
-        <hudson.plugins.visualizer.JtlFileParser>
-          <glob>**/EchoHeader.jtl</glob>
-        </hudson.plugins.visualizer.JtlFileParser>
       </parsers>
       <modeThroughput>false</modeThroughput>
     </hudson.plugins.visualizer.JVisualizerPublisher>

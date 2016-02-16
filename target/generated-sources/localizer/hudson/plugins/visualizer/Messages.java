@@ -126,7 +126,7 @@ public class Messages {
     }
 
     /**
-     * Performance Trend Action
+     * Jmeter Visualizer
      * 
      */
     public static String ProjectAction_DisplayName() {
@@ -134,7 +134,7 @@ public class Messages {
     }
 
     /**
-     * Performance Trend Action
+     * Jmeter Visualizer
      * 
      */
     public static Localizable _ProjectAction_DisplayName() {

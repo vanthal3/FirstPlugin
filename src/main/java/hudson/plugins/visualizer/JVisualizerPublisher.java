@@ -206,6 +206,7 @@ public class JVisualizerPublisher extends Recorder {
     PrintStream logger = listener.getLogger();
     double thresholdTolerance = 0.00000001;
     Result result = Result.SUCCESS;
+    Result failedResult = Result.FAILURE;
     EnvVars env = build.getEnvironment(listener);
 
     System.out.println("BUILD NUM: "+env.get("BUILD_NUMBER"));
@@ -283,11 +284,19 @@ public class JVisualizerPublisher extends Recorder {
           return true;
         }
 
+
+
         List<File> localReports = copyReportsToMaster(build, logger, files, parser.getDescriptor().getDisplayName());
         for(File f : localReports){
           //System.out.println("name of file: "+f.getName());
         }
         Collection<JVisualizerReport> parsedReports = parser.parse(build, localReports, listener);
+
+        for (JVisualizerReport r : parsedReports) {
+          if(r.getReportStatus()){
+            build.setResult(Result.FAILURE);
+          }
+        }
 
 //          // mark the build as unstable or failure depending on the outcome.
 //          for (JVisualizerReport r : parsedReports) {
