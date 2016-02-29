@@ -7,9 +7,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 /**
- * Information about a particular HTTP request such as
- * its duration, success, and/or list of assertions.
- *
+ * HTTP POJO
  */
 public class HttpSample implements Serializable, Cloneable {
 
@@ -25,7 +23,6 @@ public class HttpSample implements Serializable, Cloneable {
 	private Integer httpId;
 
 	public HttpSample(Integer myid){
-		//System.out.println("init: "+myid);
 		this.httpId=myid;
 		assertions=new HashMap<Integer, AssertionResult>();
 	}

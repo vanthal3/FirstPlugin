@@ -1,7 +1,6 @@
 
   ul.LinkedList { display: block; }
   ul.LinkedList ul { display: none; }
-  .HandCursorStyle { cursor: pointer; cursor: hand; }  /* For IE */
 
 
 table#Main{

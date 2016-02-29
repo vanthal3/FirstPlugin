@@ -14,30 +14,21 @@ import java.io.Serializable;
 
 
 public class AssertionResult implements Serializable {
-    private String Name;
+    public String Name;
     public String Failure;
     public String Error;
     public String FailureMessage;
-    public HttpSample Parent;
-    public int id;
+    private int id;
 
 
     public AssertionResult(int myid){
         this.id = myid;
     }
 
-
-    public void setParent(HttpSample parent){
-        this.Parent=parent;
-    }
-
-    public HttpSample getParent(){
-        return Parent;
-    }
-
     public void setName(String name){
         this.Name=name;
     }
+
 
     public String getName(){
         return this.Name;
@@ -66,6 +57,12 @@ public class AssertionResult implements Serializable {
     }
 
     public String getFailureMessage(){
+        if (FailureMessage==null){
+            String s=new String();
+            s="no failure msg";
+            return s;
+        }
         return FailureMessage;
     }
+
 }

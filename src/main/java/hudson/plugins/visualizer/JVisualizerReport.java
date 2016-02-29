@@ -15,7 +15,7 @@ import org.xml.sax.SAXException;
  * This object belongs under {@link JVisualizerReportMap}.
  */
 
-public class JVisualizerReport extends AbstractReport implements Serializable,
+public class JVisualizerReport implements Serializable,
         Comparable<JVisualizerReport> {
 
   private static final long serialVersionUID = 675698410989941826L;
@@ -272,12 +272,12 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
     return totalDuration / size;
   }
 
-  public double getAverageSizeInKb() {
-    if (size == 0) {
-      return 0;
-    }
-    return roundTwoDecimals(totalSizeInKB / size);
-  }
+//  public double getAverageSizeInKb() {
+//    if (size == 0) {
+//      return 0;
+//    }
+//    return roundTwoDecimals(totalSizeInKB / size);
+//  }
 
   private long getDurationAt(double percentage) {
     if (percentage < 0 || percentage > 1) {
@@ -333,9 +333,9 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
     return max;
   }
 
-  public double getTotalTrafficInKb() {
-    return roundTwoDecimals(totalSizeInKB);
-  }
+//  public double getTotalTrafficInKb() {
+//    return roundTwoDecimals(totalSizeInKB);
+//  }
 
   public long getMin() {
     return min;
@@ -446,9 +446,9 @@ public class JVisualizerReport extends AbstractReport implements Serializable,
     return false;
   }
 
-  private double roundTwoDecimals(double d) {
-    synchronized (twoDForm) {
-      return Double.valueOf(twoDForm.format(d));
-    }
-  }
+//  private double roundTwoDecimals(double d) {
+//    synchronized (twoDForm) {
+//      return Double.valueOf(twoDForm.format(d));
+//    }
+//  }
 }

@@ -22,11 +22,14 @@
                               <j:forEach var="httpSample" items="${report.getUriListOrdered()}">
                                 <tr class="${h.ifThenElse(httpSample.isSuccessful()==false, 'red', 'green')}">
                                       <td>
-                                          <ul style="cursor: pointer;" id="LinkedList1" class="LinkedList">
-                                               <li >${httpSample.getUri()}
+                                          <ul id="LinkedList1" class="LinkedList">
+
+                                               <j:choose>
+                                                  <j:when test="${httpSample.getAssertions().size()==0}">
+                                               <p>${httpSample.getUri()}
                                                <ul>
                                                   <j:forEach var="arID" items="${httpSample.getAssertions().keySet()}">
-                                                     <li>Assertion Result Name: ${httpSample.getAssertions().get(arID).getName()}
+                                                     <p>Assertion Result Name: ${httpSample.getAssertions().get(arID).getName()}
                                                           <ul>
                                                              <table id="Assertions">
                                                                 <tr style="color:#000000;">
@@ -36,20 +39,53 @@
                                                                 </tr>
                                                                 <tr>
                                                                 <td>${httpSample.getAssertions().get(arID).isFailure()}</td>
-
                                                                 <td>${httpSample.getAssertions().get(arID).isError()}</td>
                                                                  <td>${httpSample.getAssertions().get(arID).getFailureMessage()}</td>
                                                                 </tr>
                                                               </table>
                                                           </ul>
-                                                     </li>
+                                                     </p>
 
                                                   </j:forEach>
                                                </ul>
-                                               </li>
+                                               </p>
+                                               </j:when>
+                                               <j:otherwise>
+                                               <u style="cursor: pointer;">${httpSample.getUri()}
+                                                  <ul>
+                                                     <j:forEach var="arID" items="${httpSample.getAssertions().keySet()}">
+                                                        <li>Assertion Result Name: ${httpSample.getAssertions().get(arID).getName()}
+                                                             <ul>
+                                                                <table id="Assertions">
+                                                                   <tr style="color:#000000;">
+                                                                   <th>${%Failure}</th>
+                                                                   <th>${%Error}</th>
+                                                                    <th>${%Failure Message}</th>
+                                                                   </tr>
+                                                                   <tr>
+                                                                   <td>${httpSample.getAssertions().get(arID).isFailure()}</td>
+                                                                   <td>${httpSample.getAssertions().get(arID).isError()}</td>
+                                                                    <td>${httpSample.getAssertions().get(arID).getFailureMessage()}</td>
+                                                                   </tr>
+                                                                 </table>
+                                                             </ul>
+                                                        </li>
+
+                                                     </j:forEach>
+                                                  </ul>
+                                                  </u>
+
+
+
+
+                                               </j:otherwise>
+                                               </j:choose>
+
+
+
+
                                           </ul>
                                           </td>
-
                                       <td>${httpSample.getThreadname()}</td>
                                       <td>${httpSample.getDate()}</td>
                                       <td>${httpSample.getDuration()}</td>

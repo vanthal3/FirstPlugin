@@ -25,7 +25,7 @@ import java.util.logging.Logger;
  * An abstraction for parsing data to JVisualizerReport instances. This class
  * provides functionality that optimizes the parsing process, such as caching as
  * well as saving/loaded parsed data in serialized form to/from disc.
- * 
+ *
  * @author Guus der Kinderen, guus.der.kinderen@gmail.com
  */
 public abstract class AbstractParser extends JVisualizerParser
@@ -47,14 +47,14 @@ public abstract class AbstractParser extends JVisualizerParser
   }
 
   @Override
-  public Collection<JVisualizerReport> parse(AbstractBuild<?, ?> build, Collection<File> reports, TaskListener listener) throws IOException
+  public Collection<JVisualizerReport> parse(AbstractBuild<?, ?> build, Collection<File> files, TaskListener listener) throws IOException
   {
     final List<JVisualizerReport> result = new ArrayList<JVisualizerReport>();
 
-    for (File reportFile : reports)
+    for (File jtFile : files)
     {      
       // Attempt to load previously serialized instances from file or cache. 
-      final JVisualizerReport deserializedReport = loadSerializedReport(reportFile);
+      final JVisualizerReport deserializedReport = loadSerializedReport(jtFile);
       if (deserializedReport != null) {
         result.add(deserializedReport);
         continue;
@@ -62,12 +62,12 @@ public abstract class AbstractParser extends JVisualizerParser
       
       // When serialized data cannot be used, the original JMeter files are to be processed.
       try {
-        listener.getLogger().println("Performance: Parsing JMeter report file '" + reportFile + "'.");
-        final JVisualizerReport report = parse(reportFile);
+        listener.getLogger().println("Visualizer: Parsing JMeter JTL file '" + jtFile + "'.");
+        final JVisualizerReport report = parse(jtFile);
         result.add(report);
-        saveSerializedReport(reportFile, report);
+        saveSerializedReport(jtFile, report);
       } catch (Throwable e) {
-        listener.getLogger().println("Performance: Failed to parse file '" + reportFile + "': " + e.getMessage());
+        listener.getLogger().println("Performance: Failed to parse file '" + jtFile + "': " + e.getMessage());
         e.printStackTrace(listener.getLogger());
       }
     }

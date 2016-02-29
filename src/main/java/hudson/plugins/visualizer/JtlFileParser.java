@@ -14,8 +14,6 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * Parser for JMeter.
- *
- * @author Kohsuke Kawaguchi
  */
 public class JtlFileParser extends AbstractParser {
 
@@ -84,7 +82,7 @@ public class JtlFileParser extends AbstractParser {
     factory.setNamespaceAware(false);
 
     final JVisualizerReport report = new JVisualizerReport();
-    //System.out.println("==========================entering parsexml, new parseReport created with hash: "+System.identityHashCode(report)+" and size of map is "+report.getUriReportMap().size()+" =============== ");
+
 
     report.setReportFileName(reportFile.getName());
 
@@ -310,13 +308,14 @@ public class JtlFileParser extends AbstractParser {
           //System.out.println("isError: " +sample.getAr().isError());
           pError=false;
         }
-        if(pFailureMessage){
+
+        if(pFailureMessage) {
           //sb.append(ch, start, length);
           sample.getArObject(idCounter).setFailureMessage(sb.toString());
-          sb=null;
-          sb=new StringBuilder();
+          sb = null;
+          sb = new StringBuilder();
           //System.out.println("==============getFailureMessage: sb " +sb.toString()+" ========");
-          pFailureMessage=false;
+          pFailureMessage = false;
         }
 
         if ("httpSample".equalsIgnoreCase(element) || "sample".equalsIgnoreCase(element)) {
@@ -338,17 +337,7 @@ public class JtlFileParser extends AbstractParser {
 
     return report;
   }
-//
-//  public static String generateString(Random rng, String characters, int length)
-//  {
-//    char[] text = new char[length];
-//    for (int i = 0; i < length; i++)
-//    {
-//      text[i] = characters.charAt(rng.nextInt(characters.length()));
-//    }
-//    return new String(text);
-//  }
-
+  
   public Integer createSampleID(){
 
     Random r = new Random();
