@@ -189,7 +189,7 @@ public class JVisualizerReport implements Serializable,
     if (!pHttpSample.isSuccessful()) {
       nbError++;
     }
-    summarizerErrors += pHttpSample.getSummarizerErrors();
+    //summarizerErrors += pHttpSample.getSummarizerErrors();
     size++;
     totalDuration += pHttpSample.getDuration();
     totalSizeInKB += pHttpSample.getSizeInKb();

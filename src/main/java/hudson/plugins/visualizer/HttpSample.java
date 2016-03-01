@@ -27,14 +27,11 @@ public class HttpSample implements Serializable, Cloneable {
 		assertions=new HashMap<Integer, AssertionResult>();
 	}
 
-	public HttpSample(){}
-
 	private long duration;
 
 	private boolean successful;
 
 	public String responseMessage;
-	private boolean errorObtained;
 
 	private Date date;
 
@@ -43,19 +40,7 @@ public class HttpSample implements Serializable, Cloneable {
 	public String threadname;
 
 	private double sizeInKb;
-
-	// Summarizer fields
-	private long summarizerMin;
-
-	private long summarizerMax;
-
 	public String errorCount;
-
-	private float summarizerErrors;
-
-	private long summarizerSamples;
-
-	public Integer id=0;
 
 	//private ArrayList<AssertionResult> assertions= new ArrayList<AssertionResult>();
 
@@ -99,7 +84,7 @@ public class HttpSample implements Serializable, Cloneable {
 //			assertions.put(arId, ar);
 //
 //		}
-		id++;
+
 
 		//System.out.println("My ID: "+httpId+" adding to my map");
 		//if(assertions.containsKey(httpId))
@@ -175,21 +160,7 @@ public class HttpSample implements Serializable, Cloneable {
 		return uri;
 	}
 
-	public long getSummarizerSamples() {
-		return summarizerSamples;
-	}
 
-	public long getSummarizerMin() {
-		return summarizerMin;
-	}
-
-	public long getSummarizerMax() {
-		return summarizerMax;
-	}
-
-	public float getSummarizerErrors() {
-		return summarizerErrors;
-	}
 
 	public boolean isFailed() {
 		return !isSuccessful();
@@ -207,13 +178,6 @@ public class HttpSample implements Serializable, Cloneable {
 		this.successful = successful;
 	}
 
-	public void setErrorObtained(boolean errorObtained) {
-		this.errorObtained = errorObtained;
-	}
-
-	public boolean hasError() {
-		return errorObtained;
-	}
 
 	public void setDate(Date time) {
 		this.date = time;
@@ -235,21 +199,6 @@ public class HttpSample implements Serializable, Cloneable {
 		this.httpCode = httpCode;
 	}
 
-	public void setSummarizerSamples(long summarizerSamples) {
-		this.summarizerSamples = summarizerSamples;
-	}
-
-	public void setSummarizerMin(long summarizerMin) {
-		this.summarizerMin = summarizerMin;
-	}
-
-	public void setSummarizerMax(long summarizerMax) {
-		this.summarizerMax = summarizerMax;
-	}
-
-	public void setSummarizerErrors(float summarizerErrors) {
-		this.summarizerErrors = summarizerErrors;
-	}
 
 	public int compareTo(HttpSample o) {
 		return (int) (getDuration() - o.getDuration());
@@ -263,9 +212,6 @@ public class HttpSample implements Serializable, Cloneable {
 		this.sizeInKb = d;
 	}
 
-	public boolean isErrorObtained() {
-		return errorObtained;
-	}
 
 	public Integer createID(){
 

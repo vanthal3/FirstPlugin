@@ -22,7 +22,6 @@ public class FailedTestCases implements ModelObject {
 
     }
 
-
     public ArrayList<JVisualizerBuildAction> getAllBuildActions(){
         ArrayList<JVisualizerBuildAction> builds=new ArrayList<JVisualizerBuildAction>();
 

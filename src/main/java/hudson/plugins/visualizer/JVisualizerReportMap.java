@@ -173,84 +173,6 @@ public class JVisualizerReportMap implements ModelObject {
     return getPerformanceReport(performanceReportName) == null;
   }
 
-  public void doRespondingTimeGraph(StaplerRequest request,
-      StaplerResponse response) throws IOException {
-    String parameter = request.getParameter("performanceReportPosition");
-    AbstractBuild<?, ?> previousBuild = getBuild();
-    final Map<AbstractBuild<?, ?>, Map<String, JVisualizerReport>> buildReports = new LinkedHashMap<AbstractBuild<?, ?>, Map<String, JVisualizerReport>>();
-    while (previousBuild != null) {
-      final AbstractBuild<?, ?> currentBuild = previousBuild;
-      parseReports(currentBuild, TaskListener.NULL,
-          new PerformanceReportCollector() {
-
-            public void addAll(Collection<JVisualizerReport> parse) {
-              for (JVisualizerReport jVisualizerReport : parse) {
-                if (buildReports.get(currentBuild) == null) {
-                  Map<String, JVisualizerReport> map = new LinkedHashMap<String, JVisualizerReport>();
-                  buildReports.put(currentBuild, map);
-                }
-                buildReports.get(currentBuild).put(
-                    jVisualizerReport.getReportFileName(), jVisualizerReport);
-              }
-            }
-          }, parameter);
-      previousBuild = previousBuild.getPreviousCompletedBuild();
-    }
-    // Now we should have the data necessary to generate the graphs!
-    DataSetBuilder<String, NumberOnlyBuildLabel> dataSetBuilderAverage = new DataSetBuilder<String, NumberOnlyBuildLabel>();
-    for (AbstractBuild<?, ?> currentBuild : buildReports.keySet()) {
-      NumberOnlyBuildLabel label = new NumberOnlyBuildLabel(currentBuild);
-      JVisualizerReport report = buildReports.get(currentBuild).get(parameter);
-      dataSetBuilderAverage.add(report.getAverage(),
-          Messages.ProjectAction_Average(), label);
-    }
-    ChartUtil.generateGraph(request, response, JVisualizerProjectAction
-        .createRespondingTimeChart(dataSetBuilderAverage.build()), 400, 200);
-  }
-
-  public void doSummarizerGraph(StaplerRequest request, StaplerResponse response)
-      throws IOException {
-    String parameter = request.getParameter("performanceReportPosition");
-    AbstractBuild<?, ?> previousBuild = getBuild();
-    final Map<AbstractBuild<?, ?>, Map<String, JVisualizerReport>> buildReports = new LinkedHashMap<AbstractBuild<?, ?>, Map<String, JVisualizerReport>>();
-
-    while (previousBuild != null) {
-      final AbstractBuild<?, ?> currentBuild = previousBuild;
-      parseReports(currentBuild, TaskListener.NULL,
-          new PerformanceReportCollector() {
-
-            public void addAll(Collection<JVisualizerReport> parse) {
-              for (JVisualizerReport jVisualizerReport : parse) {
-                if (buildReports.get(currentBuild) == null) {
-                  Map<String, JVisualizerReport> map = new LinkedHashMap<String, JVisualizerReport>();
-                  buildReports.put(currentBuild, map);
-                }
-                buildReports.get(currentBuild).put(
-                    jVisualizerReport.getReportFileName(), jVisualizerReport);
-              }
-            }
-          }, parameter);
-      previousBuild = previousBuild.getPreviousCompletedBuild();
-    }
-    DataSetBuilder<NumberOnlyBuildLabel, String> dataSetBuilderSummarizer = new DataSetBuilder<NumberOnlyBuildLabel, String>();
-    for (AbstractBuild<?, ?> currentBuild : buildReports.keySet()) {
-      NumberOnlyBuildLabel label = new NumberOnlyBuildLabel(currentBuild);
-      JVisualizerReport report = buildReports.get(currentBuild).get(parameter);
-
-      // Now we should have the data necessary to generate the graphs!
-//      for (Integer key : report.getUriReportMap().keySet()) {
-//        Long methodAvg = report.getUriReportMap().get(key).getAverage();
-//       // dataSetBuilderSummarizer.add(methodAvg, label, key);
-//      }
-      ;
-    }
-    ChartUtil.generateGraph(
-        request,
-        response,
-        JVisualizerProjectAction.createSummarizerChart(
-            dataSetBuilderSummarizer.build(), "ms",
-            Messages.ProjectAction_RespondingTime()), 400, 200);
-  }
 
   private void parseReports(AbstractBuild<?, ?> build, TaskListener listener,
       PerformanceReportCollector collector, final String filename)
@@ -352,26 +274,6 @@ public class JVisualizerReportMap implements ModelObject {
 
     public void addAll(Collection<JVisualizerReport> parse);
   }
-
-//  public Object getDynamic(final String link, final StaplerRequest request,
-//      final StaplerRequest response) {
-//    if (TRENDREPORT_LINK.equals(link)) {
-//      return createTrendReportGraphs(request);
-//    } else {
-//      return null;
-//    }
-//  }
-//
-////  public Object createTrendReportGraphs(final StaplerRequest request) {
-//    String filename = getTrendReportFilename(request);
-//    JVisualizerReport report = performanceReportMap.get(filename);
-//    AbstractBuild<?, ?> build = getBuild();
-//
-//    TrendReportGraphs trendReport = new TrendReportGraphs(build.getProject(),
-//        build, request, filename, report);
-//
-//    return trendReport;
-//  }
 
   private String getTrendReportFilename(final StaplerRequest request) {
     JVisualizerPosition jVisualizerPosition = new JVisualizerPosition();

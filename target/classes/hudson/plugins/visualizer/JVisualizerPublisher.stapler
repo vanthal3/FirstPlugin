@@ -1,2 +1,2 @@
-#Tue Feb 16 08:18:28 EST 2016
-constructor=errorFailedThreshold,errorUnstableThreshold,errorUnstableResponseTimeThreshold,nthBuildNumber,modeOfThreshold,compareBuildPrevious,parsers,modeThroughput
+#Tue Mar 01 11:30:28 EST 2016
+constructor=nthBuildNumber,compareBuildPrevious,parsers
