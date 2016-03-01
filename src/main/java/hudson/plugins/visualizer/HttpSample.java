@@ -9,104 +9,37 @@ import java.util.Random;
 /**
  * HTTP POJO
  */
-public class HttpSample implements Serializable, Cloneable {
+public class HttpSample implements Serializable {
 
 	private static final long serialVersionUID = -3531990216789038711L;
 
 	private  Map<Integer, AssertionResult> assertions;
-
-
-	private String httpCode = "";
-
-	public Map<String, Map<Integer, AssertionResult>> ar = new HashMap<String, Map<Integer, AssertionResult>>();
-
 	private Integer httpId;
+	public String httpCode = "";
+	public long duration;
+	public boolean successful;
+	public String responseMessage;
+	public Date date;
+	public String uri;
+	public String threadname;
+	public double sizeInKb;
+	public String errorCount;
+
 
 	public HttpSample(Integer myid){
 		this.httpId=myid;
 		assertions=new HashMap<Integer, AssertionResult>();
 	}
 
-	private long duration;
-
-	private boolean successful;
-
-	public String responseMessage;
-
-	private Date date;
-
-	private String uri;
-
-	public String threadname;
-
-	private double sizeInKb;
-	public String errorCount;
-
-	//private ArrayList<AssertionResult> assertions= new ArrayList<AssertionResult>();
-
-//	public int addAr(String parentUri, String name) {
-//		AssertionResult e = new AssertionResult();
-//		if (ar.containsKey(parentUri)) {
-//			id++;
-//			//update assertion Map
-//			ar.get(parentUri).put(id, e);
-//
-//		} else {
-//			assertions = new HashMap<Integer, AssertionResult>();
-//			assertions.put(id, e); //update assertion MAP
-//			ar.put(parentUri, assertions); //update entire map
-//		}
-//
-////		System.out.println("the id befor put and before incrementing"+ id);
-////		id++;
-////		assertions=new HashMap<Integer, AssertionResult>();
-////		assertions.put(id, e);
-////		System.out.println("the id befor put and AFTER incrementing"+ id);
-////
-////		System.out.println("added in assertions ar NAME "+ assertions.size() + " with ID: " + id +" NAME: "+ assertions.containsKey(id) +" and value "+ assertions.containsValue(e));
-////		System.out.println("GET THE DAMN VALUE" + assertions.get(id));
-////		ar.put(parentUri, assertions);
-////		System.out.println("before I return, the id is: "+ id);
-//		return id;
-//	}
-
-
-	public void setHttpId(Integer id){
-		this.httpId=id;
-	}
-
-	public int addAr(){
-
-//		if(assertions ==null){
-//			assertions=new HashMap<Integer, AssertionResult>();
-//			int arId=createID();
-//			AssertionResult ar =new AssertionResult(arId);
-//			assertions.put(arId, ar);
-//
-//		}
-
-
-		//System.out.println("My ID: "+httpId+" adding to my map");
-		//if(assertions.containsKey(httpId))
+	public int addAssertion(){
 		int arId=createID();
 		AssertionResult ar =new AssertionResult(arId);
-		//System.out.println(assertions.size());
 		assertions.put(arId, ar);
-		//System.out.println("http: "+ httpId+ " size is: "+assertions.size() );
-		//System.out.println(assertions.size());
-		//System.out.println("just inserted: "+arId+" with: "+ ar.getName()+" ==========");
-
 		return arId;
-
 	}
 
 	public Map<Integer, AssertionResult> getAssertions(){
 		return assertions;
-
-	}
-	@Override
-	public Object clone()throws CloneNotSupportedException{
-		return super.clone();
 	}
 
 	public void setErrorCount(String ec){
@@ -115,6 +48,9 @@ public class HttpSample implements Serializable, Cloneable {
 
 	public String getErrorCount(){
 		return errorCount;
+	}
+	public boolean isSuccessful() {
+		return successful;
 	}
 
 	public void setThreadName(String threadn){
@@ -129,20 +65,9 @@ public class HttpSample implements Serializable, Cloneable {
 		return responseMessage;
 	}
 
-	public AssertionResult getArObject(Integer id){
-//		System.out.println("Id of object I want to get "+ id);
-//		System.out.println("size of assertions: "+assertions.size());
-//		System.out.println("getting Ar's Name "+ assertions.get(id));
+	public AssertionResult getARObject(Integer id){
 		return assertions.get(id);
 	}
-
-//	public AssertionResult getArObject(String aRname){
-//		for (AssertionResult aR : assertions){
-//			if (aR.getName().equals(aRname)){
-//				return aR;
-//			}
-//		}
-//	}
 
 	public long getDuration() {
 		return duration;
@@ -160,16 +85,6 @@ public class HttpSample implements Serializable, Cloneable {
 		return uri;
 	}
 
-
-
-	public boolean isFailed() {
-		return !isSuccessful();
-	}
-
-	public boolean isSuccessful() {
-		return successful;
-	}
-
 	public void setDuration(long duration) {
 		this.duration = duration;
 	}
@@ -177,7 +92,6 @@ public class HttpSample implements Serializable, Cloneable {
 	public void setSuccessful(boolean successful) {
 		this.successful = successful;
 	}
-
 
 	public void setDate(Date time) {
 		this.date = time;
@@ -199,7 +113,6 @@ public class HttpSample implements Serializable, Cloneable {
 		this.httpCode = httpCode;
 	}
 
-
 	public int compareTo(HttpSample o) {
 		return (int) (getDuration() - o.getDuration());
 	}
@@ -211,7 +124,6 @@ public class HttpSample implements Serializable, Cloneable {
 	public void setSizeInKb(double d) {
 		this.sizeInKb = d;
 	}
-
 
 	public Integer createID(){
 

@@ -10,8 +10,9 @@ import java.util.List;
 
 
 /**
- *
- *
+ * Hudson View Object that retrieves history of builds.
+ * A separate class allows room for any future requirements
+ * focused on only History of builds
  *
  */
 

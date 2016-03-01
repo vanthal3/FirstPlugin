@@ -204,6 +204,7 @@ public class JVisualizerReportMap implements ModelObject {
       for (File dir : dirs) {
         JVisualizerParser p = buildAction.getParserByDisplayName(dir
             .getName());
+        System.out.println("=====PARSER: "+ p.toString() + " ----- of getparserbydisplayname---- "+ dir.getName());
         if (p != null) {
           File[] listFiles = dir.listFiles(new FilenameFilter() {
 

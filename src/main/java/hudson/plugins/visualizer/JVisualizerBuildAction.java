@@ -50,7 +50,6 @@ public class JVisualizerBuildAction implements Action, StaplerProxy {
   }
 
 
-
   public String getDisplayName() {
      return "Visualizer for Build#: "+buildNum;
   }
@@ -102,6 +101,7 @@ public class JVisualizerBuildAction implements Action, StaplerProxy {
   {
     return buildDate;
   }
+
   public void setPerformanceReportMap(
       WeakReference<JVisualizerReportMap> performanceReportMap) {
     this.performanceReportMap = performanceReportMap;
