@@ -54,7 +54,6 @@ public class JVisualizerReportMap implements ModelObject {
         for (JVisualizerReport r : reports) {
           r.setBuildAction(buildAction);
           performanceReportMap.put(r.getReportFileName(), r);
-          System.out.println("NAME OF REPORT "+r.getReportFileName());
         }
       }
     }, null);

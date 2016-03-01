@@ -9,20 +9,26 @@ import org.kohsuke.stapler.StaplerRequest;
 import java.util.List;
 
 
-public class FailedTestCases implements ModelObject {
+/**
+ *
+ *
+ *
+ */
+
+public class HistoryOfBuildActions implements ModelObject {
 
     AbstractProject<?, ?> project;
     StaplerRequest request;
 
-    FailedTestCases(final AbstractProject<?, ?> p,
-                    final StaplerRequest r){
+    HistoryOfBuildActions(final AbstractProject<?, ?> p,
+                          final StaplerRequest r){
 
         this.project=p;
         this.request=r;
 
     }
 
-    public ArrayList<JVisualizerBuildAction> getAllBuildActions(){
+    public ArrayList<JVisualizerBuildAction> getBuildHistory(){
         ArrayList<JVisualizerBuildAction> builds=new ArrayList<JVisualizerBuildAction>();
 
 

@@ -201,12 +201,9 @@ public class JVisualizerPublisher extends Recorder {
           throws InterruptedException, IOException {
 
     PrintStream logger = listener.getLogger();
-    double thresholdTolerance = 0.00000001;
-    Result result = Result.SUCCESS;
-    Result failedResult = Result.FAILURE;
+
     EnvVars env = build.getEnvironment(listener);
 
-    System.out.println("BUILD NUM: "+env.get("BUILD_NUMBER"));
 
       // add the report to the build object.
       JVisualizerBuildAction a = new JVisualizerBuildAction(env,build, logger, parsers );

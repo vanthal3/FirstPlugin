@@ -5,7 +5,7 @@
       <h1>${%Performance Trend}</h1>
       <div>
         <a href="../lastBuild/performance/">${%Last Report}</a><br/>
-        <a href="${from.urlName}historyVi">${% History of Failed Test Cases}</a>
+        <a href="${from.urlName}BuildHistoryVi">${% History of Failed Test Cases}</a>
       </div>
     </l:main-panel>
   </l:layout>

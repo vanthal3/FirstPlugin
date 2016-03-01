@@ -7,7 +7,7 @@
       <!-- body tag is important to include to render JS script-->
           <body onload="addEvents();">
 
-<j:forEach var="build" items="${it.getAllBuildActions()}">
+<j:forEach var="build" items="${it.getBuildHistory()}">
     <j:forEach var  ="report" items="${build.getJVisualizerReportMap().getPerformanceListOrdered()}">
             <div style="overflow-x:auto;">
                   <table id="Main" >

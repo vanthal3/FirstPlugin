@@ -8,7 +8,7 @@ import java.io.Serializable;
  * An HttpSample may send AssertionResults which holds information
  * about the success of the assertions.
  *
- * This object belongs under {@link HttpSample}.
+ * This POJO belongs under {@link HttpSample}.
  *
  */
 

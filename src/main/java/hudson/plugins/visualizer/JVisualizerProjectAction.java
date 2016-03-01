@@ -2,39 +2,17 @@ package hudson.plugins.visualizer;
 
 import hudson.model.AbstractProject;
 import hudson.model.Action;
-import hudson.util.*;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.logging.Logger;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.*;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.category.LineAndShapeRenderer;
-import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.chart.renderer.xy.XYItemRenderer;
-import org.jfree.chart.title.LegendTitle;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.ui.RectangleEdge;
-import org.jfree.ui.RectangleInsets;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
 
 public final class JVisualizerProjectAction implements Action {
 
-  private static final String CONFIGURE_LINK = "configure";
-  private static final String TRENDREPORT_LINK = "trendReport";
-  private static final String TESTSUITE_LINK = "testsuiteReport";
-  private static final String RESULT_VI = "resultVi";
-  private static final String HISTORY_VI = "historyVi";
+  private static final String BUILD_HISTORY = "BuildHistoryVi";
 
   private static final String PLUGIN_NAME = "visualizer";
 
@@ -143,8 +121,8 @@ public final class JVisualizerProjectAction implements Action {
    */
   public Object getDynamic(final String link, final StaplerRequest request,
       final StaplerResponse response) {
-     if (HISTORY_VI.equals(link)){
-      return createHistoryVi(request);
+     if (BUILD_HISTORY.equals(link)){
+      return showHistoryFailedTC(request);
     } else {
       return null;
     }
@@ -158,8 +136,8 @@ public final class JVisualizerProjectAction implements Action {
    * @return a view to configure the result visualizer for the current user
    */
 
-  private Object createHistoryVi(final StaplerRequest request){
-   FailedTestCases ft= new FailedTestCases(project,request);
+  private Object showHistoryFailedTC(final StaplerRequest request){
+   HistoryOfBuildActions ft= new HistoryOfBuildActions(project,request);
 
     return ft;
 

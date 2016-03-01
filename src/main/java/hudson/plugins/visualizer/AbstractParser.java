@@ -27,6 +27,7 @@ import java.util.logging.Logger;
  * well as saving/loaded parsed data in serialized form to/from disc.
  *
  * @author Guus der Kinderen, guus.der.kinderen@gmail.com
+ *
  */
 public abstract class AbstractParser extends JVisualizerParser
 {  
