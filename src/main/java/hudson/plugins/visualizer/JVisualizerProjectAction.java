@@ -28,7 +28,6 @@ public final class JVisualizerProjectAction implements Action {
   private transient List<String> performanceReportList;
 
   public String getDisplayName() {
-    //return "yolo";
     return Messages.ProjectAction_DisplayName();
   }
 

@@ -57,11 +57,7 @@ public class JVisualizerPublisher extends Recorder {
 
   private boolean compareBuildPrevious = false;
 
-  File xmlfile = null;
 
-  String xmlDir = null;
-
-  String xml = "";
 
   private static final String archive_directory = "archive";
 
@@ -75,7 +71,6 @@ public class JVisualizerPublisher extends Recorder {
    */
   private List<JVisualizerParser> parsers;
 
-  private boolean modeThroughput;
 
 
   @DataBoundConstructor
@@ -146,17 +141,7 @@ public class JVisualizerPublisher extends Recorder {
    */
   protected static List<FilePath> locatePerformanceReports(FilePath workspace,
                                                            String includes) throws IOException, InterruptedException {
-    //System.out.println("includes is: " + includes);
 
-    // First use ant-style pattern
-    /*
-      try {
-      FilePath[] ret = workspace.list(includes);
-      if (ret.length > 0) {
-        return Arrays.asList(ret);
-      }
-    */
-    //Agoley : Possible fix, if we specify more than one result file pattern
     try {
       String parts[] = includes.split("\\s*[;:,]+\\s*");
 
@@ -211,15 +196,12 @@ public class JVisualizerPublisher extends Recorder {
       logger.print("\n\n\n");
 
       for (JVisualizerParser parser : parsers) {
-        //System.out.println("The glob pattern is: " + parser.getDefaultGlobPattern());
 
         String glob = parser.glob;
-        //System.out.println("The parser.glob is: " + parser.glob);
 
         //Replace any runtime environment variables such as ${sample_var}
         glob = env.expand(glob);
         logger.println("Performance: Recording " + parser.getReportName() + " reports '" + glob + "'");
-        //System.out.println("Performance: Recording " + parser.getReportName() + " reports '" + glob + "'");
 
         List<FilePath> files = locatePerformanceReports(build.getWorkspace(), glob);
 
@@ -228,22 +210,17 @@ public class JVisualizerPublisher extends Recorder {
             return true;
           }
           build.setResult(Result.FAILURE);
-          logger.println("Performance: no " + parser.getReportName()
+          logger.println("Visualizer: no " + parser.getReportName()
                   + " files matching '" + glob
                   + "' have been found. Has the report generated?. Setting Build to "
                   + build.getResult());
-//          //System.out.println("Performance: no " + parser.getReportName()
-//                  + " files matching '" + glob
-//                  + "' have been found. Has the report generated?. Setting Build to "
-//                  + build.getResult());
+
           return true;
         }
 
 
         List<File> localReports = copyReportsToMaster(build, logger, files, parser.getDescriptor().getDisplayName());
-        for (File f : localReports) {
-          //System.out.println("name of file: "+f.getName());
-        }
+
         Collection<JVisualizerReport> parsedReports = parser.parse(build, localReports, listener);
 
         for (JVisualizerReport r : parsedReports) {
@@ -277,15 +254,6 @@ public class JVisualizerPublisher extends Recorder {
   }
 
 
-  public String getFilename() {
-    return filename;
-  }
-
-  public void setFilename(String filename) {
-    this.filename = filename;
-  }
-
-
   public static File[] getPerformanceReportDirectory(AbstractBuild<?, ?> build,
                                                      String parserDisplayName, PrintStream logger) {
     File folder = new File(build.getRootDir() + "/" + JVisualizerReportMap.getPerformanceReportFileRelativePath(parserDisplayName, ""));
@@ -293,29 +261,6 @@ public class JVisualizerPublisher extends Recorder {
     return listOfFiles;
   }
 
-
-  /**
-   * Gets the Build object entered in the text box "Compare with nth Build"
-   *
-   * @param build, listener
-   * @return build object
-   * @throws IOException
-   */
-
-  // @psingh5 -
-  public AbstractBuild<?, ?> getnthBuild(AbstractBuild<?, ?> build, BuildListener listener)
-          throws IOException {
-    AbstractBuild<?, ?> nthBuild = build;
-
-    int nextBuildNumber = build.number - nthBuildNumber;
-
-    for (int i = 1; i <= nextBuildNumber; i++) {
-      nthBuild = (AbstractBuild<?, ?>) nthBuild.getPreviousBuild();
-      if (nthBuild == null)
-        return null;
-    }
-    return (nthBuildNumber == 0) ? null : nthBuild;
-  }
 
   private List<File> getExistingReports(AbstractBuild<?, ?> build, PrintStream logger, String parserDisplayName)
           throws IOException, InterruptedException {
@@ -334,14 +279,6 @@ public class JVisualizerPublisher extends Recorder {
       localReports.add(localReport[i]);
     }
     return localReports;
-  }
-
-  public int getNthBuildNumber() {
-    return nthBuildNumber;
-  }
-
-  public void setNthBuildNumber(int nthBuildNumber) {
-    this.nthBuildNumber = Math.max(0, Math.min(nthBuildNumber, Integer.MAX_VALUE));
   }
 
 
