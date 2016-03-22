@@ -24,7 +24,6 @@ public class JVisualizerPublisher extends Recorder {
   public static class DescriptorImpl extends BuildStepDescriptor<Publisher> {
     @Override
     public String getDisplayName() {
-      //return "performace publisher";
       return Messages.Publisher_DisplayName();
     }
 
@@ -33,7 +32,6 @@ public class JVisualizerPublisher extends Recorder {
       return "/plugin/visualizer/help.html";
     }
 
-    //only gets the descriptors (annotated with extension points) that extend PerformanceReportParserDecriptor
     public List<JVisualizerParserDescriptor> getParserDescriptors() {
       return JVisualizerParserDescriptor.all();
     }
@@ -201,7 +199,7 @@ public class JVisualizerPublisher extends Recorder {
 
         //Replace any runtime environment variables such as ${sample_var}
         glob = env.expand(glob);
-        logger.println("Performance: Recording " + parser.getReportName() + " reports '" + glob + "'");
+        logger.println("Jmeter Visualizer parsing: " + parser.getReportName() + " reports '" + glob + "'");
 
         List<FilePath> files = locatePerformanceReports(build.getWorkspace(), glob);
 
@@ -210,9 +208,9 @@ public class JVisualizerPublisher extends Recorder {
             return true;
           }
           build.setResult(Result.FAILURE);
-          logger.println("Visualizer: no " + parser.getReportName()
+          logger.println("Jmeter Visualizer: no " + parser.getReportName()
                   + " files matching '" + glob
-                  + "' have been found. Has the report generated?. Setting Build to "
+                  + "' have been found. Setting Build to "
                   + build.getResult());
 
           return true;
@@ -243,8 +241,8 @@ public class JVisualizerPublisher extends Recorder {
       final File localReport = getPerformanceReport(build, parserDisplayName,
               src.getName());
       if (src.isDirectory()) {
-        logger.println("Performance: File '" + src.getName()
-                + "' is a directory, not a Performance Report");
+        logger.println("Jmeter Visualizer: File '" + src.getName()
+                + "' is a directory, not a JTL File");
         continue;
       }
       src.copyTo(new FilePath(localReport));
@@ -286,8 +284,8 @@ public class JVisualizerPublisher extends Recorder {
     return compareBuildPrevious;
   }
 
-  public void setCompareBuildPrevious(boolean compareBuildPrevious) {
-    this.compareBuildPrevious = compareBuildPrevious;
+  public void setCompareBuildPrevious(boolean compareBuildPrev) {
+    this.compareBuildPrevious = compareBuildPrev;
   }
 
 }

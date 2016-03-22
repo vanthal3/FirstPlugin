@@ -210,7 +210,6 @@ public class JtlFileParser extends AbstractParser {
         if ("httpSample".equalsIgnoreCase(element) || "sample".equalsIgnoreCase(element)) {
 
           try {
-//            System.out.println("currentID: "+sample.getHttpId()+ " and uri: "+ sample.getUri());
             report.addSample(sample);
           } catch (SAXException e) {
             e.printStackTrace();

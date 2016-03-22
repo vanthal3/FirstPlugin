@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 /**
- * HTTP POJO
+ * HTTP POJO. Holds information about the Request.
  */
 public class HttpSample implements Serializable {
 
@@ -20,14 +20,14 @@ public class HttpSample implements Serializable {
 	public boolean successful;
 	public String responseMessage;
 	public Date date;
-	public String uri;
+	public String Uri;
 	public String threadname;
 	public double sizeInKb;
 	public String errorCount;
 
 
 	public HttpSample(Integer myid){
-		this.httpId=myid;
+		httpId=myid;
 		assertions=new HashMap<Integer, AssertionResult>();
 	}
 
@@ -43,7 +43,7 @@ public class HttpSample implements Serializable {
 	}
 
 	public void setErrorCount(String ec){
-		this.errorCount=ec;
+		errorCount=ec;
 	}
 
 	public String getErrorCount(){
@@ -54,7 +54,7 @@ public class HttpSample implements Serializable {
 	}
 
 	public void setThreadName(String threadn){
-		this.threadname=threadn;
+		threadname=threadn;
 	}
 
 	public String getThreadname(){
@@ -74,7 +74,7 @@ public class HttpSample implements Serializable {
 	}
 
 	public void setResponseMessage(String rm){
-		this.responseMessage=rm;
+		responseMessage=rm;
 	}
 
 	public Date getDate() {
@@ -82,23 +82,23 @@ public class HttpSample implements Serializable {
 	}
 
 	public String getUri() {
-		return uri;
+		return Uri;
 	}
 
-	public void setDuration(long duration) {
-		this.duration = duration;
+	public void setDuration(long dur) {
+		duration = dur;
 	}
 
-	public void setSuccessful(boolean successful) {
-		this.successful = successful;
+	public void setSuccessful(boolean success) {
+		successful = success;
 	}
 
 	public void setDate(Date time) {
-		this.date = time;
+		date = time;
 	}
 
 	public void setUri(String uri) {
-		this.uri = uri;
+		Uri = uri;
 	}
 
 	public Integer getHttpId(){
@@ -109,8 +109,8 @@ public class HttpSample implements Serializable {
 		return httpCode;
 	}
 
-	public void setHttpCode(String httpCode) {
-		this.httpCode = httpCode;
+	public void setHttpCode(String httpCd) {
+		httpCode = httpCd;
 	}
 
 	public int compareTo(HttpSample o) {
@@ -122,7 +122,7 @@ public class HttpSample implements Serializable {
 	}
 
 	public void setSizeInKb(double d) {
-		this.sizeInKb = d;
+		sizeInKb = d;
 	}
 
 	public Integer createID(){

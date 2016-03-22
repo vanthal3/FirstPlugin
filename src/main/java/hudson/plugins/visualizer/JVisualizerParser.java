@@ -16,9 +16,6 @@ import java.util.Collection;
  * is persisted with {@link JVisualizerPublisher} into the project
  * configuration.
  * 
- * <p>
- * Subtypes can define additional parser-specific parameters as instance fields.
- * 
  * @author Kohsuke Kawaguchi
  */
 public abstract class JVisualizerParser implements
@@ -29,8 +26,7 @@ public abstract class JVisualizerParser implements
   public final String glob;
 
   @DataBoundConstructor
-  protected JVisualizerParser(String glob) {
-    this.glob = (glob == null || glob.length() == 0) ? getDefaultGlobPattern()
+  protected JVisualizerParser(String glob) {this.glob = (glob == null || glob.length() == 0) ? getDefaultGlobPattern()
         : glob;
   }
 

@@ -19,13 +19,13 @@
                           <th>${%Thread Name}</th>
                           <th>${%TimeStamp} (ms)</th>
                            <th>${%Elapsed Time}</th>
-                           <th>${%Response Code} (ms)</th>
+                           <th>${%Response Code}</th>
                            <th>${%Response Message}</th>
                        </tr>
                        <j:forEach var="httpSample" items="${report.getFailedhttpSampleMap().values()}">
                        <tr style="color: #ff0000;">
                            <td>
-                               <ul style="cursor: pointer;" id="LinkedList1" class="LinkedList">
+                               <u style="cursor: pointer;" id="LinkedList1" class="LinkedList">
                                     <li >${httpSample.getUri()}
                                     <ul>
                                        <j:forEach var="arID" items="${httpSample.getAssertions().keySet()}">
@@ -47,7 +47,7 @@
                                        </j:forEach>
                                     </ul>
                                     </li>
-                               </ul>
+                               </u>
                                </td>
 
                            <td>${httpSample.getThreadname()}</td>

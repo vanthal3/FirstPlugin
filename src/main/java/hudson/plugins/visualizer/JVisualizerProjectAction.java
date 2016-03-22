@@ -39,8 +39,8 @@ public final class JVisualizerProjectAction implements Action {
     return PLUGIN_NAME;
   }
 
-  public JVisualizerProjectAction(AbstractProject<?, ?> project) {
-    this.project = project;
+  public JVisualizerProjectAction(AbstractProject<?, ?> proj) {
+    this.project = proj;
   }
 
 
@@ -53,7 +53,7 @@ public final class JVisualizerProjectAction implements Action {
 
     private String getPerformanceReportNameFile(final JVisualizerPosition jVisualizerPosition) {
         String performanceReportNameFile = jVisualizerPosition.getPerformanceReportPosition();
-      System.out.println("================= report position: "+ jVisualizerPosition);
+     // System.out.println("================= report position: "+ jVisualizerPosition);
         if (performanceReportNameFile == null) {
             if (getPerformanceReportList().size() == 1) {
                 performanceReportNameFile = getPerformanceReportList().get(0);
@@ -68,14 +68,14 @@ public final class JVisualizerProjectAction implements Action {
   }
 
   public List<String> getPerformanceReportList() {
-    this.performanceReportList = new ArrayList<String>(0);
-    if (null == this.project) {
+    performanceReportList = new ArrayList<String>(0);
+    if (null == project) {
       return performanceReportList;
     }
-    if (null == this.project.getSomeBuildWithWorkspace()) {
+    if (null == project.getSomeBuildWithWorkspace()) {
       return performanceReportList;
     }
-    File file = new File(this.project.getSomeBuildWithWorkspace().getRootDir(),
+    File file = new File(project.getSomeBuildWithWorkspace().getRootDir(),
         JVisualizerReportMap.getPerformanceReportDirRelativePath());
     if (!file.isDirectory()) {
       return performanceReportList;
@@ -85,12 +85,12 @@ public final class JVisualizerProjectAction implements Action {
       if (entry.isDirectory()) {
         for (File e : entry.listFiles()) {
           if (!e.getName().endsWith(".serialized") && !e.getName().endsWith(".serialized-v2")) {
-            this.performanceReportList.add(e.getName());
+            performanceReportList.add(e.getName());
           }
         }
       } else {
         if (!entry.getName().endsWith(".serialized") && !entry.getName().endsWith(".serialized-v2")) {
-          this.performanceReportList.add(entry.getName());
+          performanceReportList.add(entry.getName());
         }
       }
 
@@ -98,17 +98,17 @@ public final class JVisualizerProjectAction implements Action {
 
     Collections.sort(performanceReportList);
 
-    return this.performanceReportList;
+    return performanceReportList;
   }
 
   public void setPerformanceReportList(List<String> performanceReportList) {
-    this.performanceReportList = performanceReportList;
+    performanceReportList = performanceReportList;
   }
 
 
 
   /**
-   * Returns the graph configuration for this project.
+   * Returns the link to historyOfBuild.
    *
    * @param link
    *          not used
@@ -128,7 +128,8 @@ public final class JVisualizerProjectAction implements Action {
   }
 
   /**
-   * Creates a view for the  history visualizer for the current user.
+   * Creates a view for the  history visualizer. From this,
+   * it gets filter to become history of just failed testcases.
    *
    * @param request
    *          Stapler request

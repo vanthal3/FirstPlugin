@@ -9,12 +9,8 @@ import java.io.IOException;
 import java.util.*;
 
 import hudson.model.TaskListener;
-import hudson.util.ChartUtil;
-import hudson.util.ChartUtil.NumberOnlyBuildLabel;
-import hudson.util.DataSetBuilder;
 import java.io.FilenameFilter;
 import org.kohsuke.stapler.StaplerRequest;
-import org.kohsuke.stapler.StaplerResponse;
 
 /**
  * Root object of a visualizer report.
@@ -45,9 +41,9 @@ public class JVisualizerReportMap implements ModelObject {
    * @throws IOException
    *           If a report fails to parse.
    */
-  JVisualizerReportMap(final JVisualizerBuildAction buildAction,
+  JVisualizerReportMap(final JVisualizerBuildAction buildaction,
                        TaskListener listener) throws IOException {
-    this.buildAction = buildAction;
+    buildAction = buildaction;
     parseReports(getBuild(), listener, new PerformanceReportCollector() {
 
       public void addAll(Collection<JVisualizerReport> reports) {
@@ -89,56 +85,22 @@ public class JVisualizerReportMap implements ModelObject {
     return performanceReportMap;
   }
 
-  /**
-   * <p>
-   * Give the Performance report with the parameter for name in Bean
-   * </p>
-   * 
-   * @param performanceReportName
-   * @return
-   */
   public JVisualizerReport getPerformanceReport(String performanceReportName) {
     return performanceReportMap.get(performanceReportName);
   }
-//
-//  /**
-//   * Get a URI report within a Performance report file
-//   *
-//   * @param uriReport
-//   *          "Performance report file name";"URI name"
-//   * @return
-//   */
-////  public UriReport getUriReport(String uriReport) {
-////    if (uriReport != null) {
-////      String uriReportDecoded;
-////      try {
-////        uriReportDecoded = URLDecoder
-////            .decode(uriReport.replace(UriReport.END_PERFORMANCE_PARAMETER, ""),
-////                "UTF-8");
-////      } catch (UnsupportedEncodingException e) {
-////        e.printStackTrace();
-////        return null;
-////      }
-////      StringTokenizer st = new StringTokenizer(uriReportDecoded,
-////          GraphConfigurationDetail.SEPARATOR);
-////      return getJVisualizerReportMap().get(st.nextToken()).getUriReportMap()
-//          .get(st.nextToken());
-//    } else {
-//      return null;
-//    }
-//  }
+
 
   public String getUrlName() {
     return PLUGIN_NAME;
   }
 
   void setBuildAction(JVisualizerBuildAction buildAction) {
-    this.buildAction = buildAction;
+    buildAction = buildAction;
   }
 
   public void setPerformanceReportMap(
       Map<String, JVisualizerReport> performanceReportMap) {
-    this.performanceReportMap = performanceReportMap;
+    performanceReportMap = performanceReportMap;
   }
 
   public static String getPerformanceReportFileRelativePath(
@@ -159,15 +121,7 @@ public class JVisualizerReportMap implements ModelObject {
     return sb.toString();
   }
 
-  /**
-   * <p>
-   * Verify if the JVisualizerReport exist the performanceReportName must to be
-   * like it is in the build
-   * </p>
-   * 
-   * @param performanceReportName
-   * @return boolean
-   */
+
   public boolean isFailed(String performanceReportName) {
     return getPerformanceReport(performanceReportName) == null;
   }
@@ -204,7 +158,6 @@ public class JVisualizerReportMap implements ModelObject {
       for (File dir : dirs) {
         JVisualizerParser p = buildAction.getParserByDisplayName(dir
             .getName());
-        System.out.println("=====PARSER: "+ p.toString() + " ----- of getparserbydisplayname---- "+ dir.getName());
         if (p != null) {
           File[] listFiles = dir.listFiles(new FilenameFilter() {
 

@@ -12,7 +12,11 @@ import java.util.List;
 /**
  * Hudson View Object that retrieves history of builds.
  * A separate class allows room for any future requirements
- * focused on only History of builds
+ * focused on only History of builds.
+ *
+ * Once history of build is returned, you can filter what
+ * to display. In this case, this class is used to filter
+ * for failed testcases.
  *
  */
 
@@ -24,8 +28,8 @@ public class HistoryOfBuildActions implements ModelObject {
     HistoryOfBuildActions(final AbstractProject<?, ?> p,
                           final StaplerRequest r){
 
-        this.project=p;
-        this.request=r;
+        project=p;
+        request=r;
 
     }
 

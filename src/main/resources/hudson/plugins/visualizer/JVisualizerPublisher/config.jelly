@@ -6,9 +6,6 @@
                    items="${instance.parsers}"
                    addCaption="${%Choose a report}"/>
   </f:entry>
-  <f:entry title="Select mode:   ">
-    <f:booleanRadio name="modeOfThreshold" field="modeOfThreshold" true="Relative Threshold" false="Error Threshold" />
-  </f:entry>
 
 
 </j:jelly>

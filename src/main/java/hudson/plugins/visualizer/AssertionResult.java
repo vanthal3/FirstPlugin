@@ -22,28 +22,28 @@ public class AssertionResult implements Serializable {
 
 
     public AssertionResult(int myid){
-        this.id = myid;
+        id = myid;
     }
 
     public void setName(String name){
-        this.Name=name;
+        Name=name;
     }
 
 
     public String getName(){
-        return this.Name;
+        return Name;
     }
 
     public void setFailure(String failure){
-        this.Failure=failure;
+        Failure=failure;
     }
 
     public String isFailure(){
-        return this.Failure;
+        return Failure;
     }
 
     public void setError(String error){
-        this.Error=error;
+        Error=error;
     }
 
     public String isError(){
@@ -53,13 +53,13 @@ public class AssertionResult implements Serializable {
     public int getId(){return id;}
 
     public void setFailureMessage(String fm){
-        this.FailureMessage= fm;
+        FailureMessage= fm;
     }
 
     public String getFailureMessage(){
         if (FailureMessage==null){
             String s=new String();
-            s="no failure msg";
+            s="No Failure Msg";
             return s;
         }
         return FailureMessage;

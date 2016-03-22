@@ -17,8 +17,7 @@ public class JVisualizerBuildAction implements Action, StaplerProxy {
   private final AbstractBuild<?, ?> build;
 
   /**
-   * Configured parsers used to parse reports in this build.
-   * For compatibility reasons, this can be null.
+   * Hudson Action object responsible for each Build
    */
   private final List<JVisualizerParser> parsers;
 
@@ -33,12 +32,12 @@ public class JVisualizerBuildAction implements Action, StaplerProxy {
 
 
   public JVisualizerBuildAction(EnvVars var, AbstractBuild<?, ?> pBuild, PrintStream logger,
-                                List<JVisualizerParser> parsers) {
+                                List<JVisualizerParser> parser) {
     build = pBuild;
     hudsonConsoleWriter = logger;
-    this.parsers = parsers;
-    this.buildNum=var.get("BUILD_NUMBER");
-    this.buildDate=var.get("BUILD_ID");
+    parsers = parser;
+    buildNum=var.get("BUILD_NUMBER");
+    buildDate=var.get("BUILD_ID");
   }
 
   public JVisualizerParser getParserByDisplayName(String displayName) {
@@ -55,7 +54,7 @@ public class JVisualizerBuildAction implements Action, StaplerProxy {
   }
 
   public String getIconFileName() {
-    return "graph.gif";
+    return "treeview.png";
   }
 
   public String getUrlName() {
@@ -76,7 +75,7 @@ public class JVisualizerBuildAction implements Action, StaplerProxy {
 
   public JVisualizerReportMap getJVisualizerReportMap() {
     JVisualizerReportMap reportMap = null;
-    WeakReference<JVisualizerReportMap> wr = this.performanceReportMap;
+    WeakReference<JVisualizerReportMap> wr = performanceReportMap;
     if (wr != null) {
       reportMap = wr.get();
       if (reportMap != null)
@@ -88,7 +87,7 @@ public class JVisualizerBuildAction implements Action, StaplerProxy {
     } catch (IOException e) {
       logger.log(Level.SEVERE, "Error creating new JVisualizerReportMap()", e);
     }
-    this.performanceReportMap = new WeakReference<JVisualizerReportMap>(
+    performanceReportMap = new WeakReference<JVisualizerReportMap>(
         reportMap);
     return reportMap;
   }
@@ -104,6 +103,6 @@ public class JVisualizerBuildAction implements Action, StaplerProxy {
 
   public void setPerformanceReportMap(
       WeakReference<JVisualizerReportMap> performanceReportMap) {
-    this.performanceReportMap = performanceReportMap;
+    performanceReportMap = performanceReportMap;
   }
 }

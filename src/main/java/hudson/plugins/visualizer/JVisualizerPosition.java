@@ -10,7 +10,7 @@ public class JVisualizerPosition {
   }
 
   public void setPerformanceReportPosition(String performanceReportPosition) {
-    this.performanceReportPosition = performanceReportPosition;
+    performanceReportPosition = performanceReportPosition;
   }
 
 }
