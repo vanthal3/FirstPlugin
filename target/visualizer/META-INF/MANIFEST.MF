@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Built-By: Hanifa_Bell
+Created-By: Apache Maven
+Build-Jdk: 1.8.0_60
+Extension-Name: visualizer
+Implementation-Title: visualizer
+Implementation-Version: 3.0-SNAPSHOT
+Group-Id: org.jenkins-ci.plugins
+Short-Name: visualizer
+Long-Name: Visualizer plugin
+Url: http://jenkins-ci.org/plugin/visualizer/
+Plugin-Version: 3.0-SNAPSHOT (private-03/24/2016 12:51-Hanifa_Bell)
+Hudson-Version: 1.480
+Jenkins-Version: 1.480
+Plugin-Developers: 
+
